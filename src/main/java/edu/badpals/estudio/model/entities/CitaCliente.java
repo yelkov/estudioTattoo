@@ -6,9 +6,9 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "CITAS_CLIENTES")
-public class CitasCliente {
+public class CitaCliente {
     @EmbeddedId
-    private CitasClienteId id;
+    private CitaClienteId id;
 
     @MapsId("cliente")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -21,11 +21,11 @@ public class CitasCliente {
     @JoinColumn(name = "CITA", nullable = false)
     private Cita cita;
 
-    public CitasClienteId getId() {
+    public CitaClienteId getId() {
         return id;
     }
 
-    public void setId(CitasClienteId id) {
+    public void setId(CitaClienteId id) {
         this.id = id;
     }
 

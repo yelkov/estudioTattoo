@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "TATUADORES")
-public class Tatuadore {
+public class Tatuador {
     @Id
     @Column(name = "TRABAJADOR", columnDefinition = "int UNSIGNED not null")
     private Long id;
@@ -18,7 +18,10 @@ public class Tatuadore {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "TRABAJADOR", nullable = false)
-    private edu.badpals.estudio.model.entities.Trabajadore trabajadores;
+    private Trabajador trabajador;
+
+    @Column(name = "COMISION", columnDefinition = "float UNSIGNED not null")
+    private Float comision;
 
     @OneToMany(mappedBy = "tatuador")
     private Set<Cita> citas = new LinkedHashSet<>();
@@ -31,12 +34,12 @@ public class Tatuadore {
         this.id = id;
     }
 
-    public edu.badpals.estudio.model.entities.Trabajadore getTrabajadores() {
-        return trabajadores;
+    public Trabajador getTrabajador() {
+        return trabajador;
     }
 
-    public void setTrabajadores(edu.badpals.estudio.model.entities.Trabajadore trabajadores) {
-        this.trabajadores = trabajadores;
+    public void setTrabajador(Trabajador trabajador) {
+        this.trabajador = trabajador;
     }
 
     public Set<Cita> getCitas() {
@@ -47,10 +50,11 @@ public class Tatuadore {
         this.citas = citas;
     }
 
-/*
- TODO [Reverse Engineering] create field to map the 'COMISION' column
- Available actions: Define target Java type | Uncomment as is | Remove column mapping
-    @Column(name = "COMISION", columnDefinition = "float UNSIGNED not null")
-    private Object comision;
-*/
+    public Float getComision() {
+        return comision;
+    }
+
+    public void setComision(Float comision) {
+        this.comision = comision;
+    }
 }

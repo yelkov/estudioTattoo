@@ -6,29 +6,29 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "TELEFONOS_TRABAJADORES")
-public class TelefonosTrabajadore {
+public class TelefonosTrabajador {
     @EmbeddedId
-    private TelefonosTrabajadoreId id;
+    private TelefonosTrabajadorId id;
 
     @MapsId("trabajador")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "TRABAJADOR", nullable = false)
-    private edu.badpals.estudio.model.entities.Trabajadore trabajador;
+    private Trabajador trabajador;
 
-    public TelefonosTrabajadoreId getId() {
+    public TelefonosTrabajadorId getId() {
         return id;
     }
 
-    public void setId(TelefonosTrabajadoreId id) {
+    public void setId(TelefonosTrabajadorId id) {
         this.id = id;
     }
 
-    public edu.badpals.estudio.model.entities.Trabajadore getTrabajador() {
+    public Trabajador getTrabajador() {
         return trabajador;
     }
 
-    public void setTrabajador(edu.badpals.estudio.model.entities.Trabajadore trabajador) {
+    public void setTrabajador(Trabajador trabajador) {
         this.trabajador = trabajador;
     }
 

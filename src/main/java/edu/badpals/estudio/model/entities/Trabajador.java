@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "TRABAJADORES")
-public class Trabajadore {
+public class Trabajador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_TRABAJADOR", columnDefinition = "int UNSIGNED not null")
@@ -29,16 +29,19 @@ public class Trabajadore {
     @Column(name = "FECHA_ALTA", nullable = false)
     private LocalDate fechaAlta;
 
+    @Column(name = "SALARIO", columnDefinition = "float UNSIGNED")
+    private Float salario;
+
     @Column(name = "EMAIL", nullable = false, length = 30)
     private String email;
 
     @OneToOne(mappedBy = "trabajador")
-    private Anilladore anilladore;
+    private Anillador anillador;
 
     @OneToOne(mappedBy = "trabajador")
-    private Tatuadore tatuadore;
+    private Tatuador tatuador;
     @OneToMany(mappedBy = "trabajador")
-    private Set<TelefonosTrabajadore> telefonosTrabajadores = new LinkedHashSet<>();
+    private Set<TelefonosTrabajador> telefonosTrabajadors = new LinkedHashSet<>();
 
     public Long getId() {
         return id;
@@ -88,6 +91,14 @@ public class Trabajadore {
         this.fechaAlta = fechaAlta;
     }
 
+    public Float getSalario() {
+        return salario;
+    }
+
+    public void setSalario(Float salario) {
+        this.salario = salario;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -96,34 +107,27 @@ public class Trabajadore {
         this.email = email;
     }
 
-    public Anilladore getAnilladore() {
-        return anilladore;
+    public Anillador getAnilladore() {
+        return anillador;
     }
 
-    public void setAnilladore(Anilladore anilladore) {
-        this.anilladore = anilladore;
+    public void setAnilladore(Anillador anillador) {
+        this.anillador = anillador;
     }
 
-    public Tatuadore getTatuadore() {
-        return tatuadore;
+    public Tatuador getTatuadore() {
+        return tatuador;
     }
 
-    public void setTatuadore(Tatuadore tatuadore) {
-        this.tatuadore = tatuadore;
+    public void setTatuadore(Tatuador tatuador) {
+        this.tatuador = tatuador;
     }
 
-    public Set<TelefonosTrabajadore> getTelefonosTrabajadores() {
-        return telefonosTrabajadores;
+    public Set<TelefonosTrabajador> getTelefonosTrabajadores() {
+        return telefonosTrabajadors;
     }
 
-    public void setTelefonosTrabajadores(Set<TelefonosTrabajadore> telefonosTrabajadores) {
-        this.telefonosTrabajadores = telefonosTrabajadores;
+    public void setTelefonosTrabajadores(Set<TelefonosTrabajador> telefonosTrabajadors) {
+        this.telefonosTrabajadors = telefonosTrabajadors;
     }
-
-/*
- TODO [Reverse Engineering] create field to map the 'SALARIO' column
- Available actions: Define target Java type | Uncomment as is | Remove column mapping
-    @Column(name = "SALARIO", columnDefinition = "float UNSIGNED")
-    private Object salario;
-*/
 }

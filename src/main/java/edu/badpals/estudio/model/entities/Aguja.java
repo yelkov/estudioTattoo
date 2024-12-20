@@ -33,7 +33,7 @@ public class Aguja {
     private Long cantidad;
 
     @OneToMany(mappedBy = "aguja")
-    private Set<edu.badpals.estudio.model.entities.CitasAguja> citasAgujas = new LinkedHashSet<>();
+    private Set<CitaAguja> citaAgujas = new LinkedHashSet<>();
 
     public Long getId() {
         return id;
@@ -83,12 +83,12 @@ public class Aguja {
         this.cantidad = cantidad;
     }
 
-    public Set<edu.badpals.estudio.model.entities.CitasAguja> getCitasAgujas() {
-        return citasAgujas;
+    public Set<CitaAguja> getCitasAgujas() {
+        return citaAgujas;
     }
 
-    public void setCitasAgujas(Set<edu.badpals.estudio.model.entities.CitasAguja> citasAgujas) {
-        this.citasAgujas = citasAgujas;
+    public void setCitasAgujas(Set<CitaAguja> citaAgujas) {
+        this.citaAgujas = citaAgujas;
     }
 
 }

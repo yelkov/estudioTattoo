@@ -7,7 +7,7 @@ import org.hibernate.Hibernate;
 import java.util.Objects;
 
 @Embeddable
-public class CitasAgujaId implements java.io.Serializable {
+public class CitaAgujaId implements java.io.Serializable {
     private static final long serialVersionUID = -8561492478595670768L;
     @Column(name = "AGUJA", columnDefinition = "int UNSIGNED not null")
     private Long aguja;
@@ -35,7 +35,7 @@ public class CitasAgujaId implements java.io.Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        CitasAgujaId entity = (CitasAgujaId) o;
+        CitaAgujaId entity = (CitaAgujaId) o;
         return Objects.equals(this.aguja, entity.aguja) &&
                 Objects.equals(this.cita, entity.cita);
     }
