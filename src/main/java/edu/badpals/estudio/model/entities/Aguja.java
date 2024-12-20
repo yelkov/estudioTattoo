@@ -1,4 +1,4 @@
-package edu.badpals.estudio.entities;
+package edu.badpals.estudio.model.entities;
 
 import jakarta.persistence.*;
 
@@ -33,7 +33,7 @@ public class Aguja {
     private Long cantidad;
 
     @OneToMany(mappedBy = "aguja")
-    private Set<edu.badpals.estudio.entities.CitasAguja> citasAgujas = new LinkedHashSet<>();
+    private Set<edu.badpals.estudio.model.entities.CitasAguja> citasAgujas = new LinkedHashSet<>();
 
     public Long getId() {
         return id;
@@ -83,11 +83,11 @@ public class Aguja {
         this.cantidad = cantidad;
     }
 
-    public Set<edu.badpals.estudio.entities.CitasAguja> getCitasAgujas() {
+    public Set<edu.badpals.estudio.model.entities.CitasAguja> getCitasAgujas() {
         return citasAgujas;
     }
 
-    public void setCitasAgujas(Set<edu.badpals.estudio.entities.CitasAguja> citasAgujas) {
+    public void setCitasAgujas(Set<edu.badpals.estudio.model.entities.CitasAguja> citasAgujas) {
         this.citasAgujas = citasAgujas;
     }
 

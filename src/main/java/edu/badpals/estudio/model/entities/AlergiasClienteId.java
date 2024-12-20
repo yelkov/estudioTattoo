@@ -1,4 +1,4 @@
-package edu.badpals.estudio.entities;
+package edu.badpals.estudio.model.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -7,13 +7,13 @@ import org.hibernate.Hibernate;
 import java.util.Objects;
 
 @Embeddable
-public class CitasClienteId implements java.io.Serializable {
-    private static final long serialVersionUID = -4639625860770588130L;
+public class AlergiasClienteId implements java.io.Serializable {
+    private static final long serialVersionUID = 7317609417460629753L;
     @Column(name = "CLIENTE", columnDefinition = "int UNSIGNED not null")
     private Long cliente;
 
-    @Column(name = "CITA", columnDefinition = "int UNSIGNED not null")
-    private Long cita;
+    @Column(name = "ALERGIA", nullable = false, length = 30)
+    private String alergia;
 
     public Long getCliente() {
         return cliente;
@@ -23,26 +23,26 @@ public class CitasClienteId implements java.io.Serializable {
         this.cliente = cliente;
     }
 
-    public Long getCita() {
-        return cita;
+    public String getAlergia() {
+        return alergia;
     }
 
-    public void setCita(Long cita) {
-        this.cita = cita;
+    public void setAlergia(String alergia) {
+        this.alergia = alergia;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        CitasClienteId entity = (CitasClienteId) o;
+        AlergiasClienteId entity = (AlergiasClienteId) o;
         return Objects.equals(this.cliente, entity.cliente) &&
-                Objects.equals(this.cita, entity.cita);
+                Objects.equals(this.alergia, entity.alergia);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cliente, cita);
+        return Objects.hash(cliente, alergia);
     }
 
 }

@@ -1,4 +1,4 @@
-package edu.badpals.estudio.entities;
+package edu.badpals.estudio.model.entities;
 
 import jakarta.persistence.*;
 
@@ -17,7 +17,7 @@ public class Producto {
     private String nombre;
 
     @OneToMany(mappedBy = "producto")
-    private Set<edu.badpals.estudio.entities.Stock> stocks = new LinkedHashSet<>();
+    private Set<edu.badpals.estudio.model.entities.Stock> stocks = new LinkedHashSet<>();
 
     public Long getId() {
         return id;
@@ -35,11 +35,11 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public Set<edu.badpals.estudio.entities.Stock> getStocks() {
+    public Set<edu.badpals.estudio.model.entities.Stock> getStocks() {
         return stocks;
     }
 
-    public void setStocks(Set<edu.badpals.estudio.entities.Stock> stocks) {
+    public void setStocks(Set<edu.badpals.estudio.model.entities.Stock> stocks) {
         this.stocks = stocks;
     }
 

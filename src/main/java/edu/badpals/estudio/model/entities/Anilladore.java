@@ -1,4 +1,4 @@
-package edu.badpals.estudio.entities;
+package edu.badpals.estudio.model.entities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
@@ -18,10 +18,10 @@ public class Anilladore {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "TRABAJADOR", nullable = false)
-    private edu.badpals.estudio.entities.Trabajadore trabajadores;
+    private edu.badpals.estudio.model.entities.Trabajadore trabajadores;
 
     @OneToMany(mappedBy = "anillador")
-    private Set<edu.badpals.estudio.entities.Cita> citas = new LinkedHashSet<>();
+    private Set<edu.badpals.estudio.model.entities.Cita> citas = new LinkedHashSet<>();
 
     public Long getId() {
         return id;
@@ -31,19 +31,19 @@ public class Anilladore {
         this.id = id;
     }
 
-    public edu.badpals.estudio.entities.Trabajadore getTrabajadores() {
+    public edu.badpals.estudio.model.entities.Trabajadore getTrabajadores() {
         return trabajadores;
     }
 
-    public void setTrabajadores(edu.badpals.estudio.entities.Trabajadore trabajadores) {
+    public void setTrabajadores(edu.badpals.estudio.model.entities.Trabajadore trabajadores) {
         this.trabajadores = trabajadores;
     }
 
-    public Set<edu.badpals.estudio.entities.Cita> getCitas() {
+    public Set<edu.badpals.estudio.model.entities.Cita> getCitas() {
         return citas;
     }
 
-    public void setCitas(Set<edu.badpals.estudio.entities.Cita> citas) {
+    public void setCitas(Set<edu.badpals.estudio.model.entities.Cita> citas) {
         this.citas = citas;
     }
 

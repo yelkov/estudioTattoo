@@ -1,4 +1,4 @@
-package edu.badpals.estudio.entities;
+package edu.badpals.estudio.model.entities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
@@ -14,7 +14,7 @@ public class TelefonosTrabajadore {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "TRABAJADOR", nullable = false)
-    private edu.badpals.estudio.entities.Trabajadore trabajador;
+    private edu.badpals.estudio.model.entities.Trabajadore trabajador;
 
     public TelefonosTrabajadoreId getId() {
         return id;
@@ -24,11 +24,11 @@ public class TelefonosTrabajadore {
         this.id = id;
     }
 
-    public edu.badpals.estudio.entities.Trabajadore getTrabajador() {
+    public edu.badpals.estudio.model.entities.Trabajadore getTrabajador() {
         return trabajador;
     }
 
-    public void setTrabajador(edu.badpals.estudio.entities.Trabajadore trabajador) {
+    public void setTrabajador(edu.badpals.estudio.model.entities.Trabajadore trabajador) {
         this.trabajador = trabajador;
     }
 

@@ -1,4 +1,4 @@
-package edu.badpals.estudio.entities;
+package edu.badpals.estudio.model.entities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
@@ -13,7 +13,7 @@ public class CitasCliente {
     @MapsId("cliente")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "CLIENTE", nullable = false)
-    private edu.badpals.estudio.entities.Cliente cliente;
+    private edu.badpals.estudio.model.entities.Cliente cliente;
 
     @MapsId("cita")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -29,11 +29,11 @@ public class CitasCliente {
         this.id = id;
     }
 
-    public edu.badpals.estudio.entities.Cliente getCliente() {
+    public edu.badpals.estudio.model.entities.Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(edu.badpals.estudio.entities.Cliente cliente) {
+    public void setCliente(edu.badpals.estudio.model.entities.Cliente cliente) {
         this.cliente = cliente;
     }
 

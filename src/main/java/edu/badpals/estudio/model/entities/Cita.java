@@ -1,4 +1,4 @@
-package edu.badpals.estudio.entities;
+package edu.badpals.estudio.model.entities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -28,7 +28,7 @@ public class Cita {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TATUADOR")
-    private edu.badpals.estudio.entities.Tatuadore tatuador;
+    private edu.badpals.estudio.model.entities.Tatuadore tatuador;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ANILLADOR")
@@ -38,12 +38,12 @@ public class Cita {
     @JoinColumn(name = "CABINA", nullable = false)
     private Cabina cabina;
     @ManyToMany(mappedBy = "citas")
-    private Set<edu.badpals.estudio.entities.Cliente> clientes = new LinkedHashSet<>();
+    private Set<edu.badpals.estudio.model.entities.Cliente> clientes = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "cita")
-    private Set<edu.badpals.estudio.entities.CitasAguja> citasAgujas = new LinkedHashSet<>();
+    private Set<edu.badpals.estudio.model.entities.CitasAguja> citasAgujas = new LinkedHashSet<>();
     @OneToMany(mappedBy = "cita")
-    private Set<edu.badpals.estudio.entities.Hueco> huecos = new LinkedHashSet<>();
+    private Set<edu.badpals.estudio.model.entities.Hueco> huecos = new LinkedHashSet<>();
 
     public Long getId() {
         return id;
@@ -77,11 +77,11 @@ public class Cita {
         this.estado = estado;
     }
 
-    public edu.badpals.estudio.entities.Tatuadore getTatuador() {
+    public edu.badpals.estudio.model.entities.Tatuadore getTatuador() {
         return tatuador;
     }
 
-    public void setTatuador(edu.badpals.estudio.entities.Tatuadore tatuador) {
+    public void setTatuador(edu.badpals.estudio.model.entities.Tatuadore tatuador) {
         this.tatuador = tatuador;
     }
 
@@ -101,27 +101,27 @@ public class Cita {
         this.cabina = cabina;
     }
 
-    public Set<edu.badpals.estudio.entities.CitasAguja> getCitasAgujas() {
+    public Set<edu.badpals.estudio.model.entities.CitasAguja> getCitasAgujas() {
         return citasAgujas;
     }
 
-    public void setCitasAgujas(Set<edu.badpals.estudio.entities.CitasAguja> citasAgujas) {
+    public void setCitasAgujas(Set<edu.badpals.estudio.model.entities.CitasAguja> citasAgujas) {
         this.citasAgujas = citasAgujas;
     }
 
-    public Set<edu.badpals.estudio.entities.Cliente> getClientes() {
+    public Set<edu.badpals.estudio.model.entities.Cliente> getClientes() {
         return clientes;
     }
 
-    public void setClientes(Set<edu.badpals.estudio.entities.Cliente> clientes) {
+    public void setClientes(Set<edu.badpals.estudio.model.entities.Cliente> clientes) {
         this.clientes = clientes;
     }
 
-    public Set<edu.badpals.estudio.entities.Hueco> getHuecos() {
+    public Set<edu.badpals.estudio.model.entities.Hueco> getHuecos() {
         return huecos;
     }
 
-    public void setHuecos(Set<edu.badpals.estudio.entities.Hueco> huecos) {
+    public void setHuecos(Set<edu.badpals.estudio.model.entities.Hueco> huecos) {
         this.huecos = huecos;
     }
 

@@ -1,4 +1,4 @@
-package edu.badpals.estudio.entities;
+package edu.badpals.estudio.model.entities;
 
 import jakarta.persistence.*;
 
@@ -20,12 +20,12 @@ public class Cabina {
     private Boolean puedeHacerPiercing = false;
 
     @OneToMany(mappedBy = "cabina")
-    private Set<edu.badpals.estudio.entities.Cita> citas = new LinkedHashSet<>();
+    private Set<edu.badpals.estudio.model.entities.Cita> citas = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "cabina")
-    private Set<edu.badpals.estudio.entities.Hueco> huecos = new LinkedHashSet<>();
+    private Set<edu.badpals.estudio.model.entities.Hueco> huecos = new LinkedHashSet<>();
     @OneToMany(mappedBy = "cabina")
-    private Set<edu.badpals.estudio.entities.Stock> stocks = new LinkedHashSet<>();
+    private Set<edu.badpals.estudio.model.entities.Stock> stocks = new LinkedHashSet<>();
 
     public Long getId() {
         return id;
@@ -51,27 +51,27 @@ public class Cabina {
         this.puedeHacerPiercing = puedeHacerPiercing;
     }
 
-    public Set<edu.badpals.estudio.entities.Cita> getCitas() {
+    public Set<edu.badpals.estudio.model.entities.Cita> getCitas() {
         return citas;
     }
 
-    public void setCitas(Set<edu.badpals.estudio.entities.Cita> citas) {
+    public void setCitas(Set<edu.badpals.estudio.model.entities.Cita> citas) {
         this.citas = citas;
     }
 
-    public Set<edu.badpals.estudio.entities.Hueco> getHuecos() {
+    public Set<edu.badpals.estudio.model.entities.Hueco> getHuecos() {
         return huecos;
     }
 
-    public void setHuecos(Set<edu.badpals.estudio.entities.Hueco> huecos) {
+    public void setHuecos(Set<edu.badpals.estudio.model.entities.Hueco> huecos) {
         this.huecos = huecos;
     }
 
-    public Set<edu.badpals.estudio.entities.Stock> getStocks() {
+    public Set<edu.badpals.estudio.model.entities.Stock> getStocks() {
         return stocks;
     }
 
-    public void setStocks(Set<edu.badpals.estudio.entities.Stock> stocks) {
+    public void setStocks(Set<edu.badpals.estudio.model.entities.Stock> stocks) {
         this.stocks = stocks;
     }
 

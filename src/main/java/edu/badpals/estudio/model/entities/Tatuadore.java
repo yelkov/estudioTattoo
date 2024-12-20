@@ -1,4 +1,4 @@
-package edu.badpals.estudio.entities;
+package edu.badpals.estudio.model.entities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
@@ -18,7 +18,7 @@ public class Tatuadore {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "TRABAJADOR", nullable = false)
-    private edu.badpals.estudio.entities.Trabajadore trabajadores;
+    private edu.badpals.estudio.model.entities.Trabajadore trabajadores;
 
     @OneToMany(mappedBy = "tatuador")
     private Set<Cita> citas = new LinkedHashSet<>();
@@ -31,11 +31,11 @@ public class Tatuadore {
         this.id = id;
     }
 
-    public edu.badpals.estudio.entities.Trabajadore getTrabajadores() {
+    public edu.badpals.estudio.model.entities.Trabajadore getTrabajadores() {
         return trabajadores;
     }
 
-    public void setTrabajadores(edu.badpals.estudio.entities.Trabajadore trabajadores) {
+    public void setTrabajadores(edu.badpals.estudio.model.entities.Trabajadore trabajadores) {
         this.trabajadores = trabajadores;
     }
 
