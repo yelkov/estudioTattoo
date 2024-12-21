@@ -118,6 +118,17 @@ class CabinaDAOTest {
         assertTrue(optionalCabinaNueva.isEmpty());
     }
 
+    @Test
+    @Order(9)
+    public void test_update(){
+        Cabina cabinaVentana = cabinaDAO.findByUbicacion("MEDIO VENTANA").get();
+        cabinaVentana.setSuperficie(25.5f);
+        cabinaDAO.update(cabinaVentana);
+
+        Cabina cabinaVentanaup = cabinaDAO.findByUbicacion("MEDIO VENTANA").get();
+        assertEquals(cabinaVentanaup.getSuperficie(),25.5f);
+    }
+
 
 
 }
