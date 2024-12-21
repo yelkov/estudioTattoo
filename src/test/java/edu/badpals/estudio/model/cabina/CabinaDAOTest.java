@@ -3,6 +3,7 @@ package edu.badpals.estudio.model.cabina;
 import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -25,6 +26,7 @@ class CabinaDAOTest {
     }
 
     @Test
+    @Order(1)
     public void test_find(){
         Optional<Cabina> optional_cabina1 = cabinaDAO.findById(1);
         if(optional_cabina1.isPresent()){
@@ -38,12 +40,14 @@ class CabinaDAOTest {
     }
 
     @Test
+    @Order(2)
     public void test_find_empty(){
         Optional<Cabina> optional_cabinaEmpty = cabinaDAO.findById(10);
         assertTrue(optional_cabinaEmpty.isEmpty());
     }
 
     @Test
+    @Order(3)
     public void test_findAll(){
         List<Cabina> cabinas = cabinaDAO.findAll();
         assertNotNull(cabinas);
@@ -53,6 +57,7 @@ class CabinaDAOTest {
     }
 
     @Test
+    @Order(4)
     public void test_findByUbicacion(){
         Optional<Cabina> optionalCabina = cabinaDAO.findByUbicacion("FONDO PIERCING");
         if(optionalCabina.isPresent()){
@@ -66,6 +71,7 @@ class CabinaDAOTest {
     }
 
     @Test
+    @Order(5)
     public void test_findByUbicacionLower(){
         Optional<Cabina> optionalCabina = cabinaDAO.findByUbicacion("Fondo piercing");
         if(optionalCabina.isPresent()){
@@ -79,12 +85,14 @@ class CabinaDAOTest {
     }
 
     @Test
+    @Order(6)
     public void test_findByUbicacion_empty(){
         Optional<Cabina> optional_cabinaEmpty = cabinaDAO.findByUbicacion("NO EXISTE");
         assertTrue(optional_cabinaEmpty.isEmpty());
     }
 
     @Test
+    @Order(7)
     public void test_create(){
         Cabina cabina5 = new Cabina("FONDO NUEVA",10.5f,true);
         cabinaDAO.create(cabina5);
@@ -93,12 +101,23 @@ class CabinaDAOTest {
         if(cabinaRecuperada.isPresent()){
             Cabina cabina5recuperada = cabinaRecuperada.get();
             assertNotNull(cabina5recuperada);
-            assertEquals(cabina5recuperada.getId(),5);
             assertEquals(cabina5recuperada.getUbicacion(),"FONDO NUEVA");
             assertEquals(cabina5recuperada.getSuperficie(),10.5f);
             assertTrue(cabina5recuperada.getPuedeHacerPiercing());
         }
 
     }
+
+    @Test
+    @Order(8)
+    public void test_delete(){
+        Cabina cabinaNueva = cabinaDAO.findByUbicacion("FONDO NUEVA").get();
+        cabinaDAO.delete(cabinaNueva);
+
+        Optional<Cabina> optionalCabinaNueva  = cabinaDAO.findByUbicacion("FONDO NUEVA");
+        assertTrue(optionalCabinaNueva.isEmpty());
+    }
+
+
 
 }

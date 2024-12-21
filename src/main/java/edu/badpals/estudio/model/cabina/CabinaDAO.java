@@ -18,6 +18,15 @@ public class CabinaDAO {
         em.close();
     }
 
+    public void delete(Cabina cabina) {
+        EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        cabina = em.merge(cabina);
+        em.remove(cabina);
+        em.getTransaction().commit();
+        em.close();
+    }
+
     public Optional<Cabina> findById(int i) {
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         Cabina cabina = em.find(Cabina.class, i);
