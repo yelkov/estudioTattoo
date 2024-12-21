@@ -1,5 +1,6 @@
 package edu.badpals.estudio.model.cabina;
 
+import edu.badpals.estudio.model.InterfaceDAO;
 import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
@@ -8,7 +9,7 @@ import jakarta.persistence.Query;
 import java.util.List;
 import java.util.Optional;
 
-public class CabinaDAO {
+public class CabinaDAO implements InterfaceDAO<Cabina> {
 
     public void create(Cabina cabina) {
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
