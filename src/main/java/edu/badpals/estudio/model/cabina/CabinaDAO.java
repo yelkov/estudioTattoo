@@ -63,4 +63,12 @@ public class CabinaDAO {
             return Optional.empty();
         }
     }
+
+    public long count() {
+        EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        Query query = em.createQuery("SELECT COUNT(c) FROM Cabina c");
+        long count = (long) query.getSingleResult();
+        em.close();
+        return count;
+    }
 }

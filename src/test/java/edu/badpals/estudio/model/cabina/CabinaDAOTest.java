@@ -129,6 +129,12 @@ class CabinaDAOTest {
         assertEquals(cabinaVentanaup.getSuperficie(),25.5f);
     }
 
-
+    @Test
+    @Order(10)
+    public void test_count(){
+        long totalCabinas = cabinaDAO.count();
+        assertTrue(totalCabinas > 0);
+        assertEquals(4,totalCabinas);
+    }
 
 }
