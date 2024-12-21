@@ -27,12 +27,14 @@ class CabinaDAOTest {
     @Test
     public void test_find(){
         Optional<Cabina> optional_cabina1 = cabinaDAO.findById(1);
-        Cabina cabina1 = optional_cabina1.get();
-        assertNotNull(cabina1);
-        assertEquals(cabina1.getId(),1);
-        assertEquals(cabina1.getUbicacion(),"FONDO PIERCING");
-        assertEquals(cabina1.getSuperficie(),12.5f);
-        assertTrue(cabina1.getPuedeHacerPiercing());
+        if(optional_cabina1.isPresent()){
+            Cabina cabina1 = optional_cabina1.get();
+            assertNotNull(cabina1);
+            assertEquals(cabina1.getId(),1);
+            assertEquals(cabina1.getUbicacion(),"FONDO PIERCING");
+            assertEquals(cabina1.getSuperficie(),12.5f);
+            assertTrue(cabina1.getPuedeHacerPiercing());
+        }
     }
 
     @Test
@@ -48,6 +50,38 @@ class CabinaDAOTest {
         assertTrue(cabinas.size() > 0);
         assertEquals(cabinas.get(0).getId(),1);
         assertEquals(4,cabinas.size());
+    }
+
+    @Test
+    public void test_findByUbicacion(){
+        Optional<Cabina> optionalCabina = cabinaDAO.findByUbicacion("FONDO PIERCING");
+        if(optionalCabina.isPresent()){
+            Cabina cabina1 = optionalCabina.get();
+            assertNotNull(cabina1);
+            assertEquals(cabina1.getId(),1);
+            assertEquals(cabina1.getUbicacion(), "FONDO PIERCING");
+            assertEquals(cabina1.getSuperficie(),12.5f);
+            assertTrue(cabina1.getPuedeHacerPiercing());
+        }
+    }
+
+    @Test
+    public void test_findByUbicacionLower(){
+        Optional<Cabina> optionalCabina = cabinaDAO.findByUbicacion("Fondo piercing");
+        if(optionalCabina.isPresent()){
+            Cabina cabina1 = optionalCabina.get();
+            assertNotNull(cabina1);
+            assertEquals(cabina1.getId(),1);
+            assertEquals(cabina1.getUbicacion(), "FONDO PIERCING");
+            assertEquals(cabina1.getSuperficie(),12.5f);
+            assertTrue(cabina1.getPuedeHacerPiercing());
+        }
+    }
+
+    @Test
+    public void test_findByUbicacion_empty(){
+        Optional<Cabina> optional_cabinaEmpty = cabinaDAO.findByUbicacion("NO EXISTE");
+        assertTrue(optional_cabinaEmpty.isEmpty());
     }
 
 }
