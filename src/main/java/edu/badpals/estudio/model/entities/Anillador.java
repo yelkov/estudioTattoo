@@ -9,38 +9,14 @@ import java.util.Set;
 
 @Entity
 @Table(name = "ANILLADORES")
-public class Anillador {
-    @Id
-    @Column(name = "TRABAJADOR", columnDefinition = "int UNSIGNED not null")
-    private Long id;
-
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "TRABAJADOR", nullable = false)
-    private Trabajador trabajador;
+@PrimaryKeyJoinColumn(name = "TRABAJADOR")
+public class Anillador extends Trabajador{
 
     @Column(name = "COMISION", columnDefinition = "float UNSIGNED not null")
     private Float comision;
 
     @OneToMany(mappedBy = "anillador")
     private Set<Cita> citas = new LinkedHashSet<>();
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Trabajador getTrabajador() {
-        return trabajador;
-    }
-
-    public void setTrabajador(Trabajador trabajador) {
-        this.trabajador = trabajador;
-    }
 
     public Set<Cita> getCitas() {
         return citas;

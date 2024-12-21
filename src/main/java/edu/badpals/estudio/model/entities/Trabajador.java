@@ -3,24 +3,26 @@ package edu.badpals.estudio.model.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "TRABAJADORES")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Trabajador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_TRABAJADOR", columnDefinition = "int UNSIGNED not null")
-    private Long id;
+    private Integer id;
 
-    @Column(name = "NIF", nullable = false, length = 9)
+    @Column(name = "NIF", nullable = false, length = 9, columnDefinition = "CHAR(9)")
     private String nif;
 
     @Column(name = "NOMBRE", nullable = false, length = 50)
     private String nombre;
 
-    @Column(name = "NSS", nullable = false, length = 12)
+    @Column(name = "NSS", nullable = false, length = 12, columnDefinition = "CHAR(12)")
     private String nss;
 
     @Column(name = "FECHA_NACIMIENTO", nullable = false)
@@ -35,19 +37,19 @@ public class Trabajador {
     @Column(name = "EMAIL", nullable = false, length = 30)
     private String email;
 
-    @OneToOne(mappedBy = "trabajador")
-    private Anillador anillador;
+    @ElementCollection
+    @CollectionTable(name = "TELEFONOS_TRABAJADORES",
+            joinColumns = @JoinColumn(name = "TRABAJADOR", foreignKey = @ForeignKey(name = "FK_TRABAJADOR_TELEFONO")),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"TRABAJADOR","TELEFONO"},name = "uniq_trabajador_telefono"))
+    @Column(name = "TELEFONO", nullable = false, length = 15)
+    private Set<String> telefonos = new HashSet<>();
 
-    @OneToOne(mappedBy = "trabajador")
-    private Tatuador tatuador;
-    @OneToMany(mappedBy = "trabajador")
-    private Set<TelefonosTrabajador> telefonosTrabajadors = new LinkedHashSet<>();
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -107,27 +109,19 @@ public class Trabajador {
         this.email = email;
     }
 
-    public Anillador getAnilladore() {
-        return anillador;
+    public Set<String> getTelefonos() {
+        return telefonos;
     }
 
-    public void setAnilladore(Anillador anillador) {
-        this.anillador = anillador;
+    public void setTelefonos(Set<String> telefonos) {
+        this.telefonos = telefonos;
     }
 
-    public Tatuador getTatuadore() {
-        return tatuador;
+    public void addTelefono(String telefono){
+        this.telefonos.add(telefono);
     }
 
-    public void setTatuadore(Tatuador tatuador) {
-        this.tatuador = tatuador;
-    }
-
-    public Set<TelefonosTrabajador> getTelefonosTrabajadores() {
-        return telefonosTrabajadors;
-    }
-
-    public void setTelefonosTrabajadores(Set<TelefonosTrabajador> telefonosTrabajadors) {
-        this.telefonosTrabajadors = telefonosTrabajadors;
+    public void removeTelefono(String telefono){
+        this.telefonos.remove(telefono);
     }
 }

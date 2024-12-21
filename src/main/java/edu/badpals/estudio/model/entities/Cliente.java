@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -14,9 +15,9 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CLIENTE", columnDefinition = "int UNSIGNED not null")
-    private Long id;
+    private Integer id;
 
-    @Column(name = "DNI", nullable = false, length = 9)
+    @Column(name = "DNI", nullable = false, length = 9, columnDefinition = "CHAR(9)")
     private String dni;
 
     @Column(name = "NOMBRE", nullable = false, length = 30)
@@ -42,24 +43,25 @@ public class Cliente {
     @JoinColumn(name = "TUTOR")
     private Cliente tutor;
 
-    @Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "PARENTESCO")
-    private String parentesco;
+    private Parentesco parentesco;
 
-    @OneToMany(mappedBy = "cliente")
-    private Set<AlergiasCliente> alergiasClientes = new LinkedHashSet<>();
+    @ElementCollection
+    @CollectionTable(name = "ALERGIAS_CLIENTES",
+            joinColumns = @JoinColumn(name = "CLIENTE", foreignKey = @ForeignKey(name = "FK_CLIENTE_ALERGIA")),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"CLIENTE","ALERGIA"},name = "uniq_cliente_alergia"))
+    @Column(name = "ALERGIA", nullable = false, length = 30)
+    private Set<String> alergias = new HashSet<>();
 
-    @ManyToMany(mappedBy = "cliente")
-    private Set<Cita> citas = new LinkedHashSet<>();
+    @ManyToMany(mappedBy = "clientes")
+    private Set<Cita> citas = new HashSet<>();
 
-    @OneToMany(mappedBy = "tutor")
-    private Set<Cliente> clientes = new LinkedHashSet<>();
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -127,20 +129,20 @@ public class Cliente {
         this.tutor = tutor;
     }
 
-    public String getParentesco() {
+    public Parentesco getParentesco() {
         return parentesco;
     }
 
-    public void setParentesco(String parentesco) {
+    public void setParentesco(Parentesco parentesco) {
         this.parentesco = parentesco;
     }
 
-    public Set<AlergiasCliente> getAlergiasClientes() {
-        return alergiasClientes;
+    public Set<String> getAlergias() {
+        return alergias;
     }
 
-    public void setAlergiasClientes(Set<AlergiasCliente> alergiasClientes) {
-        this.alergiasClientes = alergiasClientes;
+    public void setAlergias(Set<String> alergias) {
+        this.alergias = alergias;
     }
 
     public Set<Cita> getCitas() {
@@ -151,12 +153,19 @@ public class Cliente {
         this.citas = citas;
     }
 
-    public Set<Cliente> getClientes() {
-        return clientes;
+    public void addAlergias(String alergia){
+        this.alergias.add(alergia);
     }
 
-    public void setClientes(Set<Cliente> clientes) {
-        this.clientes = clientes;
+    public void removeAlergias(String alergia){
+        this.alergias.remove(alergia);
     }
 
+    public void addCita(Cita cita){
+        this.citas.add(cita);
+    }
+
+    public void removeCita(Cita cita){
+        this.citas.remove(cita);
+    }
 }

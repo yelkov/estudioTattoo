@@ -10,24 +10,24 @@ import java.util.Objects;
 public class CitaAgujaId implements java.io.Serializable {
     private static final long serialVersionUID = -8561492478595670768L;
     @Column(name = "AGUJA", columnDefinition = "int UNSIGNED not null")
-    private Long aguja;
+    private Integer aguja;
 
     @Column(name = "CITA", columnDefinition = "int UNSIGNED not null")
-    private Long cita;
+    private Integer cita;
 
-    public Long getAguja() {
+    public Integer getAguja() {
         return aguja;
     }
 
-    public void setAguja(Long aguja) {
+    public void setAguja(Integer aguja) {
         this.aguja = aguja;
     }
 
-    public Long getCita() {
+    public Integer getCita() {
         return cita;
     }
 
-    public void setCita(Long cita) {
+    public void setCita(Integer cita) {
         this.cita = cita;
     }
 

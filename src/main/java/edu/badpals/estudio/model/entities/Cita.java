@@ -13,19 +13,26 @@ public class Cita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CITA", columnDefinition = "int UNSIGNED not null")
-    private Long id;
+    private Integer id;
 
-    @Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "TIPO", nullable = false)
-    private String tipo;
+    private Tipo tipo;
 
     @Column(name = "DESCRIPCION", nullable = false, length = 60)
     private String descripcion;
 
+    @Column(name = "PRECIO", columnDefinition = "float UNSIGNED not null")
+    private Float precio;
+
+    @ColumnDefault("'0'")
+    @Column(name = "`SEÑAL`", columnDefinition = "float UNSIGNED not null")
+    private Float señal;
+
     @ColumnDefault("'RESERVADA'")
-    @Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "ESTADO", nullable = false)
-    private String estado;
+    private Estado estado;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TATUADOR")
@@ -38,27 +45,31 @@ public class Cita {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "CABINA", nullable = false)
     private Cabina cabina;
-    @ManyToMany(mappedBy = "citas")
-    private Set<edu.badpals.estudio.model.entities.Cliente> clientes = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "cita")
-    private Set<CitaAguja> citaAgujas = new LinkedHashSet<>();
-    @OneToMany(mappedBy = "cita")
-    private Set<edu.badpals.estudio.model.entities.Hueco> huecos = new LinkedHashSet<>();
+    private Set<Hueco> huecos = new LinkedHashSet<>();
 
-    public Long getId() {
+    @ManyToMany
+    @JoinTable(
+            name = "CITAS_CLIENTES",
+            joinColumns = @JoinColumn(name = "CITA"),
+            inverseJoinColumns = @JoinColumn(name = "CLIENTE")
+    )
+    private Set<Cliente> clientes;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 
@@ -70,11 +81,11 @@ public class Cita {
         this.descripcion = descripcion;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
@@ -102,41 +113,51 @@ public class Cita {
         this.cabina = cabina;
     }
 
-    public Set<CitaAguja> getCitasAgujas() {
-        return citaAgujas;
+    public Float getPrecio() {
+        return precio;
     }
 
-    public void setCitasAgujas(Set<CitaAguja> citaAgujas) {
-        this.citaAgujas = citaAgujas;
+    public void setPrecio(Float precio) {
+        this.precio = precio;
     }
 
-    public Set<edu.badpals.estudio.model.entities.Cliente> getClientes() {
-        return clientes;
+    public Float getSeñal() {
+        return señal;
     }
 
-    public void setClientes(Set<edu.badpals.estudio.model.entities.Cliente> clientes) {
-        this.clientes = clientes;
+    public void setSeñal(Float señal) {
+        this.señal = señal;
     }
 
-    public Set<edu.badpals.estudio.model.entities.Hueco> getHuecos() {
+    public Set<Hueco> getHuecos() {
         return huecos;
     }
 
-    public void setHuecos(Set<edu.badpals.estudio.model.entities.Hueco> huecos) {
+    public void setHuecos(Set<Hueco> huecos) {
         this.huecos = huecos;
     }
 
-/*
- TODO [Reverse Engineering] create field to map the '`SEÑAL`' column
- Available actions: Define target Java type | Uncomment as is | Remove column mapping
-    @ColumnDefault("'0'")
-    @Column(name = "`SEÑAL`", columnDefinition = "float UNSIGNED not null")
-    private Object señal;
-*/
-/*
- TODO [Reverse Engineering] create field to map the 'PRECIO' column
- Available actions: Define target Java type | Uncomment as is | Remove column mapping
-    @Column(name = "PRECIO", columnDefinition = "float UNSIGNED not null")
-    private Object precio;
-*/
+    public Set<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(Set<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
+    public void addCliente(Cliente cliente) {
+        this.clientes.add(cliente);
+    }
+
+    public void removeCliente(Cliente cliente) {
+        this.clientes.remove(cliente);
+    }
+
+    public void addHueco(Hueco hueco) {
+        this.huecos.add(hueco);
+    }
+
+    public void removeHueco(Hueco hueco) {
+        this.huecos.remove(hueco);
+    }
 }

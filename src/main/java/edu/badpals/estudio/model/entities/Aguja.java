@@ -11,75 +11,75 @@ public class Aguja {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_AGUJA", columnDefinition = "int UNSIGNED not null")
-    private Long id;
+    private Integer id;
 
-    @Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "DIAMETRO", nullable = false)
-    private String diametro;
+    private Diametro diametro;
 
-    @Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "NUMERO_AGUJAS", nullable = false)
-    private String numeroAgujas;
+    private NumeroAgujas numeroAgujas;
 
-    @Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "CONFIGURACION", nullable = false)
-    private String configuracion;
+    private Configuracion configuracion;
 
-    @Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "TAPER", nullable = false)
-    private String taper;
+    private Taper taper;
 
     @Column(name = "CANTIDAD", columnDefinition = "int UNSIGNED not null")
-    private Long cantidad;
+    private Integer cantidad;
 
     @OneToMany(mappedBy = "aguja")
     private Set<CitaAguja> citaAgujas = new LinkedHashSet<>();
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getDiametro() {
+    public Diametro getDiametro() {
         return diametro;
     }
 
-    public void setDiametro(String diametro) {
+    public void setDiametro(Diametro diametro) {
         this.diametro = diametro;
     }
 
-    public String getNumeroAgujas() {
+    public NumeroAgujas getNumeroAgujas() {
         return numeroAgujas;
     }
 
-    public void setNumeroAgujas(String numeroAgujas) {
+    public void setNumeroAgujas(NumeroAgujas numeroAgujas) {
         this.numeroAgujas = numeroAgujas;
     }
 
-    public String getConfiguracion() {
+    public Configuracion getConfiguracion() {
         return configuracion;
     }
 
-    public void setConfiguracion(String configuracion) {
+    public void setConfiguracion(Configuracion configuracion) {
         this.configuracion = configuracion;
     }
 
-    public String getTaper() {
+    public Taper getTaper() {
         return taper;
     }
 
-    public void setTaper(String taper) {
+    public void setTaper(Taper taper) {
         this.taper = taper;
     }
 
-    public Long getCantidad() {
+    public Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Long cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 

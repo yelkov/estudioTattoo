@@ -22,7 +22,7 @@ public class CitaAguja {
     private Cita cita;
 
     @Column(name = "CANTIDAD_USADA", columnDefinition = "int UNSIGNED not null")
-    private Long cantidadUsada;
+    private Integer cantidadUsada;
 
     public CitaAgujaId getId() {
         return id;
@@ -48,11 +48,11 @@ public class CitaAguja {
         this.cita = cita;
     }
 
-    public Long getCantidadUsada() {
+    public Integer getCantidadUsada() {
         return cantidadUsada;
     }
 
-    public void setCantidadUsada(Long cantidadUsada) {
+    public void setCantidadUsada(Integer cantidadUsada) {
         this.cantidadUsada = cantidadUsada;
     }
 

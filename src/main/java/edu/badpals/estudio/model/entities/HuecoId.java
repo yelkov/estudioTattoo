@@ -10,24 +10,24 @@ import java.util.Objects;
 public class HuecoId implements java.io.Serializable {
     private static final long serialVersionUID = 3978878909613849686L;
     @Column(name = "NUMERO", columnDefinition = "int UNSIGNED not null")
-    private Long numero;
+    private Integer numero;
 
     @Column(name = "CABINA", columnDefinition = "int UNSIGNED not null")
-    private Long cabina;
+    private Integer cabina;
 
-    public Long getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(Long numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 
-    public Long getCabina() {
+    public Integer getCabina() {
         return cabina;
     }
 
-    public void setCabina(Long cabina) {
+    public void setCabina(Integer cabina) {
         this.cabina = cabina;
     }
 
