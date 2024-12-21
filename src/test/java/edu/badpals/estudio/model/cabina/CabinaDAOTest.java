@@ -84,4 +84,21 @@ class CabinaDAOTest {
         assertTrue(optional_cabinaEmpty.isEmpty());
     }
 
+    @Test
+    public void test_create(){
+        Cabina cabina5 = new Cabina("FONDO NUEVA",10.5f,true);
+        cabinaDAO.create(cabina5);
+
+        Optional<Cabina> cabinaRecuperada = cabinaDAO.findByUbicacion("FONDO NUEVA");
+        if(cabinaRecuperada.isPresent()){
+            Cabina cabina5recuperada = cabinaRecuperada.get();
+            assertNotNull(cabina5recuperada);
+            assertEquals(cabina5recuperada.getId(),5);
+            assertEquals(cabina5recuperada.getUbicacion(),"FONDO NUEVA");
+            assertEquals(cabina5recuperada.getSuperficie(),10.5f);
+            assertTrue(cabina5recuperada.getPuedeHacerPiercing());
+        }
+
+    }
+
 }

@@ -31,6 +31,15 @@ public class Cabina {
     @OneToMany(mappedBy = "cabina")
     private Set<edu.badpals.estudio.model.entities.Stock> stocks = new LinkedHashSet<>();
 
+    public Cabina() {
+    }
+
+    public Cabina(String ubicacion, Float superficie, Boolean puedeHacerPiercing) {
+        this.ubicacion = ubicacion;
+        this.superficie = superficie;
+        this.puedeHacerPiercing = puedeHacerPiercing;
+    }
+
     public Integer getId() {
         return id;
     }

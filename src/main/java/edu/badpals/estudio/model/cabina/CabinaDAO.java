@@ -10,6 +10,14 @@ import java.util.Optional;
 
 public class CabinaDAO {
 
+    public void create(Cabina cabina) {
+        EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        em.persist(cabina);
+        em.getTransaction().commit();
+        em.close();
+    }
+
     public Optional<Cabina> findById(int i) {
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         Cabina cabina = em.find(Cabina.class, i);
