@@ -22,12 +22,32 @@ public class CabinaService {
     public void createCabina(String ubicacion, Float superficie, Boolean puedeHacerPiercing){
         if (ubicacion == null || cabinaDAO.findByUbicacion(ubicacion).isPresent()) {
             throw new IllegalArgumentException();
+
         }
-        if (superficie == null || superficie < 0.0f) {
+        else if (superficie == null || superficie < 0.0f) {
             throw new IllegalArgumentException();
+        }else{
+            Cabina nuevaCabina = new Cabina(ubicacion,superficie,puedeHacerPiercing);
+            cabinaDAO.create(nuevaCabina);
         }
-        Cabina nuevaCabina = new Cabina(ubicacion,superficie,puedeHacerPiercing);
-        cabinaDAO.create(nuevaCabina);
+    }
+
+    public void deleteCabina(int id){
+        Optional<Cabina> cabina = cabinaDAO.findById(id);
+        if (!cabina.isPresent()) {
+            throw new IllegalArgumentException();
+        }else{
+            cabinaDAO.delete(cabina.get());
+        }
+    }
+
+    public void deleteCabina(String ubicacion){
+        Optional<Cabina> cabinaOptional = cabinaDAO.findByUbicacion(ubicacion);
+        if (!cabinaOptional.isPresent()) {
+            throw new IllegalArgumentException();
+        }else {
+            cabinaDAO.delete(cabinaOptional.get());
+        }
     }
 
 }

@@ -45,6 +45,7 @@ class CabinaServiceTest {
     }
 
     @Test
+    @Order(3)
     public void test_crearCabina(){
         cabinaService.createCabina("TEST CABINA",15.0f,false);
 
@@ -53,8 +54,16 @@ class CabinaServiceTest {
         assertEquals("TEST CABINA",cabinaCreada.getUbicacion());
         assertEquals(15.0f,cabinaCreada.getSuperficie());
         assertEquals(false,cabinaCreada.getPuedeHacerPiercing());
+    }
 
+    @Test
+    @Order(4)
+    public void test_borrarCabina(){
+        Cabina cabinaTest = cabinaService.getCabinaByUbicacion("TEST CABINA");
+        cabinaService.deleteCabina("TEST CABINA");
 
+        Cabina cabinaTestPresente = cabinaService.getCabinaByUbicacion("TEST CABINA");
+        assertNull(cabinaTestPresente.getId());
     }
   
 }
