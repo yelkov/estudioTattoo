@@ -285,7 +285,6 @@ ALTER TABLE HUECOS
     
     
 /*============== INTRODUCCION DE DATOS DE PRUEBA ==============*/
-USE ESTUDIO_TEST;
 /*AGUJAS*/
 INSERT INTO `estudio_test`.`AGUJAS` (`DIAMETRO`,`NUMERO_AGUJAS`, `CONFIGURACION`, `TAPER`, `CANTIDAD`) VALUES ('10','1', 'RL', 'MEDIUM', '50');
 INSERT INTO `estudio_test`.`AGUJAS` (`DIAMETRO`,`NUMERO_AGUJAS`, `CONFIGURACION`, `TAPER`, `CANTIDAD`) VALUES ('10','3', 'RL', 'MEDIUM', '50');
@@ -351,7 +350,7 @@ INSERT INTO `estudio_test`.`CLIENTES` (`DNI`, `NOMBRE`, `TELEFONO`, `DIRECCIÓN`
 INSERT INTO `estudio_test`.`CLIENTES` (`DNI`, `NOMBRE`, `TELEFONO`, `DIRECCIÓN`, `FECHA_NACIMIENTO`, `EMAIL`) VALUES ('03248042M', 'Edgar Andreu Bello', '673156446', 'Plazuela Iglesia, 31,  Peralta(huesca)', '1981-10-21', 'f19c0kn0l@netscape.com');
 INSERT INTO `estudio_test`.`CLIENTES` (`DNI`, `NOMBRE`, `TELEFONO`, `DIRECCIÓN`, `FECHA_NACIMIENTO`, `EMAIL`) VALUES ('27332143R', 'Maria Mar Duarte Roldan', '654212978', 'Barrio Real, 47,  Hoyo De Pinares, El(ávila)', '1983-07-09', 'bak5rbjcw@aim.com');
 INSERT INTO `estudio_test`.`CLIENTES` (`DNI`, `NOMBRE`, `TELEFONO`, `DIRECCIÓN`, `FECHA_NACIMIENTO`, `EMAIL`) VALUES ('08776316E', 'Enric Barroso Prieto', '627954602', 'Carretera Horno, 1, Martín Muñoz De La Dehesa(segovia)', '1977-10-04', 'y1f45woyz@msn.com');
-INSERT INTO `estudio_test`.`CLIENTES` (`DNI`, `NOMBRE`, `TELEFONO`, `DIRECCIÓN`, `FECHA_NACIMIENTO`, `EMAIL`,`TUTOR`,`PARENTESCO`) VALUES ('30350524T', 'Enriqueta Barroso Vazquez', '702885215', 'Carretera Horno, 1, Martín Muñoz De La Dehesa(segovia)', '2007-12-07', '5h0tazwlig@yahoo.com',11,"PADRE/MADRE");
+INSERT INTO `estudio_test`.`CLIENTES` (`DNI`, `NOMBRE`, `TELEFONO`, `DIRECCIÓN`, `FECHA_NACIMIENTO`, `EMAIL`,`TUTOR`,`PARENTESCO`) VALUES ('30350524T', 'Enriqueta Barroso Vazquez', '702885215', 'Carretera Horno, 1, Martín Muñoz De La Dehesa(segovia)', '2007-12-07', '5h0tazwlig@yahoo.com',11,"PADRE_MADRE");
 INSERT INTO `estudio_test`.`CLIENTES` (`DNI`, `NOMBRE`, `TELEFONO`, `DIRECCIÓN`, `FECHA_NACIMIENTO`, `EMAIL`) VALUES ('91909557Q', 'German Tena Campo', '613291901', 'Avenida Mayor, 61, Esgos(ourense)', '2001-04-09', 'zurp8p89@netscape.net');
 INSERT INTO `estudio_test`.`CLIENTES` (`DNI`, `NOMBRE`, `TELEFONO`, `DIRECCIÓN`, `FECHA_NACIMIENTO`, `EMAIL`) VALUES ('45104684M', 'Estela Sancho Reyes', '672306906', 'Estrada De España, 96 Carenas(zaragoza)', '1997-03-10', '8rwtzgwof@witty.com');
 
