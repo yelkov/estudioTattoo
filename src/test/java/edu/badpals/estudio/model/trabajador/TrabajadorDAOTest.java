@@ -1,0 +1,134 @@
+package edu.badpals.estudio.model.trabajador;
+
+import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class TrabajadorDAOTest {
+
+    private static TrabajadorDAO trabajadorDAO;
+
+    @BeforeAll
+    public static void setup(){
+        EntityManagerFactoryProvider.initialize("test");
+        trabajadorDAO = new TrabajadorDAO();
+    }
+
+    @AfterAll
+    public static void close(){
+        EntityManagerFactoryProvider.close();
+    }
+
+    @Test
+    @Order(1)
+    public void test_find(){
+        Optional<Trabajador> optionalTrabajador = trabajadorDAO.findById(1);
+        if(optionalTrabajador.isPresent()) {
+            Trabajador trabajador = optionalTrabajador.get();
+            assertEquals(trabajador.getNombre(), "Armando Barullo Seguro");
+            assertEquals(trabajador.getNif(), "33445556Y");
+            assertEquals(trabajador.getFechaNacimiento(), LocalDate.of(2001, 9, 11));
+            assertEquals(trabajador.getFechaAlta(), LocalDate.of(2024, 2, 1));
+            assertNull(trabajador.getSalario());
+            assertEquals(trabajador.getEmail(), "armando.barullo@gmail.com");
+        }
+    }
+
+    @Test
+    @Order(2)
+    public void test_findNull(){
+        Optional<Trabajador> optionalTrabajador = trabajadorDAO.findById(1000);
+        assertTrue(optionalTrabajador.isEmpty());
+    }
+
+    @Test
+    @Order(3)
+    public void test_findByNif(){
+        Optional<Trabajador> optionalTrabajador = trabajadorDAO.findByNif("33445556Y");
+        if(optionalTrabajador.isPresent()) {
+            Trabajador trabajador = optionalTrabajador.get();
+            assertEquals(trabajador.getId(), 1);
+            assertEquals(trabajador.getNombre(), "Armando Barullo Seguro");
+            assertEquals(trabajador.getNif(), "33445556Y");
+            assertEquals(trabajador.getFechaNacimiento(), LocalDate.of(2001, 9, 11));
+            assertEquals(trabajador.getFechaAlta(), LocalDate.of(2024, 2, 1));
+            assertNull(trabajador.getSalario());
+            assertEquals(trabajador.getEmail(), "armando.barullo@gmail.com");
+        }
+    }
+    @Test
+    @Order(3)
+    public void test_findByNifNull(){
+        Optional<Trabajador> optionalTrabajador = trabajadorDAO.findByNif("000000000");
+        assertTrue(optionalTrabajador.isEmpty());
+    }
+
+    @Test
+    @Order(4)
+    public void test_findAll(){
+        List<Trabajador> trabajadores = trabajadorDAO.findAll();
+        assertNotNull(trabajadores);
+        assertTrue(trabajadores.size() > 0);
+        assertEquals(trabajadores.get(0).getId(),1);
+        assertEquals(trabajadores.size(),6);
+    }
+
+    @Test
+    @Order(5)
+    public void test_findByNSS(){
+        Optional<Trabajador> optionalTrabajador = trabajadorDAO.findByNss("1234567891");
+        if(optionalTrabajador.isPresent()) {
+            Trabajador trabajador = optionalTrabajador.get();
+            assertEquals(trabajador.getId(), 1);
+            assertEquals(trabajador.getNombre(), "Armando Barullo Seguro");
+            assertEquals(trabajador.getNif(), "33445556Y");
+            assertEquals(trabajador.getFechaNacimiento(), LocalDate.of(2001, 9, 11));
+            assertEquals(trabajador.getFechaAlta(), LocalDate.of(2024, 2, 1));
+            assertNull(trabajador.getSalario());
+            assertEquals(trabajador.getEmail(), "armando.barullo@gmail.com");
+        }
+    }
+    @Test
+    @Order(6)
+    public void test_findByNssNull(){
+        Optional<Trabajador> optionalTrabajador = trabajadorDAO.findByNss("000000000");
+        assertTrue(optionalTrabajador.isEmpty());
+    }
+
+    @Test
+    @Order(7)
+    public void test_findByNameStart(){
+        List<Trabajador> trabajadoresA = trabajadorDAO.findByName("A");
+        assertNotNull(trabajadoresA);
+        assertEquals(trabajadoresA.size(),3);
+        assertEquals(trabajadoresA.get(0).getId(),1);
+        assertEquals(trabajadoresA.get(0).getNombre(),"Armando Barullo Seguro");
+        assertEquals(trabajadoresA.get(1).getNombre(),"Ana Lladora Buena");
+        assertEquals(trabajadoresA.get(2).getNombre(),"Aitor Tilla Rica");
+    }
+
+    @Test
+    @Order(8)
+    public void test_findByNameNull(){
+        List<Trabajador> trabajadoresW = trabajadorDAO.findByName("W");
+        assertTrue(trabajadoresW.isEmpty());
+    }
+
+    @Test
+    @Order(7)
+    public void test_findByNameStartArm(){
+        List<Trabajador> trabajadoresA = trabajadorDAO.findByName("Arm");
+        assertNotNull(trabajadoresA);
+        assertEquals(trabajadoresA.size(),1);
+        assertEquals(trabajadoresA.get(0).getId(),1);
+        assertEquals(trabajadoresA.get(0).getNombre(),"Armando Barullo Seguro");
+    }
+}
