@@ -13,7 +13,11 @@ import java.util.Optional;
 public class TrabajadorDAO implements InterfaceDAO<Trabajador>{
     @Override
     public void create(Trabajador trabajador) {
-
+        EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        em.persist(trabajador);
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
@@ -23,7 +27,12 @@ public class TrabajadorDAO implements InterfaceDAO<Trabajador>{
 
     @Override
     public void delete(Trabajador trabajador) {
-
+        EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        trabajador = em.merge(trabajador);
+        em.remove(trabajador);
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override

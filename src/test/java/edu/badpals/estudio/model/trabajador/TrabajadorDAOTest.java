@@ -123,12 +123,35 @@ class TrabajadorDAOTest {
     }
 
     @Test
-    @Order(7)
+    @Order(9)
     public void test_findByNameStartArm(){
         List<Trabajador> trabajadoresA = trabajadorDAO.findByName("Arm");
         assertNotNull(trabajadoresA);
         assertEquals(trabajadoresA.size(),1);
         assertEquals(trabajadoresA.get(0).getId(),1);
         assertEquals(trabajadoresA.get(0).getNombre(),"Armando Barullo Seguro");
+    }
+
+    @Test
+    @Order(10)
+    public void test_createTrabajador(){
+        Trabajador trabajador = new Trabajador("90316241W","Javier de Test","081774170785",LocalDate.of(1990,7,7),LocalDate.of(2024,12,12),null,"javier.test@gmail.com");
+        trabajadorDAO.create(trabajador);
+
+        Optional<Trabajador> javierRecuperado = trabajadorDAO.findByNif("90316241W");
+        if(javierRecuperado.isPresent()) {
+            Trabajador javier = javierRecuperado.get();
+            assertEquals(javier.getNombre(), "Javier de Test");
+        }
+    }
+
+    @Test
+    @Order(11)
+    public void test_deleteTrabajador(){
+        Trabajador javi = trabajadorDAO.findByNif("90316241W").get();
+        trabajadorDAO.delete(javi);
+
+        Optional<Trabajador> optional = trabajadorDAO.findByNif("90316241W");
+        assertTrue(optional.isEmpty());
     }
 }
