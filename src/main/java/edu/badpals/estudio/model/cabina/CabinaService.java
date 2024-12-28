@@ -73,5 +73,9 @@ public class CabinaService {
         }
     }
 
+    public long countCabinas(){
+        return cabinaDAO.count();
+    }
+
 
 }

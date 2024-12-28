@@ -101,5 +101,11 @@ class CabinaServiceTest {
         assertEquals(allCabinas.get(0).getId(),1);
     }
 
+    @Test
+    @Order(8)
+    public void test_count(){
+        assertEquals(4,cabinaService.countCabinas());
+    }
+
   
 }
