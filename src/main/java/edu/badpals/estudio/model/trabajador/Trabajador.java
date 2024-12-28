@@ -1,10 +1,10 @@
-package edu.badpals.estudio.model.entities;
+package edu.badpals.estudio.model.trabajador;
 
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -44,6 +44,18 @@ public class Trabajador {
     @Column(name = "TELEFONO", nullable = false, length = 15)
     private Set<String> telefonos = new HashSet<>();
 
+    public Trabajador() {
+    }
+
+    public Trabajador(String nif, String nombre, String nss, LocalDate fechaNacimiento, LocalDate fechaAlta, Float salario, String email) {
+        this.nif = nif;
+        this.nombre = nombre;
+        this.nss = nss;
+        this.fechaNacimiento = fechaNacimiento;
+        this.fechaAlta = fechaAlta;
+        this.salario = salario;
+        this.email = email;
+    }
 
     public Integer getId() {
         return id;
@@ -123,5 +135,33 @@ public class Trabajador {
 
     public void removeTelefono(String telefono){
         this.telefonos.remove(telefono);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Trabajador that = (Trabajador) o;
+        return Objects.equals(id, that.id) && Objects.equals(nif, that.nif);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nif);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("TRABAJADOR: ").append("\n");
+        sb.append("\tId: ").append(id).append("\n");
+        sb.append("\tNIF: ").append(nif).append("\n");
+        sb.append("\tNOMBRE: ").append(nombre).append("\n");
+        sb.append("\tNSS: ").append(nss).append("\n");
+        sb.append("\tFECHA NACIMIENTO: ").append(fechaNacimiento).append("\n");
+        sb.append("\tFECHA ALTA: ").append(fechaAlta).append("\n");
+        sb.append(salario != null? "\tSALARIO: " + salario + "\n": "");
+        sb.append("\tEMAIL: ").append(email).append("\n");
+        sb.append("\tTELEFONOS: ").append(String.join(", ",telefonos)).append("\n");
+        return sb.toString();
     }
 }
