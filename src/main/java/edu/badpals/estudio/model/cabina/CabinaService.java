@@ -1,5 +1,6 @@
 package edu.badpals.estudio.model.cabina;
 
+import java.util.List;
 import java.util.Optional;
 
 public class CabinaService {
@@ -11,24 +12,46 @@ public class CabinaService {
 
     public Cabina getCabina(int id){
         Optional<Cabina> cabina = cabinaDAO.findById(id);
-        return cabina.isPresent()? cabina.get() : new Cabina();
+        return cabina.isPresent()? cabina.get() : null;
     }
 
     public Cabina getCabinaByUbicacion(String ubicacion){
         Optional<Cabina> cabina = cabinaDAO.findByUbicacion(ubicacion);
-        return cabina.isPresent()? cabina.get() : new Cabina();
+        return cabina.isPresent()? cabina.get() : null;
+    }
+
+    public List<Cabina> getAllCabinas(){
+        return cabinaDAO.findAll();
     }
 
     public void createCabina(String ubicacion, Float superficie, Boolean puedeHacerPiercing){
         if (ubicacion == null || cabinaDAO.findByUbicacion(ubicacion).isPresent()) {
             throw new IllegalArgumentException();
-
         }
         else if (superficie == null || superficie < 0.0f) {
             throw new IllegalArgumentException();
         }else{
             Cabina nuevaCabina = new Cabina(ubicacion,superficie,puedeHacerPiercing);
             cabinaDAO.create(nuevaCabina);
+        }
+    }
+
+    public void updateCabina(Cabina cabina, String newUbicacion, Float newSuperficie, Boolean newPuedeHacerPiercing){
+        if (!cabinaDAO.findById(cabina.getId()).isPresent()) {
+            throw new IllegalArgumentException("No se encuentra la cabina especificada.");
+        }else{
+            if(newUbicacion != null && !cabinaDAO.findByUbicacion(newUbicacion).isPresent()){
+                cabina.setUbicacion(newUbicacion);
+            } else if (cabinaDAO.findByUbicacion(newUbicacion).isPresent()) {
+                throw new IllegalArgumentException("Ubicación ya en uso.");
+            }
+            if(newSuperficie != null){
+                cabina.setSuperficie(newSuperficie);
+            }
+            if(newPuedeHacerPiercing != null){
+                cabina.setPuedeHacerPiercing(newPuedeHacerPiercing);
+            }
+            cabinaDAO.update(cabina);
         }
     }
 
@@ -49,5 +72,6 @@ public class CabinaService {
             cabinaDAO.delete(cabinaOptional.get());
         }
     }
+
 
 }

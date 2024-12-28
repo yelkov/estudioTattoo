@@ -5,6 +5,9 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CabinaServiceTest {
@@ -58,12 +61,45 @@ class CabinaServiceTest {
 
     @Test
     @Order(4)
-    public void test_borrarCabina(){
+    public void test_updateCabina(){
         Cabina cabinaTest = cabinaService.getCabinaByUbicacion("TEST CABINA");
-        cabinaService.deleteCabina("TEST CABINA");
+        cabinaService.updateCabina(cabinaTest,"TEST CABINA PIERCING",null,true);
 
-        Cabina cabinaTestPresente = cabinaService.getCabinaByUbicacion("TEST CABINA");
-        assertNull(cabinaTestPresente.getId());
+
+        assertNotNull(cabinaTest);
+        assertEquals(cabinaTest.getSuperficie(),15.0f);
+        assertEquals(true,cabinaTest.getPuedeHacerPiercing());
+        assertEquals("TEST CABINA PIERCING",cabinaTest.getUbicacion());
     }
+
+    @Test
+    @Order(5)
+    public void test_borrarCabina(){
+        Cabina cabinaTest = cabinaService.getCabinaByUbicacion("TEST CABINA PIERCING");
+        cabinaService.deleteCabina("TEST CABINA PIERCING");
+
+        Cabina cabinaTestPresente = cabinaService.getCabinaByUbicacion("TEST CABINA PIERCING");
+        assertNull(cabinaTestPresente);
+    }
+
+    @Test
+    @Order(6)
+    public void test_cabinaNoExiste(){
+        Cabina cabinaNoExiste = cabinaService.getCabinaByUbicacion("NO EXISTE");
+        assertNull(cabinaNoExiste);
+
+        Cabina cabina256 = cabinaService.getCabina(256);
+        assertNull(cabina256);
+    }
+
+    @Test
+    @Order(7)
+    public void test_getAllCabinas(){
+        List<Cabina> allCabinas = cabinaService.getAllCabinas();
+        assertNotNull(allCabinas);
+        assertTrue(allCabinas.size()>0);
+        assertEquals(allCabinas.get(0).getId(),1);
+    }
+
   
 }
