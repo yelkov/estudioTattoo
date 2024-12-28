@@ -81,7 +81,7 @@ public class TrabajadorDAO implements InterfaceDAO<Trabajador>{
         }
     }
 
-    public List<Trabajador> findByName(String name) {
+    public List<Trabajador> findStartByName(String name) {
         List<Trabajador> trabajadores = new ArrayList<>();
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         Query query = em.createQuery("SELECT t FROM Trabajador t WHERE t.nombre LIKE :name", Trabajador.class);
@@ -90,4 +90,15 @@ public class TrabajadorDAO implements InterfaceDAO<Trabajador>{
         em.close();
         return trabajadores;
     }
+
+    public List<Trabajador> findByNameContaining(String name) {
+        List<Trabajador> trabajadores = new ArrayList<>();
+        EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        Query query = em.createQuery("SELECT t FROM Trabajador t WHERE t.nombre LIKE :name", Trabajador.class);
+        query.setParameter("name","%"+name+"%");
+        trabajadores.addAll(query.getResultList());
+        em.close();
+        return trabajadores;
+    }
+
 }

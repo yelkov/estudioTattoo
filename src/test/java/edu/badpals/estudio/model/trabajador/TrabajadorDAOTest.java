@@ -105,8 +105,8 @@ class TrabajadorDAOTest {
 
     @Test
     @Order(7)
-    public void test_findByNameStart(){
-        List<Trabajador> trabajadoresA = trabajadorDAO.findByName("A");
+    public void test_findStartByName(){
+        List<Trabajador> trabajadoresA = trabajadorDAO.findStartByName("A");
         assertNotNull(trabajadoresA);
         assertEquals(trabajadoresA.size(),3);
         assertEquals(trabajadoresA.get(0).getId(),1);
@@ -117,15 +117,15 @@ class TrabajadorDAOTest {
 
     @Test
     @Order(8)
-    public void test_findByNameNull(){
-        List<Trabajador> trabajadoresW = trabajadorDAO.findByName("W");
+    public void test_findStartByNameNull(){
+        List<Trabajador> trabajadoresW = trabajadorDAO.findStartByName("W");
         assertTrue(trabajadoresW.isEmpty());
     }
 
     @Test
     @Order(9)
-    public void test_findByNameStartArm(){
-        List<Trabajador> trabajadoresA = trabajadorDAO.findByName("Arm");
+    public void test_findStartByNameArm(){
+        List<Trabajador> trabajadoresA = trabajadorDAO.findStartByName("Arm");
         assertNotNull(trabajadoresA);
         assertEquals(trabajadoresA.size(),1);
         assertEquals(trabajadoresA.get(0).getId(),1);
@@ -153,5 +153,22 @@ class TrabajadorDAOTest {
 
         Optional<Trabajador> optional = trabajadorDAO.findByNif("90316241W");
         assertTrue(optional.isEmpty());
+    }
+
+    @Test
+    @Order(12)
+    public void test_findStartByNameContainingBar(){
+        List<Trabajador> trabajadoresBar = trabajadorDAO.findByNameContaining("Bar");
+        assertNotNull(trabajadoresBar);
+        assertEquals(trabajadoresBar.size(),1);
+        assertEquals(trabajadoresBar.get(0).getId(),1);
+        assertEquals(trabajadoresBar.get(0).getNombre(),"Armando Barullo Seguro");
+    }
+
+    @Test
+    @Order(8)
+    public void test_findByNameContainingNull(){
+        List<Trabajador> trabajadoresW = trabajadorDAO.findByNameContaining("Wolfram");
+        assertTrue(trabajadoresW.isEmpty());
     }
 }
