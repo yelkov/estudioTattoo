@@ -22,8 +22,9 @@ public class Tatuador extends Trabajador {
         super();
     }
 
-    public Tatuador(String nif, String nombre, String nss, LocalDate fechaNacimiento, LocalDate fechaAlta, Float salario, String email) {
+    public Tatuador(String nif, String nombre, String nss, LocalDate fechaNacimiento, LocalDate fechaAlta, Float salario, String email, Float comision) {
         super(nif, nombre, nss, fechaNacimiento, fechaAlta, salario, email);
+        this.comision = comision;
     }
 
     public Float getComision() {

@@ -23,8 +23,9 @@ public class Anillador extends Trabajador {
         super();
     }
 
-    public Anillador(String nif, String nombre, String nss, LocalDate fechaNacimiento, LocalDate fechaAlta, Float salario, String email) {
+    public Anillador(String nif, String nombre, String nss, LocalDate fechaNacimiento, LocalDate fechaAlta, Float salario, String email, Float comision) {
         super(nif, nombre, nss, fechaNacimiento, fechaAlta, salario, email);
+        this.comision = comision;
     }
 
     public Set<Cita> getCitas() {

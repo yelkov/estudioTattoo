@@ -198,4 +198,52 @@ class TrabajadorDAOTest {
         armandoUpdated.removeTelefono("999666999");
         trabajadorDAO.update(armandoUpdated);
     }
+
+    @Test
+    @Order(16)
+    public void test_createTatuador(){
+        Tatuador tatuadorTest = new Tatuador("39451218P","Tatuador de Test","022033044055",LocalDate.of(1990,7,7),LocalDate.of(2024,12,12),null,"tatuador.test@gmail.com",60.0f);
+        trabajadorDAO.create(tatuadorTest);
+
+        Optional<Trabajador> tatuadorOptional = trabajadorDAO.findByNif("39451218P");
+        if(tatuadorOptional.isPresent()) {
+            assertEquals(tatuadorOptional.get().getNombre(), "Tatuador de Test");
+            Tatuador tatuador = (Tatuador) tatuadorOptional.get();
+            assertEquals(tatuador.getNombre(), "Tatuador de Test");
+        }
+    }
+
+    @Test
+    @Order(17)
+    public void test_deleteTatuador(){
+        Tatuador tatuadorTest = (Tatuador) trabajadorDAO.findByNif("39451218P").get();
+        trabajadorDAO.delete(tatuadorTest);
+
+        Optional<Trabajador> tatuadorRecuperado = trabajadorDAO.findByNif("39451218P");
+        assertTrue(tatuadorRecuperado.isEmpty());
+    }
+
+    @Test
+    @Order(18)
+    public void test_createAnillador(){
+        Anillador anilladorTest = new Anillador("00000000Z","Anillador de Test","011022033044",LocalDate.of(1990,7,7),LocalDate.of(2024,12,12),null,"anillador.test@gmail.com",60.0f);
+        trabajadorDAO.create(anilladorTest);
+
+        Optional<Trabajador> anilladorOptional = trabajadorDAO.findByNif("00000000Z");
+        if(anilladorOptional.isPresent()) {
+            assertEquals(anilladorOptional.get().getNombre(), "Anillador de Test");
+            Anillador anillador = (Anillador) anilladorOptional.get();
+            assertEquals(anillador.getNombre(), "Anillador de Test");
+        }
+    }
+
+    @Test
+    @Order(19)
+    public void test_deleteAnillador(){
+        Anillador anilladorTest = (Anillador) trabajadorDAO.findByNif("00000000Z").get();
+        trabajadorDAO.delete(anilladorTest);
+
+        Optional<Trabajador> anilladorRecuperado = trabajadorDAO.findByNif("00000000Z");
+        assertTrue(anilladorRecuperado.isEmpty());
+    }
 }
