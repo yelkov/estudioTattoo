@@ -37,7 +37,7 @@ public class Trabajador {
     @Column(name = "EMAIL", nullable = false, length = 30)
     private String email;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "TELEFONOS_TRABAJADORES",
             joinColumns = @JoinColumn(name = "TRABAJADOR", foreignKey = @ForeignKey(name = "FK_TRABAJADOR_TELEFONO")),
             uniqueConstraints = @UniqueConstraint(columnNames = {"TRABAJADOR","TELEFONO"},name = "uniq_trabajador_telefono"))

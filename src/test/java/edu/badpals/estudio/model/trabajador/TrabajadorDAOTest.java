@@ -186,4 +186,16 @@ class TrabajadorDAOTest {
         trabajadorDAO.update(armandoUpdated);
     }
 
+    @Test
+    @Order(15)
+    public void test_telefonos(){
+        Trabajador armando = trabajadorDAO.findById(1).get();
+        armando.addTelefono("999666999");
+        trabajadorDAO.update(armando);
+
+        Trabajador armandoUpdated = trabajadorDAO.findById(1).get();
+        assertTrue(armandoUpdated.getTelefonos().contains("999666999"));
+        armandoUpdated.removeTelefono("999666999");
+        trabajadorDAO.update(armandoUpdated);
+    }
 }
