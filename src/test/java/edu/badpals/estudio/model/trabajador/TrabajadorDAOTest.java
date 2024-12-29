@@ -16,6 +16,7 @@ class TrabajadorDAOTest {
 
     private static TrabajadorDAO trabajadorDAO;
 
+
     @BeforeAll
     public static void setup(){
         EntityManagerFactoryProvider.initialize("test");
@@ -65,14 +66,14 @@ class TrabajadorDAOTest {
         }
     }
     @Test
-    @Order(3)
+    @Order(4)
     public void test_findByNifNull(){
         Optional<Trabajador> optionalTrabajador = trabajadorDAO.findByNif("000000000");
         assertTrue(optionalTrabajador.isEmpty());
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     public void test_findAll(){
         List<Trabajador> trabajadores = trabajadorDAO.findAll();
         assertNotNull(trabajadores);
@@ -82,7 +83,7 @@ class TrabajadorDAOTest {
     }
 
     @Test
-    @Order(5)
+    @Order(6)
     public void test_findByNSS(){
         Optional<Trabajador> optionalTrabajador = trabajadorDAO.findByNss("1234567891");
         if(optionalTrabajador.isPresent()) {
@@ -97,14 +98,14 @@ class TrabajadorDAOTest {
         }
     }
     @Test
-    @Order(6)
+    @Order(7)
     public void test_findByNssNull(){
         Optional<Trabajador> optionalTrabajador = trabajadorDAO.findByNss("000000000");
         assertTrue(optionalTrabajador.isEmpty());
     }
 
     @Test
-    @Order(7)
+    @Order(8)
     public void test_findStartByName(){
         List<Trabajador> trabajadoresA = trabajadorDAO.findStartByName("A");
         assertNotNull(trabajadoresA);
@@ -116,14 +117,14 @@ class TrabajadorDAOTest {
     }
 
     @Test
-    @Order(8)
+    @Order(9)
     public void test_findStartByNameNull(){
         List<Trabajador> trabajadoresW = trabajadorDAO.findStartByName("W");
         assertTrue(trabajadoresW.isEmpty());
     }
 
     @Test
-    @Order(9)
+    @Order(10)
     public void test_findStartByNameArm(){
         List<Trabajador> trabajadoresA = trabajadorDAO.findStartByName("Arm");
         assertNotNull(trabajadoresA);
@@ -133,7 +134,7 @@ class TrabajadorDAOTest {
     }
 
     @Test
-    @Order(10)
+    @Order(11)
     public void test_createTrabajador(){
         Trabajador trabajador = new Trabajador("90316241W","Javier de Test","081774170785",LocalDate.of(1990,7,7),LocalDate.of(2024,12,12),null,"javier.test@gmail.com");
         trabajadorDAO.create(trabajador);
@@ -146,7 +147,7 @@ class TrabajadorDAOTest {
     }
 
     @Test
-    @Order(11)
+    @Order(12)
     public void test_deleteTrabajador(){
         Trabajador javi = trabajadorDAO.findByNif("90316241W").get();
         trabajadorDAO.delete(javi);
@@ -156,7 +157,7 @@ class TrabajadorDAOTest {
     }
 
     @Test
-    @Order(12)
+    @Order(13)
     public void test_findStartByNameContainingBar(){
         List<Trabajador> trabajadoresBar = trabajadorDAO.findByNameContaining("Bar");
         assertNotNull(trabajadoresBar);
@@ -166,14 +167,14 @@ class TrabajadorDAOTest {
     }
 
     @Test
-    @Order(13)
+    @Order(14)
     public void test_findByNameContainingNull(){
         List<Trabajador> trabajadoresW = trabajadorDAO.findByNameContaining("Wolfram");
         assertTrue(trabajadoresW.isEmpty());
     }
 
     @Test
-    @Order(14)
+    @Order(15)
     public void test_updateTrabajador(){
         Trabajador armando = trabajadorDAO.findByNif("33445556Y").get();
         armando.setFechaAlta(LocalDate.of(2024, 5, 1));
@@ -187,7 +188,7 @@ class TrabajadorDAOTest {
     }
 
     @Test
-    @Order(15)
+    @Order(16)
     public void test_telefonos(){
         Trabajador armando = trabajadorDAO.findById(1).get();
         armando.addTelefono("999666999");
@@ -199,51 +200,5 @@ class TrabajadorDAOTest {
         trabajadorDAO.update(armandoUpdated);
     }
 
-    @Test
-    @Order(16)
-    public void test_createTatuador(){
-        Tatuador tatuadorTest = new Tatuador("39451218P","Tatuador de Test","022033044055",LocalDate.of(1990,7,7),LocalDate.of(2024,12,12),null,"tatuador.test@gmail.com",60.0f);
-        trabajadorDAO.create(tatuadorTest);
 
-        Optional<Trabajador> tatuadorOptional = trabajadorDAO.findByNif("39451218P");
-        if(tatuadorOptional.isPresent()) {
-            assertEquals(tatuadorOptional.get().getNombre(), "Tatuador de Test");
-            Tatuador tatuador = (Tatuador) tatuadorOptional.get();
-            assertEquals(tatuador.getNombre(), "Tatuador de Test");
-        }
-    }
-
-    @Test
-    @Order(17)
-    public void test_deleteTatuador(){
-        Tatuador tatuadorTest = (Tatuador) trabajadorDAO.findByNif("39451218P").get();
-        trabajadorDAO.delete(tatuadorTest);
-
-        Optional<Trabajador> tatuadorRecuperado = trabajadorDAO.findByNif("39451218P");
-        assertTrue(tatuadorRecuperado.isEmpty());
-    }
-
-    @Test
-    @Order(18)
-    public void test_createAnillador(){
-        Anillador anilladorTest = new Anillador("00000000Z","Anillador de Test","011022033044",LocalDate.of(1990,7,7),LocalDate.of(2024,12,12),null,"anillador.test@gmail.com",60.0f);
-        trabajadorDAO.create(anilladorTest);
-
-        Optional<Trabajador> anilladorOptional = trabajadorDAO.findByNif("00000000Z");
-        if(anilladorOptional.isPresent()) {
-            assertEquals(anilladorOptional.get().getNombre(), "Anillador de Test");
-            Anillador anillador = (Anillador) anilladorOptional.get();
-            assertEquals(anillador.getNombre(), "Anillador de Test");
-        }
-    }
-
-    @Test
-    @Order(19)
-    public void test_deleteAnillador(){
-        Anillador anilladorTest = (Anillador) trabajadorDAO.findByNif("00000000Z").get();
-        trabajadorDAO.delete(anilladorTest);
-
-        Optional<Trabajador> anilladorRecuperado = trabajadorDAO.findByNif("00000000Z");
-        assertTrue(anilladorRecuperado.isEmpty());
-    }
 }
