@@ -166,9 +166,24 @@ class TrabajadorDAOTest {
     }
 
     @Test
-    @Order(8)
+    @Order(13)
     public void test_findByNameContainingNull(){
         List<Trabajador> trabajadoresW = trabajadorDAO.findByNameContaining("Wolfram");
         assertTrue(trabajadoresW.isEmpty());
     }
+
+    @Test
+    @Order(14)
+    public void test_updateTrabajador(){
+        Trabajador armando = trabajadorDAO.findByNif("33445556Y").get();
+        armando.setFechaAlta(LocalDate.of(2024, 5, 1));
+        trabajadorDAO.update(armando);
+
+        Trabajador armandoUpdated = trabajadorDAO.findByNif("33445556Y").get();
+        assertEquals(armandoUpdated.getFechaAlta(), LocalDate.of(2024, 5, 1));
+
+        armandoUpdated.setFechaAlta(LocalDate.of(2024, 2, 1));
+        trabajadorDAO.update(armandoUpdated);
+    }
+
 }

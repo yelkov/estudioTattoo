@@ -22,7 +22,11 @@ public class TrabajadorDAO implements InterfaceDAO<Trabajador>{
 
     @Override
     public void update(Trabajador trabajador) {
-
+        EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        em.merge(trabajador);
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
