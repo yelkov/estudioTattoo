@@ -4,9 +4,7 @@ import edu.badpals.estudio.model.entities.Cita;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "ANILLADORES")
@@ -18,6 +16,14 @@ public class Anillador extends Trabajador {
 
     @OneToMany(mappedBy = "anillador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Cita> citas = new HashSet<>();
+
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "ANILLADORES_PIEZAS",
+            joinColumns = @JoinColumn(name = "ANILLADOR", foreignKey = @ForeignKey(name = "FK_ANILLADOR_PIEZA")),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"ANILLADOR","PIEZA_PROPIA"},name = "uniq_anillador_pieza"))
+    @MapKeyColumn(name = "PIEZA_PROPIA", nullable = false, length = 50)
+    @Column(name = "CANTIDAD", nullable = false)
+    private Map<String,Integer> piezas_propias = new HashMap<>();
 
     public Anillador() {
         super();
@@ -49,6 +55,33 @@ public class Anillador extends Trabajador {
     }
     public void removeCita(Cita cita){
         citas.remove(cita);
+    }
+
+    public Map<String, Integer> getPiezas_propias() {
+        return piezas_propias;
+    }
+
+    public void setPiezas_propias(Map<String, Integer> piezas_propias) {
+        this.piezas_propias = piezas_propias;
+    }
+
+    public void addTinta(String pieza){
+        piezas_propias.putIfAbsent(pieza, 1);
+    }
+
+    public void removeTinta(String pieza){
+        piezas_propias.remove(pieza);
+    }
+
+    public void sumCantidadTinta(String pieza, Integer sumaCantidad){
+        piezas_propias.computeIfPresent(pieza,(key, cantidadActual) -> cantidadActual + sumaCantidad);
+    }
+
+    public void restaCantidadTinta(String pieza, Integer restaCantidad) {
+        piezas_propias.computeIfPresent(pieza, (key, cantidadActual) -> {
+            int nuevaCantidad = cantidadActual - restaCantidad;
+            return nuevaCantidad > 0 ? nuevaCantidad : 0;
+        });
     }
 
     @Override
