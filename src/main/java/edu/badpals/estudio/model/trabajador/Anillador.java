@@ -17,7 +17,7 @@ public class Anillador extends Trabajador {
     @OneToMany(mappedBy = "anillador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Cita> citas = new HashSet<>();
 
-    @ElementCollection(fetch = FetchType.LAZY)
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "ANILLADORES_PIEZAS",
             joinColumns = @JoinColumn(name = "ANILLADOR", foreignKey = @ForeignKey(name = "FK_ANILLADOR_PIEZA")),
             uniqueConstraints = @UniqueConstraint(columnNames = {"ANILLADOR","PIEZA_PROPIA"},name = "uniq_anillador_pieza"))
