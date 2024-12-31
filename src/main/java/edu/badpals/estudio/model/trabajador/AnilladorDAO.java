@@ -6,51 +6,51 @@ import java.util.List;
 import java.util.Optional;
 
 public class AnilladorDAO implements InterfaceDAO<Anillador> {
-    private final TrabajadorGenericoDAO generico;
+    private final TrabajadorGenericoDAO genericoDAO;
 
     public AnilladorDAO() {
-        this.generico = new TrabajadorGenericoDAO<>(Anillador.class);
+        this.genericoDAO = new TrabajadorGenericoDAO<>(Anillador.class);
     }
 
 
     @Override
     public void create(Anillador anillador) {
-        generico.create(anillador);
+        genericoDAO.create(anillador);
     }
 
     @Override
     public void update(Anillador anillador) {
-        generico.update(anillador);
+        genericoDAO.update(anillador);
     }
 
     @Override
     public void delete(Anillador anillador) {
-        generico.delete(anillador);
+        genericoDAO.delete(anillador);
     }
 
     @Override
     public Optional<Anillador> findById(int id) {
-        return generico.findById(id);
+        return genericoDAO.findById(id);
     }
 
     public List<Anillador> findAll() {
-        return generico.findAll();
+        return genericoDAO.findAll();
     }
 
     public Optional<Anillador> findByNif(String nif) {
-        return generico.findByAttribute("nif", nif);
+        return genericoDAO.findByAttribute("nif", nif);
     }
 
     public Optional<Anillador> findByNss(String nss) {
-        return generico.findByAttribute("nss", nss);
+        return genericoDAO.findByAttribute("nss", nss);
     }
 
     public List<Anillador> findStartByName(String nombre){
-        return generico.findStartByName(nombre);
+        return genericoDAO.findStartByName(nombre);
     }
 
     public List<Anillador> findByNameContaining(String nombre){
-        return generico.findByNameContaining(nombre);
+        return genericoDAO.findByNameContaining(nombre);
     }
 
 }

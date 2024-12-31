@@ -1,60 +1,55 @@
 package edu.badpals.estudio.model.trabajador;
 
 import edu.badpals.estudio.model.InterfaceDAO;
-import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.Query;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class TrabajadorDAO implements InterfaceDAO<Trabajador> {
-    private final TrabajadorGenericoDAO generico;
+    private final TrabajadorGenericoDAO genericoDAO;
 
     public TrabajadorDAO() {
-        this.generico = new TrabajadorGenericoDAO(Trabajador.class);
+        this.genericoDAO = new TrabajadorGenericoDAO(Trabajador.class);
     }
 
 
     @Override
     public void create(Trabajador trabajador) {
-        generico.create(trabajador);
+        genericoDAO.create(trabajador);
     }
 
     @Override
     public void update(Trabajador trabajador) {
-        generico.update(trabajador);
+        genericoDAO.update(trabajador);
     }
 
     @Override
     public void delete(Trabajador trabajador) {
-        generico.delete(trabajador);
+        genericoDAO.delete(trabajador);
     }
 
     @Override
     public Optional<Trabajador> findById(int id) {
-        return generico.findById(id);
+        return genericoDAO.findById(id);
     }
 
     public List<Trabajador> findAll() {
-        return generico.findAll();
+        return genericoDAO.findAll();
     }
 
     public Optional<Trabajador> findByNif(String nif) {
-        return generico.findByAttribute("nif", nif);
+        return genericoDAO.findByAttribute("nif", nif);
     }
 
     public Optional<Trabajador> findByNss(String nss) {
-        return generico.findByAttribute("nss", nss);
+        return genericoDAO.findByAttribute("nss", nss);
     }
 
     public List<Trabajador> findStartByName(String nombre){
-        return generico.findStartByName(nombre);
+        return genericoDAO.findStartByName(nombre);
     }
 
     public List<Trabajador> findByNameContaining(String nombre){
-        return generico.findByNameContaining(nombre);
+        return genericoDAO.findByNameContaining(nombre);
     }
 }
