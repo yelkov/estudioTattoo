@@ -20,7 +20,7 @@ public class Tatuador extends Trabajador {
     @OneToMany(mappedBy = "tatuador",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Cita> citas = new HashSet<>();
 
-    @ElementCollection(fetch = FetchType.LAZY)
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "TATUADORES_TINTAS",
             joinColumns = @JoinColumn(name = "TATUADOR", foreignKey = @ForeignKey(name = "FK_TATUADOR_TINTA")),
             uniqueConstraints = @UniqueConstraint(columnNames = {"TATUADOR","TINTA_PROPIA"},name = "uniq_tatuador_tinta"))
