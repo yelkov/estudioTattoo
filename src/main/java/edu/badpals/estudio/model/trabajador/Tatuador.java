@@ -26,7 +26,7 @@ public class Tatuador extends Trabajador {
             uniqueConstraints = @UniqueConstraint(columnNames = {"TATUADOR","TAG"},name = "uniq_tatuador_diseño"))
     @MapKeyColumn(name = "TAG", nullable = false, length = 30)
     @Column(name = "DISEÑO", nullable = false)
-    private Map<String,Byte[]> diseños = new HashMap<>();
+    private Map<String,byte[]> diseños = new HashMap<>();
 
     public Tatuador() {
         super();
@@ -61,15 +61,15 @@ public class Tatuador extends Trabajador {
         citas.remove(cita);
     }
 
-    public Map<String, Byte[]> getDiseños() {
+    public Map<String, byte[]> getDiseños() {
         return diseños;
     }
 
-    public void setDiseños(Map<String, Byte[]> diseños) {
+    public void setDiseños(Map<String, byte[]> diseños) {
         this.diseños = diseños;
     }
 
-    public void addDiseño(String tag, Byte[] imagen){
+    public void addDiseño(String tag, byte[] imagen){
         diseños.putIfAbsent(tag, imagen);
     }
 
