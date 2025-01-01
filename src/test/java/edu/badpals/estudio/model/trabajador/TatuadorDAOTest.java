@@ -1,10 +1,7 @@
 package edu.badpals.estudio.model.trabajador;
 
 import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,6 +9,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class TatuadorDAOTest {
 
     private static TatuadorDAO tatuadorDAO;
@@ -196,6 +194,17 @@ class TatuadorDAOTest {
         assertTrue(armandoUpdated.getTelefonos().contains("999666999"));
         armandoUpdated.removeTelefono("999666999");
         tatuadorDAO.update(armandoUpdated);
+    }
+
+    @Test
+    @Order(17)
+    public void test_diseños(){
+        Tatuador armando = tatuadorDAO.findWithDiseños(1).get();
+
+        assertNotNull(armando);
+        assertEquals(armando.getId(),1);
+        assertTrue(armando.getDiseños().containsKey("Tag de prueba"));
+        assertTrue(armando.getDiseños().containsKey("Nuevo Tag de prueba"));
     }
 
 }

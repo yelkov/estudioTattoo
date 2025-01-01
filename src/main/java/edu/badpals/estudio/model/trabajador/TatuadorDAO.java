@@ -1,6 +1,11 @@
 package edu.badpals.estudio.model.trabajador;
 
 import edu.badpals.estudio.model.InterfaceDAO;
+import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.Query;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -48,5 +53,19 @@ public class TatuadorDAO implements InterfaceDAO<Tatuador> {
 
     public List<Tatuador> findByNameContaining(String nombre){
         return genericoDAO.findByNameContaining(nombre);
+    }
+
+    public Optional<Tatuador> findWithDiseños(int id) {
+        EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        try{
+            Query query = em.createQuery("SELECT t FROM Tatuador t LEFT JOIN FETCH t.diseños WHERE t.id = :id");
+            query.setParameter("id", id);
+            Tatuador tatuador = (Tatuador) query.getSingleResult();
+            return Optional.ofNullable(tatuador);
+        }catch (NoResultException e) {
+            return Optional.empty();
+        } finally {
+            em.close();
+        }
     }
 }
