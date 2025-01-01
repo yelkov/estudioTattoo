@@ -42,6 +42,11 @@ public class TatuadorService {
         return tatuadorDAO.findByNameContaining(name);
     }
 
+    public Tatuador getTatuadorWithDiseños(Integer id){
+        Optional<Tatuador> tatuador = tatuadorDAO.findWithDiseños(id);
+        return tatuador.isPresent() ? tatuador.get() : null;
+    }
+
     public void createTatuador(String nif, String name, String nss, LocalDate fechaNacimiento, LocalDate fechaAlta, Float salario, String mail, Float comision, Set<String> telefonos) throws IllegalArgumentException {
         if (!hasCamposObligatorios(nif, name, nss, fechaNacimiento, fechaAlta, mail)) {
             throw new IllegalArgumentException("Hay campos obligatorios sin rellenar");
@@ -85,6 +90,50 @@ public class TatuadorService {
             tatuadorDAO.delete(tatuadorDAO.findByNss(nss).get());
         }else{
             throw new IllegalArgumentException("No se encuentra el tatuador en el registro");
+        }
+    }
+
+    public void addDiseño(Integer id, String tag, byte[] diseño){
+        if(id != null){
+            Tatuador tatuador = getTatuadorWithDiseños(id);
+            if(tatuador != null){
+                tatuador.addDiseño(tag,diseño);
+                tatuadorDAO.update(tatuador);
+            }
+        }
+    }
+
+    public void removeDiseño(Integer id, String tag){
+        if(id != null){
+            Tatuador tatuador = getTatuadorWithDiseños(id);
+            if(tatuador != null){
+                tatuador.removeDiseño(tag);
+                tatuadorDAO.update(tatuador);
+            }
+        }
+    }
+
+    public void addDiseños(Integer id, Map<String,byte[]> diseños){
+        if(id != null && diseños != null && !diseños.isEmpty()){
+            Tatuador tatuador = getTatuadorWithDiseños(id);
+            if(tatuador != null){
+                for(Map.Entry<String,byte[]> entry : diseños.entrySet()){
+                    tatuador.addDiseño(entry.getKey(),entry.getValue());
+                }
+                tatuadorDAO.update(tatuador);
+            }
+        }
+    }
+
+    public void removeDiseños(Integer id, String[] tags){
+        if(id != null && tags != null){
+            Tatuador tatuador = getTatuadorWithDiseños(id);
+            if(tatuador != null){
+                for(String tag : tags){
+                    tatuador.removeDiseño(tag);
+                }
+                tatuadorDAO.update(tatuador);
+            }
         }
     }
 }

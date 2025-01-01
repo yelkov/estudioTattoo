@@ -186,4 +186,41 @@ class TatuadorServiceTest {
     public void test_deleteTatuadorFalse(){
         IllegalArgumentException exception = (Assertions.assertThrows(IllegalArgumentException.class, ()-> tatuadorService.deleteTatuador(null,"37856937569",null)));
     }
+
+    @Test
+    @Order(18)
+    public void test_getTatuadorWithDiseños(){
+        Tatuador armando = tatuadorService.getTatuadorWithDiseños(1);
+        assertNotNull(armando);
+        assertTrue(armando.getDiseños().containsKey("Tag de prueba"));
+    }
+
+    @Test
+    @Order(19)
+    public void test_addDiseño(){
+        Tatuador joseba = tatuadorService.getTatuador(2);
+        String tag = "Diseño de prueba de Joseba";
+        byte[] diseño = tag.getBytes();
+
+        tatuadorService.addDiseño(joseba.getId(),tag,diseño);
+
+        Tatuador josebaRecuperado = tatuadorService.getTatuadorWithDiseños(2);
+        assertNotNull(josebaRecuperado);
+        assertTrue(josebaRecuperado.getDiseños().containsKey("Diseño de prueba de Joseba"));
+    }
+
+    @Test
+    @Order(20)
+    public void test_removeDiseño(){
+        Tatuador joseba = tatuadorService.getTatuador(2);
+        String tag = "Diseño de prueba de Joseba";
+
+        tatuadorService.removeDiseño(joseba.getId(),tag);
+
+        Tatuador josebaRecuperado = tatuadorService.getTatuadorWithDiseños(2);
+        assertNotNull(josebaRecuperado);
+        assertFalse(josebaRecuperado.getDiseños().containsKey("Diseño de prueba de Joseba"));
+    }
+
+
 }
