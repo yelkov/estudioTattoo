@@ -91,13 +91,10 @@ public class TrabajadorGenericoDAO<T> {
     public <T> List<T> findByNameContaining(String name) {
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         List<T> results = new ArrayList<>();
-        try {
-            Query query = em.createQuery("SELECT t FROM " + tipo.getSimpleName() + " t WHERE t.nombre LIKE :name", tipo);
-            query.setParameter("name", "%" + name + "%");
-            results.addAll(query.getResultList());
-        } finally {
-            em.close();
-        }
+        Query query = em.createQuery("SELECT t FROM " + tipo.getSimpleName() + " t WHERE t.nombre LIKE :name", tipo);
+        query.setParameter("name", "%" + name + "%");
+        results.addAll(query.getResultList());
+        em.close();
         return results;
     }
 
