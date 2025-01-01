@@ -20,13 +20,13 @@ public class Tatuador extends Trabajador {
     @OneToMany(mappedBy = "tatuador",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Cita> citas = new HashSet<>();
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "TATUADORES_TINTAS",
-            joinColumns = @JoinColumn(name = "TATUADOR", foreignKey = @ForeignKey(name = "FK_TATUADOR_TINTA")),
-            uniqueConstraints = @UniqueConstraint(columnNames = {"TATUADOR","TINTA_PROPIA"},name = "uniq_tatuador_tinta"))
-    @MapKeyColumn(name = "TINTA_PROPIA", nullable = false, length = 50)
-    @Column(name = "CANTIDAD", nullable = false)
-    private Map<String,Integer> tintas_propias = new HashMap<>();
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "TATUADORES_DISEÑOS",
+            joinColumns = @JoinColumn(name = "TATUADOR", foreignKey = @ForeignKey(name = "FK_TATUADOR_DISEÑO")),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"TATUADOR","TAG"},name = "uniq_tatuador_diseño"))
+    @MapKeyColumn(name = "TAG", nullable = false, length = 30)
+    @Column(name = "DISEÑO", nullable = false)
+    private Map<String,Byte[]> diseños = new HashMap<>();
 
     public Tatuador() {
         super();
@@ -61,32 +61,22 @@ public class Tatuador extends Trabajador {
         citas.remove(cita);
     }
 
-    public Map<String, Integer> getTintas_propias() {
-        return tintas_propias;
+    public Map<String, Byte[]> getDiseños() {
+        return diseños;
     }
 
-    public void setTintas_propias(Map<String, Integer> tintas_propias) {
-        this.tintas_propias = tintas_propias;
+    public void setDiseños(Map<String, Byte[]> diseños) {
+        this.diseños = diseños;
     }
 
-    public void addTinta(String tinta){
-        tintas_propias.putIfAbsent(tinta, 1);
+    public void addDiseño(String tag, Byte[] imagen){
+        diseños.putIfAbsent(tag, imagen);
     }
 
-    public void removeTinta(String tinta){
-        tintas_propias.remove(tinta);
+    public void removeDiseño(String tag){
+        diseños.remove(tag);
     }
 
-    public void sumCantidadTinta(String tinta, Integer sumaCantidad){
-        tintas_propias.computeIfPresent(tinta,(key, cantidadActual) -> cantidadActual + sumaCantidad);
-    }
-
-    public void restaCantidadTinta(String tinta, Integer restaCantidad) {
-        tintas_propias.computeIfPresent(tinta, (key, cantidadActual) -> {
-            int nuevaCantidad = cantidadActual - restaCantidad;
-            return nuevaCantidad > 0 ? nuevaCantidad : 0;
-        });
-    }
 
     @Override
     public String toString() {

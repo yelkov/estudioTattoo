@@ -136,25 +136,20 @@ class TatuadorServiceTest {
     @Order(12)
     public void test_createTatuador(){
         String[] telefonos = new String[]{"666999888","777888999"};
-        Map<String, Integer> tintas_propias  = new HashMap<>();
-        tintas_propias.put("Viking lining black",1);
-        tintas_propias.put("Dynamic triple black",1);
-        tatuadorService.createTatuador("44368186J","Tatuador de Prueba","021054466554", LocalDate.of(2000,7,5),LocalDate.of(2024,9,1),null,"prueba.tatuador@gmail.com",60.0f, Set.of(telefonos),tintas_propias);
+        tatuadorService.createTatuador("44368186J","Tatuador de Prueba","021054466554", LocalDate.of(2000,7,5),LocalDate.of(2024,9,1),null,"prueba.tatuador@gmail.com",60.0f, Set.of(telefonos));
 
         Tatuador tatuador = tatuadorService.getTatuadorByNif("44368186J");
         assertNotNull(tatuador);
         assertEquals(tatuador.getNombre(),"Tatuador de Prueba");
         assertTrue(tatuador.getTelefonos().contains("666999888"));
         assertTrue(tatuador.getTelefonos().contains("777888999"));
-        assertTrue(tatuador.getTintas_propias().containsKey("Viking lining black"));
-
     }
 
     @Test
     @Order(13)
     public void test_createTatuadorFalse(){
         String[] telefonos = new String[]{"666999888","777888999"};
-        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () ->  tatuadorService.createTatuador(null,"Tatuador de Prueba","021054466554", LocalDate.of(2000,7,5),LocalDate.of(2024,9,1),null,"prueba.tatuador@gmail.com",60.0f,Set.of(telefonos),null)) ;
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () ->  tatuadorService.createTatuador(null,"Tatuador de Prueba","021054466554", LocalDate.of(2000,7,5),LocalDate.of(2024,9,1),null,"prueba.tatuador@gmail.com",60.0f,Set.of(telefonos))) ;
 
         Assertions.assertEquals("Hay campos obligatorios sin rellenar",exception.getMessage());
     }
@@ -163,7 +158,7 @@ class TatuadorServiceTest {
     @Order(14)
     public void test_createTatuadorFalse2(){
         String[] telefonos = new String[]{"666999888","777888999"};
-        IllegalArgumentException exception =Assertions.assertThrows(IllegalArgumentException.class, () ->  tatuadorService.createTatuador("44368186J","Tatuador de Prueba",null, LocalDate.of(2000,7,5),LocalDate.of(2024,9,1),null,"prueba.tatuador@gmail.com",60.0f,Set.of(telefonos),null)) ;
+        IllegalArgumentException exception =Assertions.assertThrows(IllegalArgumentException.class, () ->  tatuadorService.createTatuador("44368186J","Tatuador de Prueba",null, LocalDate.of(2000,7,5),LocalDate.of(2024,9,1),null,"prueba.tatuador@gmail.com",60.0f,Set.of(telefonos))) ;
 
         Assertions.assertEquals("Hay campos obligatorios sin rellenar",exception.getMessage());
     }
@@ -172,7 +167,7 @@ class TatuadorServiceTest {
     @Order(15)
     public void test_createTatuadorFalse3(){
         String[] telefonos = new String[]{"666999888","777888999"};
-        IllegalArgumentException exception =Assertions.assertThrows(IllegalArgumentException.class, () ->  tatuadorService.createTatuador("33445556Y","Tatuador de Prueba Falso","1234567891", LocalDate.of(2000,7,5),LocalDate.of(2024,9,1),null,"prueba.tatuador@gmail.com",60.0f,Set.of(telefonos),null));
+        IllegalArgumentException exception =Assertions.assertThrows(IllegalArgumentException.class, () ->  tatuadorService.createTatuador("33445556Y","Tatuador de Prueba Falso","1234567891", LocalDate.of(2000,7,5),LocalDate.of(2024,9,1),null,"prueba.tatuador@gmail.com",60.0f,Set.of(telefonos)));
 
         Assertions.assertEquals("El nif o el nss ya existen en el registro",exception.getMessage());
     }

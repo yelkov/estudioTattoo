@@ -42,7 +42,7 @@ public class TatuadorService {
         return tatuadorDAO.findByNameContaining(name);
     }
 
-    public void createTatuador(String nif, String name, String nss, LocalDate fechaNacimiento, LocalDate fechaAlta, Float salario, String mail, Float comision, Set<String> telefonos, Map<String, Integer> tintas_propias) throws IllegalArgumentException {
+    public void createTatuador(String nif, String name, String nss, LocalDate fechaNacimiento, LocalDate fechaAlta, Float salario, String mail, Float comision, Set<String> telefonos) throws IllegalArgumentException {
         if (!hasCamposObligatorios(nif, name, nss, fechaNacimiento, fechaAlta, mail)) {
             throw new IllegalArgumentException("Hay campos obligatorios sin rellenar");
         } else if (isPresentNifNss(nif, nss)) {
@@ -51,9 +51,6 @@ public class TatuadorService {
             Tatuador tatuador = new Tatuador(nif, name, nss, fechaNacimiento, fechaAlta, salario, mail, comision);
             if(telefonos != null){
                 tatuador.setTelefonos(telefonos);
-            }
-            if(tintas_propias != null){
-                tatuador.setTintas_propias(tintas_propias);
             }
             tatuadorDAO.create(tatuador);
         }
