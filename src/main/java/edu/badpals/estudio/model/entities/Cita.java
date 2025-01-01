@@ -1,6 +1,7 @@
 package edu.badpals.estudio.model.entities;
 
 import edu.badpals.estudio.model.cabina.Cabina;
+import edu.badpals.estudio.model.cliente.Cliente;
 import edu.badpals.estudio.model.trabajador.Anillador;
 import edu.badpals.estudio.model.trabajador.Tatuador;
 import jakarta.persistence.*;
