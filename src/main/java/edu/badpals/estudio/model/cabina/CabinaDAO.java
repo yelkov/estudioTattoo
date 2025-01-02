@@ -86,8 +86,11 @@ public class CabinaDAO implements InterfaceDAO<Cabina> {
 
     public void eliminarHuecosVacios(){
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
         StoredProcedureQuery query = em.createStoredProcedureQuery("ELIMINAR_HUECOS_VACIOS_PASADOS");
-        query.execute();
+        query.executeUpdate();
+        em.flush();
+        em.getTransaction().commit();
         em.close();
     }
 }

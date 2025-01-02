@@ -8,8 +8,8 @@ import java.util.Optional;
 public class CabinaService {
     private final CabinaDAO cabinaDAO;
 
-    public CabinaService(CabinaDAO cabinaDAO) {
-        this.cabinaDAO = cabinaDAO;
+    public CabinaService() {
+        this.cabinaDAO = new CabinaDAO();
     }
 
     public Cabina getCabina(int id){

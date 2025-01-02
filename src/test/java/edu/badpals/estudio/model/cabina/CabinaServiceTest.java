@@ -15,8 +15,7 @@ class CabinaServiceTest {
     @BeforeAll
     public static void setup(){
         EntityManagerFactoryProvider.initialize("test");
-        CabinaDAO cabinaDAO = new CabinaDAO();
-        cabinaService = new CabinaService(cabinaDAO);
+        cabinaService = new CabinaService();
     }
 
     @AfterAll
@@ -111,7 +110,8 @@ class CabinaServiceTest {
     public void test_crearHuecos(){
         cabinaService.crearHuecosSemanales(LocalDate.of(2024,12,23),1);
         Cabina cabina1 = cabinaService.getCabina(1);
-        assertEquals(cabina1.getHuecos().size(),54);
+        int cantHuecos = cabina1.getHuecos().size();
+        assertEquals(cantHuecos,54);
     }
 
     @Test
@@ -119,7 +119,8 @@ class CabinaServiceTest {
     public void test_eliminarHuecos(){
         cabinaService.eliminarHuecosVacios();
         Cabina cabina1 = cabinaService.getCabina(1);
-        assertEquals(cabina1.getHuecos().size(),0);
+        int cantHuecos = cabina1.getHuecos().size();
+        assertEquals(cantHuecos,0);
     }
   
 }
