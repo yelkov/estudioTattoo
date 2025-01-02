@@ -100,12 +100,12 @@ public class TrabajadorService {
             }else{
                 if (newNif != null && !trabajadorDAO.findByNif(newNif).isPresent()){
                     trabajador.setNif(newNif);
-                } else if (trabajadorDAO.findByNif(newNif).isPresent()) {
+                } else if (trabajadorDAO.findByNif(newNif).isPresent() && !newNif.equals(trabajador.getNif())) {
                     throw new IllegalArgumentException("El nuevo nif ya existe en el registro");
                 }
                 if(newNss != null && !trabajadorDAO.findByNss(newNss).isPresent()){
                     trabajador.setNss(newNss);
-                }else if(trabajadorDAO.findByNss(newNss).isPresent()){
+                }else if(trabajadorDAO.findByNss(newNss).isPresent()  && !newNss.equals(trabajador.getNss())){
                     throw new IllegalArgumentException("El nuevo nss ya existe en el registro");
                 }
                 if(newNombre != null && !newNombre.isEmpty()){
@@ -117,9 +117,8 @@ public class TrabajadorService {
                 if(newFechaAlta != null){
                     trabajador.setFechaAlta(newFechaAlta);
                 }
-                if(newSalario != null) {
-                    trabajador.setSalario(newSalario);
-                }
+                trabajador.setSalario(newSalario);
+
                 if(newMail != null && !newMail.isEmpty()){
                     trabajador.setEmail(newMail);
                 }

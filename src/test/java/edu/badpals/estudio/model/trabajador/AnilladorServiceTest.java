@@ -175,6 +175,20 @@ class AnilladorServiceTest {
 
     @Test
     @Order(16)
+    public void test_updateAnillador(){
+        Anillador anilladorPrueba = anilladorService.getAnilladorByNif("44368186J");
+        anilladorService.updateAnillador(anilladorPrueba,"44368186J","Anillador con otro nombre","000000000000",null,null,null,"newmail@mail.com",null,65.0f);
+
+        Anillador anilladorRecuperado = anilladorService.getAnilladorByNif("44368186J");
+        assertNotNull(anilladorRecuperado);
+        assertEquals(anilladorRecuperado.getNombre(),"Anillador con otro nombre");
+        assertEquals(anilladorRecuperado.getNss(),"000000000000");
+        assertEquals(anilladorRecuperado.getEmail(),"newmail@mail.com");
+        assertEquals(anilladorRecuperado.getComision(),65.0f);
+    }
+
+    @Test
+    @Order(17)
     public void test_deleteAnillador(){
         anilladorService.deleteAnillador(null,"44368186J",null);
 
@@ -183,7 +197,7 @@ class AnilladorServiceTest {
     }
 
     @Test
-    @Order(17)
+    @Order(18)
     public void test_deleteAnilladorFalse(){
         IllegalArgumentException exception = (Assertions.assertThrows(IllegalArgumentException.class, ()-> anilladorService.deleteAnillador(null,"37856937569",null)));
     }

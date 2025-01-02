@@ -1,16 +1,15 @@
 package edu.badpals.estudio.model.cabina;
 
 import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CabinaDAOTest {
     private static CabinaDAO cabinaDAO;
 
@@ -135,6 +134,25 @@ class CabinaDAOTest {
         long totalCabinas = cabinaDAO.count();
         assertTrue(totalCabinas > 0);
         assertEquals(4,totalCabinas);
+    }
+
+    @Test
+    @Order(11)
+    public void test_crearHuecos(){
+        cabinaDAO.crearHuecosSemanales(LocalDate.of(2024,12,23),1);
+
+        Optional<Cabina> cabinaOptional = cabinaDAO.findById(1);
+        Cabina cabina1 = cabinaOptional.get();
+        assertEquals(cabina1.getHuecos().size(),54);
+    }
+
+    @Test
+    @Order(12)
+    public void test_eliminarHuecos(){
+        cabinaDAO.eliminarHuecosVacios();
+        Optional<Cabina> cabinaOptional = cabinaDAO.findById(1);
+        Cabina cabina1 = cabinaOptional.get();
+        assertEquals(cabina1.getHuecos().size(),0);
     }
 
 }

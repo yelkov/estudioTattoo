@@ -1,12 +1,13 @@
-package edu.badpals.estudio.model.entities;
+package edu.badpals.estudio.model.cliente;
 
+import edu.badpals.estudio.model.cita.Cita;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -38,7 +39,7 @@ public class Cliente {
     @Column(name = "EMAIL", length = 30)
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "TUTOR")
     private Cliente tutor;
@@ -54,8 +55,24 @@ public class Cliente {
     @Column(name = "ALERGIA", nullable = false, length = 30)
     private Set<String> alergias = new HashSet<>();
 
-    @ManyToMany(mappedBy = "clientes")
+    @ManyToMany(mappedBy = "clientes", fetch = FetchType.LAZY)
     private Set<Cita> citas = new HashSet<>();
+
+    public Cliente() {
+    }
+
+    public Cliente(String dni, String nombre, String telefono, String dirección, LocalDate fechaNacimiento, String instagram, String email, Cliente tutor, Parentesco parentesco,  Set<String> alergias) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.dirección = dirección;
+        this.fechaNacimiento = fechaNacimiento;
+        this.instagram = instagram;
+        this.email = email;
+        this.parentesco = parentesco;
+        this.tutor = tutor;
+        this.alergias = alergias;
+    }
 
     public Integer getId() {
         return id;
@@ -167,5 +184,35 @@ public class Cliente {
 
     public void removeCita(Cita cita){
         this.citas.remove(cita);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return Objects.equals(id, cliente.id) && Objects.equals(dni, cliente.dni) && Objects.equals(telefono, cliente.telefono);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, dni, telefono);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("CLIENTE: ").append("\n");
+        sb.append("\tId: ").append(id).append("\n");
+        sb.append("\tDNI: ").append(dni).append("\n");
+        sb.append("\tNOMBRE: ").append(nombre).append("\n");
+        sb.append("\tTELEFONO: ").append(telefono).append("\n");
+        sb.append("\tFECHA NACIMIENTO: ").append(fechaNacimiento).append("\n");
+        sb.append("\tDIRECCION: ").append(dirección).append("\n");
+        sb.append("\tEMAIL: ").append(email != null? email : " - ").append("\n");
+        sb.append("\tINSTAGRAM: ").append(instagram != null? instagram : " - ").append("\n");
+        sb.append("\tTUTOR: ").append(tutor != null? tutor.getNombre() : " - ").append("\n");
+        sb.append("\tPARENTESCO: ").append(parentesco != null? parentesco : " - ").append("\n");
+        sb.append("\tALERGIAS: ").append(String.join(", ",alergias)).append("\n");
+        return sb.toString();
     }
 }

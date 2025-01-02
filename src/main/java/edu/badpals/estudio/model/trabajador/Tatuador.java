@@ -1,6 +1,6 @@
 package edu.badpals.estudio.model.trabajador;
 
-import edu.badpals.estudio.model.entities.Cita;
+import edu.badpals.estudio.model.cita.Cita;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
