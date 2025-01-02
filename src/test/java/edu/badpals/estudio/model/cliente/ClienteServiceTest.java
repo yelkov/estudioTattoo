@@ -149,7 +149,7 @@ class ClienteServiceTest {
     @Order(11)
     public void test_updateCliente(){
         Cliente antonio = clienteService.getClienteByDni("42760148C");
-        clienteService.updateCliente(antonio,null,"Antonio Cambiado", "700007007","Una calle nueva", null,null,null,null,null);
+        clienteService.updateCliente(antonio,"42760148C","Antonio Cambiado", "700007007","Una calle nueva", null,null,null,null,null);
 
         Cliente antonioUpdated = clienteService.getClienteByDni("42760148C");
         assertEquals("Antonio Cambiado", antonioUpdated.getNombre());

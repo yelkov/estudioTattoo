@@ -91,12 +91,12 @@ public class ClienteService {
         }else{
             if(newDni != null && !clienteDAO.findByDni(newDni).isPresent()){
                 cliente.setDni(newDni);
-            }else if(clienteDAO.findByDni(newDni).isPresent()){
+            }else if(clienteDAO.findByDni(newDni).isPresent() && !newDni.equals(cliente.getDni())){
                 throw new IllegalArgumentException("El nuevo dni ya existe en el registro.");
             }
             if(newTelefono != null && !clienteDAO.findByTelefono(newTelefono).isPresent()){
                 cliente.setTelefono(newTelefono);
-            }else if(clienteDAO.findByTelefono(newTelefono).isPresent()){
+            }else if(clienteDAO.findByTelefono(newTelefono).isPresent() && !newTelefono.equals(cliente.getTelefono())){
                 throw new IllegalArgumentException("El telefono ya existe en el registro.");
             }
 
