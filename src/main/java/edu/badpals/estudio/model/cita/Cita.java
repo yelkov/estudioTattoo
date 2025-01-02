@@ -1,12 +1,15 @@
-package edu.badpals.estudio.model.entities;
+package edu.badpals.estudio.model.cita;
 
 import edu.badpals.estudio.model.cabina.Cabina;
+import edu.badpals.estudio.model.cabina.Hueco;
+import edu.badpals.estudio.model.cliente.Cliente;
 import edu.badpals.estudio.model.trabajador.Anillador;
 import edu.badpals.estudio.model.trabajador.Tatuador;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
-import java.util.LinkedHashSet;
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -27,7 +30,7 @@ public class Cita {
     @Column(name = "PRECIO", columnDefinition = "float UNSIGNED not null")
     private Float precio;
 
-    @ColumnDefault("'0'")
+    @ColumnDefault("'0.0'")
     @Column(name = "`SEÑAL`", columnDefinition = "float UNSIGNED not null")
     private Float señal;
 
@@ -36,20 +39,20 @@ public class Cita {
     @Column(name = "ESTADO", nullable = false)
     private Estado estado;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "TATUADOR")
     private Tatuador tatuador;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ANILLADOR")
     private Anillador anillador;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CABINA", nullable = false)
     private Cabina cabina;
 
-    @OneToMany(mappedBy = "cita")
-    private Set<Hueco> huecos = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "cita",fetch = FetchType.EAGER)
+    private Set<Hueco> huecos = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -58,6 +61,22 @@ public class Cita {
             inverseJoinColumns = @JoinColumn(name = "CLIENTE")
     )
     private Set<Cliente> clientes;
+
+    public Cita() {
+    }
+
+    public Cita( Tipo tipo, String descripcion, Float precio, Float señal, Estado estado,Tatuador tatuador, Anillador anillador, Cabina cabina, Set<Hueco> huecos, Set<Cliente> clientes) {
+        this.estado = estado;
+        this.señal = señal;
+        this.precio = precio;
+        this.descripcion = descripcion;
+        this.tipo = tipo;
+        this.tatuador = tatuador;
+        this.anillador = anillador;
+        this.cabina = cabina;
+        this.huecos = huecos;
+        this.clientes = clientes;
+    }
 
     public Integer getId() {
         return id;
@@ -161,5 +180,34 @@ public class Cita {
 
     public void removeHueco(Hueco hueco) {
         this.huecos.remove(hueco);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Cita cita = (Cita) o;
+        return Objects.equals(id, cita.id) && Objects.equals(descripcion, cita.descripcion) && Objects.equals(cabina, cita.cabina);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, descripcion, cabina);
+    }
+
+    @Override
+    public String toString() {
+        return "Cita{" +
+                "id=" + id +
+                ", tipo=" + tipo +
+                ", descripcion='" + descripcion + '\'' +
+                ", precio=" + precio +
+                ", señal=" + señal +
+                ", estado=" + estado +
+                ", tatuador=" + tatuador +
+                ", anillador=" + anillador +
+                ", cabina=" + cabina +
+                ", huecos=" + huecos +
+                ", clientes=" + clientes +
+                '}';
     }
 }

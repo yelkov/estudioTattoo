@@ -1,23 +1,21 @@
 package edu.badpals.estudio.model.cabina;
 
 import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CabinaServiceTest {
     private static CabinaService cabinaService;
 
     @BeforeAll
     public static void setup(){
         EntityManagerFactoryProvider.initialize("test");
-        CabinaDAO cabinaDAO = new CabinaDAO();
-        cabinaService = new CabinaService(cabinaDAO);
+        cabinaService = new CabinaService();
     }
 
     @AfterAll
@@ -107,5 +105,22 @@ class CabinaServiceTest {
         assertEquals(4,cabinaService.countCabinas());
     }
 
+    @Test
+    @Order(9)
+    public void test_crearHuecos(){
+        cabinaService.crearHuecosSemanales(LocalDate.of(2024,12,23),1);
+        Cabina cabina1 = cabinaService.getCabina(1);
+        int cantHuecos = cabina1.getHuecos().size();
+        assertEquals(cantHuecos,54);
+    }
+
+    @Test
+    @Order(9)
+    public void test_eliminarHuecos(){
+        cabinaService.eliminarHuecosVacios();
+        Cabina cabina1 = cabinaService.getCabina(1);
+        int cantHuecos = cabina1.getHuecos().size();
+        assertEquals(cantHuecos,0);
+    }
   
 }

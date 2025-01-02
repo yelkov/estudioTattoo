@@ -1,4 +1,4 @@
-package edu.badpals.estudio.model.entities;
+package edu.badpals.estudio.model.cita;
 
 import edu.badpals.estudio.model.aguja.Aguja;
 import jakarta.persistence.*;

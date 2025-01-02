@@ -1,5 +1,7 @@
 package edu.badpals.estudio.model.cabina;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,8 +9,8 @@ public class CabinaService {
 
     private final CabinaDAO cabinaDAO;
 
-    public CabinaService(CabinaDAO cabinaDAO) {
-        this.cabinaDAO = cabinaDAO;
+    public CabinaService() {
+        this.cabinaDAO = new CabinaDAO();
     }
 
     public Cabina getCabina(int id){
@@ -76,6 +78,24 @@ public class CabinaService {
 
     public long countCabinas(){
         return cabinaDAO.count();
+    }
+
+    public void crearHuecosSemanales(LocalDate lunesInicio,Integer numSemanas){
+        if(lunesInicio == null ){
+            throw new IllegalArgumentException("Se debe indicar lunes de inicio.");
+        }
+        if(lunesInicio.getDayOfWeek() != DayOfWeek.MONDAY){
+            throw new IllegalArgumentException("Día de inicio debe ser un lunes.");
+        }
+        if(numSemanas == null || numSemanas <= 0 ){
+            throw new IllegalArgumentException("El número de semanas debe ser mayor que 0.");
+        }
+
+        cabinaDAO.crearHuecosSemanales(lunesInicio,numSemanas);
+    }
+
+    public void eliminarHuecosVacios(){
+        cabinaDAO.eliminarHuecosVacios();
     }
 
 

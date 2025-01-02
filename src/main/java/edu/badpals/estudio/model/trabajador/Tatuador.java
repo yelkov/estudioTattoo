@@ -1,10 +1,12 @@
 package edu.badpals.estudio.model.trabajador;
 
-import edu.badpals.estudio.model.entities.Cita;
+import edu.badpals.estudio.model.cita.Cita;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -18,12 +20,21 @@ public class Tatuador extends Trabajador {
     @OneToMany(mappedBy = "tatuador",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Cita> citas = new HashSet<>();
 
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "TATUADORES_DISEÑOS",
+            joinColumns = @JoinColumn(name = "TATUADOR", foreignKey = @ForeignKey(name = "FK_TATUADOR_DISEÑO")),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"TATUADOR","TAG"},name = "uniq_tatuador_diseño"))
+    @MapKeyColumn(name = "TAG", nullable = false, length = 30)
+    @Column(name = "DISEÑO", nullable = false)
+    private Map<String,byte[]> diseños = new HashMap<>();
+
     public Tatuador() {
         super();
     }
 
-    public Tatuador(String nif, String nombre, String nss, LocalDate fechaNacimiento, LocalDate fechaAlta, Float salario, String email) {
+    public Tatuador(String nif, String nombre, String nss, LocalDate fechaNacimiento, LocalDate fechaAlta, Float salario, String email, Float comision) {
         super(nif, nombre, nss, fechaNacimiento, fechaAlta, salario, email);
+        this.comision = comision;
     }
 
     public Float getComision() {
@@ -49,6 +60,23 @@ public class Tatuador extends Trabajador {
     public void removeCita(Cita cita){
         citas.remove(cita);
     }
+
+    public Map<String, byte[]> getDiseños() {
+        return diseños;
+    }
+
+    public void setDiseños(Map<String, byte[]> diseños) {
+        this.diseños = diseños;
+    }
+
+    public void addDiseño(String tag, byte[] imagen){
+        diseños.putIfAbsent(tag, imagen);
+    }
+
+    public void removeDiseño(String tag){
+        diseños.remove(tag);
+    }
+
 
     @Override
     public String toString() {

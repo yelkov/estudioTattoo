@@ -1,12 +1,13 @@
-package edu.badpals.estudio.model.entities;
+package edu.badpals.estudio.model.cabina;
 
-import edu.badpals.estudio.model.cabina.Cabina;
+import edu.badpals.estudio.model.cita.Cita;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "HUECOS")
@@ -15,7 +16,7 @@ public class Hueco {
     private HuecoId id;
 
     @MapsId("cabina")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "CABINA", nullable = false)
     private Cabina cabina;
@@ -26,7 +27,7 @@ public class Hueco {
     @Column(name = "DIA", nullable = false)
     private LocalDate dia;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "CITA")
     private Cita cita;
@@ -71,4 +72,26 @@ public class Hueco {
         this.cita = cita;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Hueco hueco = (Hueco) o;
+        return Objects.equals(id, hueco.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Hueco{" +
+                "id=" + id +
+                ", cabina=" + cabina +
+                ", hora=" + hora +
+                ", dia=" + dia +
+                ", cita=" + cita +
+                '}';
+    }
 }

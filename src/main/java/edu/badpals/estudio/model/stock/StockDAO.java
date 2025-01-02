@@ -1,4 +1,4 @@
-package edu.badpals.estudio.model.Stock;
+package edu.badpals.estudio.model.stock;
 
 import edu.badpals.estudio.model.cabina.Cabina;
 import edu.badpals.estudio.model.producto.Producto;

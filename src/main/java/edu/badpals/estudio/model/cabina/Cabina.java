@@ -1,9 +1,10 @@
 package edu.badpals.estudio.model.cabina;
 
-import edu.badpals.estudio.model.Stock.Stock;
+import edu.badpals.estudio.model.cita.Cita;
+import edu.badpals.estudio.model.stock.Stock;
 import jakarta.persistence.*;
 
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -25,12 +26,12 @@ public class Cabina {
     private Boolean puedeHacerPiercing = false;
 
     @OneToMany(mappedBy = "cabina")
-    private Set<edu.badpals.estudio.model.entities.Cita> citas = new LinkedHashSet<>();
+    private Set<Cita> citas = new HashSet<>();
 
-    @OneToMany(mappedBy = "cabina")
-    private Set<edu.badpals.estudio.model.entities.Hueco> huecos = new LinkedHashSet<>();
-    @OneToMany(mappedBy = "cabina")
-    private Set<Stock> stocks = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "cabina", fetch = FetchType.EAGER)
+    private Set<Hueco> huecos = new HashSet<>();
+    @OneToMany(mappedBy = "cabina", fetch = FetchType.EAGER)
+    private Set<Stock> stocks = new HashSet<>();
 
     public Cabina() {
     }
@@ -73,19 +74,19 @@ public class Cabina {
         this.puedeHacerPiercing = puedeHacerPiercing;
     }
 
-    public Set<edu.badpals.estudio.model.entities.Cita> getCitas() {
+    public Set<Cita> getCitas() {
         return citas;
     }
 
-    public void setCitas(Set<edu.badpals.estudio.model.entities.Cita> citas) {
+    public void setCitas(Set<Cita> citas) {
         this.citas = citas;
     }
 
-    public Set<edu.badpals.estudio.model.entities.Hueco> getHuecos() {
+    public Set<Hueco> getHuecos() {
         return huecos;
     }
 
-    public void setHuecos(Set<edu.badpals.estudio.model.entities.Hueco> huecos) {
+    public void setHuecos(Set<Hueco> huecos) {
         this.huecos = huecos;
     }
 

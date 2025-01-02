@@ -1,4 +1,4 @@
-package edu.badpals.estudio.model.Stock;
+package edu.badpals.estudio.model.stock;
 
 import java.time.LocalDate;
 import java.util.Optional;

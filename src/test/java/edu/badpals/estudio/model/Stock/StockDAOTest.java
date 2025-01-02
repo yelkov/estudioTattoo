@@ -1,11 +1,12 @@
 package edu.badpals.estudio.model.Stock;
 
-import edu.badpals.estudio.model.aguja.AgujaDAO;
 import edu.badpals.estudio.model.cabina.Cabina;
 import edu.badpals.estudio.model.cabina.CabinaDAO;
 import edu.badpals.estudio.model.cabina.CabinaService;
 import edu.badpals.estudio.model.producto.Producto;
 import edu.badpals.estudio.model.producto.ProductoService;
+import edu.badpals.estudio.model.stock.Stock;
+import edu.badpals.estudio.model.stock.StockDAO;
 import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
 import org.junit.jupiter.api.*;
 
@@ -52,7 +53,7 @@ class StockDAOTest {
 
         CabinaDAO CabinaDAO = new CabinaDAO();
 
-        CabinaService cabinaService = new CabinaService(CabinaDAO);
+        CabinaService cabinaService = new CabinaService();
         Cabina cabina = cabinaService.getCabina(2);
 
         Stock stock = new Stock(producto, cabina, 10L , LocalDate.now());

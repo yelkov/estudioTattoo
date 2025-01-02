@@ -1,4 +1,4 @@
-package edu.badpals.estudio.model.entities;
+package edu.badpals.estudio.model.cabina;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -31,6 +31,14 @@ public class HuecoId implements java.io.Serializable {
         this.cabina = cabina;
     }
 
+    public HuecoId() {
+    }
+
+    public HuecoId(Integer numero, Integer cabina) {
+        this.numero = numero;
+        this.cabina = cabina;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,4 +53,8 @@ public class HuecoId implements java.io.Serializable {
         return Objects.hash(numero, cabina);
     }
 
+    @Override
+    public String toString() {
+        return "numero= " + numero + ", cabina= "  + cabina +'}';
+    }
 }
