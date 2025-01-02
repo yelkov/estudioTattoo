@@ -1,6 +1,6 @@
 package edu.badpals.estudio.model.cliente;
 
-import edu.badpals.estudio.model.entities.Cita;
+import edu.badpals.estudio.model.cita.Cita;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;

@@ -2,10 +2,10 @@ package edu.badpals.estudio.model.cabina;
 
 import edu.badpals.estudio.model.InterfaceDAO;
 import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,5 +71,23 @@ public class CabinaDAO implements InterfaceDAO<Cabina> {
         long count = (long) query.getSingleResult();
         em.close();
         return count;
+    }
+
+    public void crearHuecosSemanales(LocalDate lunesInicio, Integer numSemanas){
+        EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        StoredProcedureQuery query = em.createStoredProcedureQuery("CREAR_HUECOS_SEMANALES");
+        query.registerStoredProcedureParameter("lunesInicio", LocalDate.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("numSemanas", Integer.class, ParameterMode.IN);
+        query.setParameter("lunesInicio", lunesInicio);
+        query.setParameter("numSemanas", numSemanas);
+        query.execute();
+        em.close();
+    }
+
+    public void eliminarHuecosVacios(){
+        EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        StoredProcedureQuery query = em.createStoredProcedureQuery("ELIMINAR_HUECOS_VACIOS_PASADOS");
+        query.execute();
+        em.close();
     }
 }

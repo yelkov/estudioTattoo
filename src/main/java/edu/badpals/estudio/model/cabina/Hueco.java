@@ -1,6 +1,6 @@
-package edu.badpals.estudio.model.entities;
+package edu.badpals.estudio.model.cabina;
 
-import edu.badpals.estudio.model.cabina.Cabina;
+import edu.badpals.estudio.model.cita.Cita;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -15,7 +15,7 @@ public class Hueco {
     private HuecoId id;
 
     @MapsId("cabina")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "CABINA", nullable = false)
     private Cabina cabina;
@@ -26,7 +26,7 @@ public class Hueco {
     @Column(name = "DIA", nullable = false)
     private LocalDate dia;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "CITA")
     private Cita cita;

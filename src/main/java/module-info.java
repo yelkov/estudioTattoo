@@ -11,4 +11,5 @@ module edu.badpals.estudio.estudiotattoo {
     exports edu.badpals.estudio;
     opens edu.badpals.estudio.model.trabajador;
     opens edu.badpals.estudio.model.cliente;
+    opens edu.badpals.estudio.model.cita;
 }

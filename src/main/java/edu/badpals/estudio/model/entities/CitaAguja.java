@@ -1,5 +1,6 @@
 package edu.badpals.estudio.model.entities;
 
+import edu.badpals.estudio.model.cita.Cita;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
