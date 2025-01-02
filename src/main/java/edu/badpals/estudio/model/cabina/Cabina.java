@@ -1,5 +1,6 @@
 package edu.badpals.estudio.model.cabina;
 
+import edu.badpals.estudio.model.Stock.Stock;
 import jakarta.persistence.*;
 
 import java.util.LinkedHashSet;
@@ -29,7 +30,7 @@ public class Cabina {
     @OneToMany(mappedBy = "cabina")
     private Set<edu.badpals.estudio.model.entities.Hueco> huecos = new LinkedHashSet<>();
     @OneToMany(mappedBy = "cabina")
-    private Set<edu.badpals.estudio.model.entities.Stock> stocks = new LinkedHashSet<>();
+    private Set<Stock> stocks = new LinkedHashSet<>();
 
     public Cabina() {
     }
@@ -88,11 +89,11 @@ public class Cabina {
         this.huecos = huecos;
     }
 
-    public Set<edu.badpals.estudio.model.entities.Stock> getStocks() {
+    public Set<Stock> getStocks() {
         return stocks;
     }
 
-    public void setStocks(Set<edu.badpals.estudio.model.entities.Stock> stocks) {
+    public void setStocks(Set<Stock> stocks) {
         this.stocks = stocks;
     }
 

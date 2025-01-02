@@ -10,4 +10,7 @@ module edu.badpals.estudio.estudiotattoo {
     opens edu.badpals.estudio.model.cabina;
     exports edu.badpals.estudio;
     opens edu.badpals.estudio.model.trabajador;
+    opens edu.badpals.estudio.model.aguja;
+    opens edu.badpals.estudio.model.producto;
+    opens edu.badpals.estudio.model.Stock;
 }

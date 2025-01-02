@@ -1,6 +1,7 @@
-package edu.badpals.estudio.model.entities;
+package edu.badpals.estudio.model.Stock;
 
 import edu.badpals.estudio.model.cabina.Cabina;
+import edu.badpals.estudio.model.producto.Producto;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
@@ -31,6 +32,16 @@ public class Stock {
 
     @Column(name = "FECHA_CADUCIDAD")
     private LocalDate fechaCaducidad;
+
+    public Stock(Producto producto, Cabina cabina, Long cantidadDisponible, LocalDate fechaCaducidad) {
+        this.producto = producto;
+        this.cabina = cabina;
+        this.cantidadDisponible = cantidadDisponible;
+        this.fechaCaducidad = fechaCaducidad;
+    }
+
+    public Stock() {
+    }
 
     public Integer getId() {
         return id;
@@ -71,5 +82,6 @@ public class Stock {
     public void setFechaCaducidad(LocalDate fechaCaducidad) {
         this.fechaCaducidad = fechaCaducidad;
     }
+
 
 }

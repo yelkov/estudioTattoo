@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class CabinaService {
+
     private final CabinaDAO cabinaDAO;
 
     public CabinaService(CabinaDAO cabinaDAO) {
