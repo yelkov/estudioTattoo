@@ -1,4 +1,4 @@
-package edu.badpals.estudio.model.entities;
+package edu.badpals.estudio.model.producto;
 
 import jakarta.persistence.*;
 
@@ -12,6 +12,13 @@ public class Producto {
 
     @Column(name = "NOMBRE", nullable = false, length = 30)
     private String nombre;
+
+    public Producto() {
+    }
+
+    public Producto(String nombre) {
+        this.nombre = nombre;
+    }
 
     public Integer getId() {
         return id;
