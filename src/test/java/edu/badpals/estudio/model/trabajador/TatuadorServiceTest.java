@@ -172,8 +172,20 @@ class TatuadorServiceTest {
         Assertions.assertEquals("El nif o el nss ya existen en el registro",exception.getMessage());
     }
 
+    public void test_updateTatuador(){
+        Tatuador tatuadorPrueba = tatuadorService.getTatuadorByNif("44368186J");
+        tatuadorService.updateTatuador(tatuadorPrueba,"44368186J","Tatuador con otro nombre","000000000000",null,null,null,"newmail@mail.com",null,65.0f);
+
+        Tatuador tatuadorRecuperado = tatuadorService.getTatuadorByNif("44368186J");
+        assertNotNull(tatuadorPrueba);
+        assertEquals(tatuadorPrueba.getNombre(),"Tatuador con otro nombre");
+        assertEquals(tatuadorPrueba.getNss(),"000000000000");
+        assertEquals(tatuadorPrueba.getEmail(),"newmail@mail.com");
+        assertEquals(tatuadorPrueba.getComision(),65.0f);
+    }
+
     @Test
-    @Order(16)
+    @Order(17)
     public void test_deleteTatuador(){
         tatuadorService.deleteTatuador(null,"44368186J",null);
 
@@ -182,13 +194,13 @@ class TatuadorServiceTest {
     }
 
     @Test
-    @Order(17)
+    @Order(18)
     public void test_deleteTatuadorFalse(){
         IllegalArgumentException exception = (Assertions.assertThrows(IllegalArgumentException.class, ()-> tatuadorService.deleteTatuador(null,"37856937569",null)));
     }
 
     @Test
-    @Order(18)
+    @Order(19)
     public void test_getTatuadorWithDiseños(){
         Tatuador armando = tatuadorService.getTatuadorWithDiseños(1);
         assertNotNull(armando);
@@ -196,7 +208,7 @@ class TatuadorServiceTest {
     }
 
     @Test
-    @Order(19)
+    @Order(20)
     public void test_addDiseño(){
         Tatuador joseba = tatuadorService.getTatuador(2);
         String tag = "Diseño de prueba de Joseba";
@@ -210,7 +222,7 @@ class TatuadorServiceTest {
     }
 
     @Test
-    @Order(20)
+    @Order(21)
     public void test_removeDiseño(){
         Tatuador joseba = tatuadorService.getTatuador(2);
         String tag = "Diseño de prueba de Joseba";

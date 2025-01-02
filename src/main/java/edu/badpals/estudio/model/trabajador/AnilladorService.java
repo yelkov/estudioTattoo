@@ -89,4 +89,41 @@ public class AnilladorService {
         }
     }
 
+    public void updateAnillador(Anillador anillador,String newNif , String newNombre, String newNss, LocalDate newFechaNacimiento, LocalDate newFechaAlta, Float newSalario, String newMail,Set<String> newTelefonos ,Float newComision){
+        if(!anilladorDAO.findById(anillador.getId()).isPresent()){
+            throw new IllegalArgumentException("El anillador no existe en el registro");
+        }else{
+            if(newNif != null && !anilladorDAO.findByNif(newNif).isPresent()){
+                anillador.setNif(newNif);
+            }else if(anilladorDAO.findByNif(newNif).isPresent() && !newNif.equals(anillador.getNif())){
+                throw new IllegalArgumentException("El nuevo nif ya existe en el registro");
+            }
+            if(newNss != null && !anilladorDAO.findByNss(newNss).isPresent()){
+                anillador.setNss(newNss);
+            }else if(anilladorDAO.findByNss(newNss).isPresent() && !newNss.equals(anillador.getNss())){
+                throw new IllegalArgumentException("El nuevo nss ya existe en el registro");
+            }
+            if(newNombre != null && !newNombre.isEmpty()){
+                anillador.setNombre(newNombre);
+            }
+            if(newFechaNacimiento != null){
+                anillador.setFechaNacimiento(newFechaNacimiento);
+            }
+            if(newFechaAlta != null){
+                anillador.setFechaAlta(newFechaAlta);
+            }
+            anillador.setSalario(newSalario);
+            if(newMail != null && !newMail.isEmpty()){
+                anillador.setEmail(newMail);
+            }
+            if(newTelefonos != null){
+                anillador.setTelefonos(newTelefonos);
+            }
+            if(newComision!= null){
+                anillador.setComision(newComision);
+            }
+            anilladorDAO.update(anillador);
+        }
+    }
+
 }

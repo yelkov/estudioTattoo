@@ -81,6 +81,44 @@ public class TatuadorService {
         }
     }
 
+    public void updateTatuador(Tatuador tatuador,String newNif , String newNombre, String newNss, LocalDate newFechaNacimiento, LocalDate newFechaAlta, Float newSalario, String newMail,Set<String> newTelefonos ,Float newComision){
+        if(!tatuadorDAO.findById(tatuador.getId()).isPresent()){
+            throw new IllegalArgumentException("El tatuador no existe en el registro");
+        }else{
+            if(newNif != null && !tatuadorDAO.findByNif(newNif).isPresent()){
+                tatuador.setNif(newNif);
+            }else if(tatuadorDAO.findByNif(newNif).isPresent() && !newNif.equals(tatuador.getNif())){
+                throw new IllegalArgumentException("El nuevo nif ya existe en el registro");
+            }
+            if(newNss != null && !tatuadorDAO.findByNss(newNss).isPresent()){
+                tatuador.setNss(newNss);
+            }else if(tatuadorDAO.findByNss(newNss).isPresent() && newNss != tatuador.getNss()){
+                throw new IllegalArgumentException("El nuevo nss ya existe en el registro");
+            }
+            if(newNombre != null && !newNombre.isEmpty()){
+                tatuador.setNombre(newNombre);
+            }
+            if(newFechaNacimiento != null){
+                tatuador.setFechaNacimiento(newFechaNacimiento);
+            }
+            if(newFechaAlta != null){
+                tatuador.setFechaAlta(newFechaAlta);
+            }
+            tatuador.setSalario(newSalario);
+            if(newMail != null && !newMail.isEmpty()){
+                tatuador.setEmail(newMail);
+            }
+            if(newTelefonos != null){
+                tatuador.setTelefonos(newTelefonos);
+            }
+            if(newComision!= null){
+                tatuador.setComision(newComision);
+            }
+            tatuadorDAO.update(tatuador);
+        }
+    }
+
+
     public void deleteTatuador(Integer id, String nif, String nss){
         if (id != null && tatuadorDAO.findById(id).isPresent()) {
             tatuadorDAO.delete(tatuadorDAO.findById(id).get());
