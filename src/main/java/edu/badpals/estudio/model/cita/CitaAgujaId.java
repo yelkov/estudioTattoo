@@ -1,4 +1,4 @@
-package edu.badpals.estudio.model.entities;
+package edu.badpals.estudio.model.cita;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

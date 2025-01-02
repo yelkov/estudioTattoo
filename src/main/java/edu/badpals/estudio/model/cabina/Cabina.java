@@ -1,11 +1,10 @@
 package edu.badpals.estudio.model.cabina;
 
 import edu.badpals.estudio.model.cita.Cita;
-import edu.badpals.estudio.model.entities.Stock;
+import edu.badpals.estudio.model.stock.Stock;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -91,11 +90,11 @@ public class Cabina {
         this.huecos = huecos;
     }
 
-    public Set<edu.badpals.estudio.model.entities.Stock> getStocks() {
+    public Set<Stock> getStocks() {
         return stocks;
     }
 
-    public void setStocks(Set<edu.badpals.estudio.model.entities.Stock> stocks) {
+    public void setStocks(Set<Stock> stocks) {
         this.stocks = stocks;
     }
 
