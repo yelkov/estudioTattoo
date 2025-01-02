@@ -117,9 +117,8 @@ public class TrabajadorService {
                 if(newFechaAlta != null){
                     trabajador.setFechaAlta(newFechaAlta);
                 }
-                if(newSalario != null) {
-                    trabajador.setSalario(newSalario);
-                }
+                trabajador.setSalario(newSalario);
+
                 if(newMail != null && !newMail.isEmpty()){
                     trabajador.setEmail(newMail);
                 }

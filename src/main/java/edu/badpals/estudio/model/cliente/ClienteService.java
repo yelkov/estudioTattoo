@@ -116,16 +116,11 @@ public class ClienteService {
             if(newFechaNacimiento != null){
                 cliente.setFechaNacimiento(newFechaNacimiento);
             }
-            if(newInstagram != null && !newInstagram.isEmpty()){
-                cliente.setInstagram(newInstagram);
-            }
-            if(newEmail != null && !newEmail.isEmpty()){
-                cliente.setEmail(newEmail);
-            }
-            if(newTutor != null && newParentesco != null){
-                cliente.setTutor(newTutor);
-                cliente.setParentesco(newParentesco);
-            }
+            cliente.setInstagram(newInstagram);
+            cliente.setEmail(newEmail);
+            cliente.setTutor(newTutor);
+            cliente.setParentesco(newParentesco);
+
             clienteDAO.update(cliente);
         }
     }
