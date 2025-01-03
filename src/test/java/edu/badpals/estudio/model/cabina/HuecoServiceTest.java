@@ -1,6 +1,7 @@
 package edu.badpals.estudio.model.cabina;
 
 import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
+import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
@@ -18,10 +19,12 @@ class HuecoServiceTest {
         EntityManagerFactoryProvider.initialize("test");
         huecoService = new HuecoService();
         cabinaService = new CabinaService();
+        cabinaService.crearHuecosSemanales(LocalDate.of(2024,12,16),1);
     }
 
     @AfterAll
     public static void close(){
+        cabinaService.eliminarHuecosVacios();
         EntityManagerFactoryProvider.close();
     }
 

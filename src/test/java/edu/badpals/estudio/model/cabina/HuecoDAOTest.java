@@ -19,11 +19,14 @@ class HuecoDAOTest {
         EntityManagerFactoryProvider.initialize("test");
         cabinaService = new CabinaService();
         huecoDAO = new HuecoDAO();
+        cabinaService.crearHuecosSemanales(LocalDate.of(2024,12,16),1);
     }
 
     @AfterAll
     public static void close(){
+        cabinaService.eliminarHuecosVacios();
         EntityManagerFactoryProvider.close();
+
     }
 
     @Test

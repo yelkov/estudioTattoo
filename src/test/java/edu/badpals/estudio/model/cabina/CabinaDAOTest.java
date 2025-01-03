@@ -1,6 +1,8 @@
 package edu.badpals.estudio.model.cabina;
 
 import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
@@ -139,6 +141,8 @@ class CabinaDAOTest {
     @Test
     @Order(11)
     public void test_crearHuecos(){
+        EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        EntityTransaction tx = em.getTransaction();
         cabinaDAO.crearHuecosSemanales(LocalDate.of(2024,12,23),1);
 
         Optional<Cabina> cabinaOptional = cabinaDAO.findById(1);
