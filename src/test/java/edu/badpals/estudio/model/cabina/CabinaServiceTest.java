@@ -115,7 +115,7 @@ class CabinaServiceTest {
     }
 
     @Test
-    @Order(9)
+    @Order(10)
     public void test_eliminarHuecos(){
         cabinaService.eliminarHuecosVacios();
         Cabina cabina1 = cabinaService.getCabina(1);
