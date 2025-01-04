@@ -48,7 +48,7 @@ public class Cliente {
     @Column(name = "PARENTESCO")
     private Parentesco parentesco;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "ALERGIAS_CLIENTES",
             joinColumns = @JoinColumn(name = "CLIENTE", foreignKey = @ForeignKey(name = "FK_CLIENTE_ALERGIA")),
             uniqueConstraints = @UniqueConstraint(columnNames = {"CLIENTE","ALERGIA"},name = "uniq_cliente_alergia"))
