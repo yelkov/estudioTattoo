@@ -1,6 +1,8 @@
 package edu.badpals.estudio.model.cita;
 
 import edu.badpals.estudio.model.cabina.Cabina;
+import edu.badpals.estudio.model.cabina.Hueco;
+import edu.badpals.estudio.model.cliente.Cliente;
 import edu.badpals.estudio.model.trabajador.Anillador;
 import edu.badpals.estudio.model.trabajador.Tatuador;
 import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
@@ -8,15 +10,38 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class CitaDAO {
 
     public void create(Cita cita) {
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
+
+        Cabina cabinaMerged = em.merge(cita.getCabina());
+        cita.setCabina(cabinaMerged);
+        if(cita.getTatuador() != null){
+            Tatuador tatuadorMerged = em.merge(cita.getTatuador());
+            cita.setTatuador(tatuadorMerged);
+        }
+        if(cita.getAnillador() != null){
+            Anillador anilladorMerged = em.merge(cita.getAnillador());
+            cita.setAnillador(anilladorMerged);
+        }
+        Set<Hueco> huecosMerged = new HashSet<>();
+        for (Hueco hueco : cita.getHuecos()){
+            Hueco huecoMerged = em.merge(hueco);
+            huecosMerged.add(huecoMerged);
+        }
+        cita.setHuecos(huecosMerged);
+
+        Set<Cliente> clientesMerged = new HashSet<>();
+        for (Cliente cliente : cita.getClientes()){
+            Cliente clienteMerged = em.merge(cliente);
+            clientesMerged.add(clienteMerged);
+        }
+        cita.setClientes(clientesMerged);
+
         em.persist(cita);
         em.getTransaction().commit();
         em.close();
@@ -25,8 +50,23 @@ public class CitaDAO {
     public void delete(Cita cita) {
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
-        cita = em.merge(cita);
-        em.remove(cita);
+
+        Cita citaMerged = em.merge(cita);
+
+        em.remove(citaMerged);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public void reservarHuecos(Cita cita, Set<Hueco> huecos){
+        EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+
+        Cita citaMerged = em.merge(cita);
+        for (Hueco hueco : huecos){
+            Hueco huecoMerged = em.merge(hueco);
+            huecoMerged.setCita(citaMerged);
+        }
         em.getTransaction().commit();
         em.close();
     }
@@ -34,6 +74,31 @@ public class CitaDAO {
     public void update(Cita cita) {
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
+
+        Cabina cabinaMerged = em.merge(cita.getCabina());
+        cita.setCabina(cabinaMerged);
+        if(cita.getTatuador() != null){
+            Tatuador tatuadorMerged = em.merge(cita.getTatuador());
+            cita.setTatuador(tatuadorMerged);
+        }
+        if(cita.getAnillador() != null){
+            Anillador anilladorMerged = em.merge(cita.getAnillador());
+            cita.setAnillador(anilladorMerged);
+        }
+        Set<Hueco> huecosMerged = new HashSet<>();
+        for (Hueco hueco : cita.getHuecos()){
+            Hueco huecoMerged = em.merge(hueco);
+            huecosMerged.add(huecoMerged);
+        }
+        cita.setHuecos(huecosMerged);
+
+        Set<Cliente> clientesMerged = new HashSet<>();
+        for (Cliente cliente : cita.getClientes()){
+            Cliente clienteMerged = em.merge(cliente);
+            clientesMerged.add(clienteMerged);
+        }
+        cita.setClientes(clientesMerged);
+
         em.merge(cita);
         em.getTransaction().commit();
         em.close();
@@ -144,6 +209,16 @@ public class CitaDAO {
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         Query query = em.createQuery("SELECT c FROM Cita c WHERE c.descripcion LIKE :descripcion");
         query.setParameter("descripcion", "%"+descripcion+"%");
+        citas.addAll(query.getResultList());
+        em.close();
+        return citas;
+    }
+
+    public List<Cita> findByCliente(Cliente cliente) {
+        List<Cita> citas = new ArrayList<>();
+        EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        Query query = em.createQuery("SELECT c FROM Cita c WHERE :cliente MEMBER OF c.clientes");
+        query.setParameter("cliente", cliente);
         citas.addAll(query.getResultList());
         em.close();
         return citas;

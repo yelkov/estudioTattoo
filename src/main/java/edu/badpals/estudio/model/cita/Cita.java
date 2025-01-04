@@ -51,10 +51,10 @@ public class Cita {
     @JoinColumn(name = "CABINA", nullable = false)
     private Cabina cabina;
 
-    @OneToMany(mappedBy = "cita",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "cita",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<Hueco> huecos = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "CITAS_CLIENTES",
             joinColumns = @JoinColumn(name = "CITA"),
@@ -206,7 +206,6 @@ public class Cita {
                 ", tatuador=" + tatuador +
                 ", anillador=" + anillador +
                 ", cabina=" + cabina +
-                ", huecos=" + huecos +
                 ", clientes=" + clientes +
                 '}';
     }
