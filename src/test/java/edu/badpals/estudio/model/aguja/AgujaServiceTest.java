@@ -78,4 +78,34 @@ class AgujaServiceTest {
         assertEquals(allAgujas.size(),10);
     }
 
+    @Test
+    @Order(8)
+    public void test_crearAguja(){
+        agujaService.crearAguja("08-3-RL-EXTRALONG",25l);
+
+        Aguja aguja = agujaService.getAgujaByTipo("08-3-RL-EXTRALONG");
+        assertNotNull(aguja);
+        assertEquals("08-3-RL-EXTRALONG",aguja.getTipo());
+        assertEquals(25l,aguja.getCantidad());
+    }
+
+    @Test
+    @Order(9)
+    public void test_updateAguja(){
+        Aguja aguja = agujaService.getAgujaByTipo("08-3-RL-EXTRALONG");
+        agujaService.updateAguja(aguja,null,75l);
+
+        Aguja agujaActualizada = agujaService.getAgujaByTipo("08-3-RL-EXTRALONG");
+        assertEquals(75l,agujaActualizada.getCantidad());
+    }
+
+    @Test
+    @Order(10)
+    public void test_deleteAguja(){
+        agujaService.deleteAguja(null,"08-3-RL-EXTRALONG");
+
+        Aguja aguja = agujaService.getAgujaByTipo("08-3-RL-EXTRALONG");
+        assertNull(aguja);
+    }
+
 }

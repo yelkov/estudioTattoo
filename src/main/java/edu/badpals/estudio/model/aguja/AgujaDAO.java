@@ -23,7 +23,7 @@ public class AgujaDAO {
     public void delete(Aguja aguja) {
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
-        aguja = em.merge(aguja);
+        aguja = em.find(Aguja.class, aguja.getId());
         em.remove(aguja);
         em.getTransaction().commit();
         em.close();
