@@ -164,13 +164,15 @@ class CitaServiceTest {
     }
 
     @Test
-    @Order(15)
+    @Order(16)
     public void test_deleteCitaTatuaje(){
         Cita citaTest = citaService.getCitaByDescripcionCabina("Nueva cita de testing",1);
+        assertNotNull(citaTest);
         citaService.deleteCita(citaTest);
 
         Cita citaRecuperada = citaService.getCitaByDescripcionCabina("Nueva cita de testing",1);
         assertNull(citaRecuperada);
     }
+
 
 }
