@@ -122,22 +122,24 @@ public class CitaService {
 
         if(newTipo == Tipo.PIERCING && !newCabina.getPuedeHacerPiercing()){
             throw new IllegalArgumentException("No es posible crear una cita de tipo piercing en una cabina no habilitada para ello.");
-        }else if(newCabina == null || !cabinaDAO.findById(newCabina.getId()).isPresent()){
+        }else if(newCabina != null && !cabinaDAO.findById(newCabina.getId()).isPresent()){
             throw new IllegalArgumentException("No se ha indicado o no existe la cabina especificada en el registro.");
-        }else {
+        }else if(newCabina != null){
             cita.setCabina(newCabina);
         }
-
-        if(!hasHuecosLibres(newHuecos)){
-            throw new IllegalArgumentException("Alguno de los huecos indicados está ocupado o no existe en el registro.");
-        }else {
-            cita.setHuecos(newHuecos);
+        if(newHuecos != null && !newHuecos.isEmpty()){
+            if(!hasHuecosLibres(newHuecos)){
+                throw new IllegalArgumentException("Alguno de los huecos indicados está ocupado o no existe en el registro.");
+            }else {
+                cita.setHuecos(newHuecos);
+            }
         }
-
-        if(!hasClientes(newClientes)){
-            throw new IllegalArgumentException("Alguno de los clientes indicados no existe en el regristro.");
-        }else{
-           cita.setClientes(newClientes);
+        if(newClientes != null && !newClientes.isEmpty()){
+            if(!hasClientes(newClientes)){
+                throw new IllegalArgumentException("Alguno de los clientes indicados no existe en el registro.");
+            }else{
+                cita.setClientes(newClientes);
+            }
         }
 
         citaDAO.update(cita);

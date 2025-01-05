@@ -164,6 +164,21 @@ class CitaServiceTest {
     }
 
     @Test
+    @Order(15)
+    public void test_updateCita(){
+        Cita citaTest = citaService.getCitaByDescripcionCabina("Nueva cita de testing",1);
+        citaService.updateCita(citaTest,null,"Nueva cita de testing",265.0f,25.0f,Estado.REALIZADA,null,null,null,null,null);
+
+        Cita citaRecuperada = citaService.getCitaByDescripcionCabina("Nueva cita de testing",1);
+        assertEquals(Tipo.TATUAJE,citaRecuperada.getTipo());
+        assertEquals(Estado.REALIZADA,citaRecuperada.getEstado());
+        assertEquals("Nueva cita de testing",citaTest.getDescripcion());
+        assertEquals(265.0f,citaRecuperada.getPrecio());
+        Hueco hueco1 = huecoService.getHueco(1,1);
+        assertTrue(citaRecuperada.getHuecos().contains(hueco1));
+    }
+
+    @Test
     @Order(16)
     public void test_deleteCitaTatuaje(){
         Cita citaTest = citaService.getCitaByDescripcionCabina("Nueva cita de testing",1);
