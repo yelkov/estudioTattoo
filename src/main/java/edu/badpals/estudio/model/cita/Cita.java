@@ -51,10 +51,10 @@ public class Cita {
     @JoinColumn(name = "CABINA", nullable = false)
     private Cabina cabina;
 
-    @OneToMany(mappedBy = "cita",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cita",fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<Hueco> huecos = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE,CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinTable(
             name = "CITAS_CLIENTES",
             joinColumns = @JoinColumn(name = "CITA"),

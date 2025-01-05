@@ -103,11 +103,13 @@
                         <include>**/ClienteDAOTest.java</include>
                         <include>**/ClienteServiceTest.java</include>
                         <include>**/AgujaDAOTest.java</include>
+                        <include>**/AgujaServiceTest.java</include>
                         <include>**/CabinaDAOTest.java</include>
                         <include>**/CabinaServiceTest.java</include>
                         <include>**/HuecoDAOTest.java</include>
                         <include>**/HuecoServiceTest.java</include>
                         <include>**/CitaDAOTest.java</include>
+                        <include>**/CitaServiceTest.java</include>
                     </includes>
                 </configuration>
             </plugin>
