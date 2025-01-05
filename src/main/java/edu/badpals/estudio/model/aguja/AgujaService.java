@@ -1,8 +1,5 @@
 package edu.badpals.estudio.model.aguja;
 
-import edu.badpals.estudio.model.cabina.Cabina;
-import edu.badpals.estudio.model.cabina.CabinaDAO;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -10,8 +7,8 @@ public class AgujaService {
 
     private final AgujaDAO agujaDAO;
 
-    public AgujaService(AgujaDAO agujaDAO) {
-        this.agujaDAO = agujaDAO;
+    public AgujaService() {
+        this.agujaDAO = new AgujaDAO();
     }
 
     public Aguja getAguja(int id){
@@ -20,7 +17,16 @@ public class AgujaService {
         return aguja.isPresent()? aguja.get() : null;
     }
 
-    public List<Aguja> getAllCabinas(){
+    public Aguja getAgujaByTipo(String tipo){
+        Optional<Aguja> aguja = agujaDAO.findByTipo(tipo);
+        return aguja.isPresent()? aguja.get() : null;
+    }
+
+    public List<Aguja> filtrarAgujaByTipo(String tipo){
+        return agujaDAO.filtrarByTipo(tipo);
+    }
+
+    public List<Aguja> getAllAgujas(){
         return agujaDAO.findAll();
     }
 
