@@ -8,7 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.List;
 
-public class Controller {
+public class CabinasController {
 
     @FXML
     private Button btnActualizarCabina;
@@ -53,6 +53,8 @@ public class Controller {
     @FXML
     void colocarTexto(ActionEvent event) {
 
+
+
     }
 
     @FXML
@@ -81,7 +83,7 @@ public class Controller {
 
 
 
-    public Controller() {
+    public CabinasController() {
         this.cabinaService = new CabinaService();
         this.view = new View();
     }

@@ -1,5 +1,8 @@
 package edu.badpals.estudio.model.producto;
 
+import edu.badpals.estudio.model.cabina.Cabina;
+
+import java.util.List;
 import java.util.Optional;
 
 public class ProductoService {
@@ -14,6 +17,7 @@ public class ProductoService {
 
         Optional<Producto> producto = productoDAO.findById(id);
         return producto.isPresent()? producto.get() : null;
+
     }
 
     public void create(Producto producto) {
@@ -42,7 +46,18 @@ public class ProductoService {
         }
     }
 
+    public Producto findbyName(String nombre) {
+
+        Optional<Producto> producto =  productoDAO.findByName(nombre);
+        return producto.isPresent()? producto.get() : null;
+
+    }
+
     public Producto findById(int id) {
         return productoDAO.findById(id).orElse(null);
+    }
+
+    public List<Producto> getAllProductos() {
+        return productoDAO.getAll();
     }
 }
