@@ -1,10 +1,9 @@
 package edu.badpals.estudio;
 
-import edu.badpals.estudio.controller.Controller;
-import edu.badpals.estudio.model.cabina.CabinaService;
+import edu.badpals.estudio.controller.CabinasController;
+import edu.badpals.estudio.controller.ProductosController;
 import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
 import javafx.application.Application;
-import javafx.application.ConditionalFeature;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -18,7 +17,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("test.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("productos.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
         stage.setTitle("Gestor de Tattoo Studio");
         stage.setScene(scene);
@@ -27,8 +26,8 @@ public class App extends Application {
         EntityManagerFactoryProvider.initialize("test");
 
 
-        Controller controller = fxmlLoader.getController();
-        controller.loadTabla();
+        ProductosController productosController = fxmlLoader.getController();
+        productosController.loadTabla();
 
 
     }

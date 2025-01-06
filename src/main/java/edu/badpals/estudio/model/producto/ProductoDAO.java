@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ProductoDAO {
@@ -42,6 +43,7 @@ public class ProductoDAO {
     }
 
     public Optional<Producto> findByName(String nombre) {
+
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         Query query = em.createQuery("SELECT p FROM Producto p WHERE p.nombre = :nombre");
         query.setParameter("nombre", nombre.toLowerCase());
@@ -60,5 +62,15 @@ public class ProductoDAO {
         }
 
     }
+
+    public List<Producto> getAll(){
+        EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        Query query = em.createQuery("SELECT p FROM Producto p");
+        List<Producto> productos = query.getResultList();
+        em.close();
+        return productos;
+    }
+
+
 
 }
