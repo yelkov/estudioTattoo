@@ -37,9 +37,9 @@
             <Label layoutX="465.0" layoutY="136.0" text="Superficie:" />
             <Label layoutX="377.0" layoutY="87.0" text="Habilitada para piercings:" />
             <Line endX="674.6666870117188" layoutX="115.0" layoutY="264.0" startX="-51.333343505859375" />
-            <Button fx:id="btnCrearCabina" layoutX="210.0" layoutY="212.0" mnemonicParsing="false" onAction="#crearCabina" prefHeight="31.0" prefWidth="103.0" text="Crear" />
-            <Button fx:id="btnActualizarCabina" layoutX="369.0" layoutY="212.0" mnemonicParsing="false" onAction="#updateCabina" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
-            <Button fx:id="btnEliminarCabina" layoutX="523.0" layoutY="212.0" mnemonicParsing="false" onAction="#deleteCabina" prefHeight="31.0" prefWidth="103.0" text="Eliminar" />
+            <Button fx:id="btnCrearCabina" styleClass="btnAccion" layoutX="210.0" layoutY="212.0" mnemonicParsing="false" onAction="#crearCabina" prefHeight="31.0" prefWidth="103.0" text="Crear" />
+            <Button fx:id="btnActualizarCabina" styleClass="btnAccion" layoutX="369.0" layoutY="212.0" mnemonicParsing="false" onAction="#updateCabina" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
+            <Button fx:id="btnEliminarCabina" styleClass="btnAccion" layoutX="523.0" layoutY="212.0" mnemonicParsing="false" onAction="#deleteCabina" prefHeight="31.0" prefWidth="103.0" text="Eliminar" />
             <TableView fx:id="tblCabinas" layoutX="64.0" layoutY="300.0" prefHeight="249.0" prefWidth="723.0">
               <columns>
                 <TableColumn fx:id="rowID" prefWidth="75.0" text="C1" />
