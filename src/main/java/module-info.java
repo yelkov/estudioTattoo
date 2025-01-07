@@ -3,6 +3,7 @@ module edu.badpals.estudio.estudiotattoo {
     requires javafx.fxml;
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
+    requires java.desktop;
 
 
     opens edu.badpals.estudio to javafx.fxml;

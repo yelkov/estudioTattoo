@@ -1,9 +1,8 @@
 package edu.badpals.estudio.controller;
 
-import edu.badpals.estudio.model.cabina.Cabina;
-import edu.badpals.estudio.model.cabina.CabinaService;
 import edu.badpals.estudio.model.producto.Producto;
 import edu.badpals.estudio.model.producto.ProductoService;
+import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
 import edu.badpals.estudio.view.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,16 +25,7 @@ import java.util.List;
 public class ProductosController {
 
     @FXML
-    private Button btnActualizarCabina;
-
-    @FXML
-    private Button btnCrearCabina;
-
-    @FXML
-    private Button btnEliminarCabina;
-
-    @FXML
-    private Button btnGotoCabinas;
+    private Button btnActualizarCabina,btnCrearCabina,btnEliminarCabina, btnHome, btnCitas, btnCabinas, btnClientes, btnProductos, btnTrabajadores;;
 
     @FXML
     private Label lblTrabajadores;
@@ -56,8 +46,20 @@ public class ProductosController {
     private TextField txtNombreProducto;
 
     @FXML
-    void colocarTexto(ActionEvent event) {
+    public void initialize() {
+        EntityManagerFactoryProvider.initialize("test");
 
+        tblProductos.setOnMouseClicked(event -> {
+
+            Producto ProductoSeleccionado = tblProductos.getSelectionModel().getSelectedItem();
+
+            if (ProductoSeleccionado != null) {
+
+                txtIdProducto.setText(String.valueOf(ProductoSeleccionado.getId()));
+                txtNombreProducto.setText(ProductoSeleccionado.getNombre());
+
+            }
+        });
     }
 
     @FXML
@@ -98,32 +100,6 @@ public class ProductosController {
 
     }
 
-    @FXML
-    void gotoCabinas(ActionEvent event) {
-
-        try {
-
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/edu/badpals/estudio/test.fxml"));
-            Parent root = fxmlLoader.load();
-
-            CabinasController cabinasController = fxmlLoader.getController();
-
-            Stage stage = new Stage();
-            stage.setTitle("Cabinas");
-            stage.setResizable(false);
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.close();
-            stage.setOnHiding(e -> cabinasController.loadTabla());
-
-        } catch (IOException e) {
-            view.lanzarMensajeError("No se pudo ir a la ventana de Cabinas", "Error", "No se pudo ir a la ventana de Cabinas");
-        }
-
-    }
 
     @FXML
     void updateProducto(ActionEvent event) {
@@ -150,22 +126,6 @@ public class ProductosController {
             loadTabla();
         }
 
-    }
-
-    @FXML
-    public void initialize() {
-
-        tblProductos.setOnMouseClicked(event -> {
-
-            Producto ProductoSeleccionado = tblProductos.getSelectionModel().getSelectedItem();
-
-            if (ProductoSeleccionado != null) {
-
-                txtIdProducto.setText(String.valueOf(ProductoSeleccionado.getId()));
-                txtNombreProducto.setText(ProductoSeleccionado.getNombre());
-
-            }
-        });
     }
 
     public ProductosController() {
@@ -195,6 +155,26 @@ public class ProductosController {
         rowID.setCellValueFactory(new PropertyValueFactory<>("id"));
         rowNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
 
+    }
+
+    public void irCabinas(ActionEvent event){
+        SceneManager.goToView(event,"/edu/badpals/estudio/cabinas.fxml",this.getClass());
+    }
+
+    public void irHome(ActionEvent event){
+        SceneManager.goToView(event,"/edu/badpals/estudio/home.fxml",this.getClass());
+    }
+
+    public void irCitas(ActionEvent event){
+        SceneManager.goToView(event,"/edu/badpals/estudio/citas.fxml",this.getClass());
+    }
+
+    public void irClientes(ActionEvent event){
+        SceneManager.goToView(event,"/edu/badpals/estudio/clientes.fxml",this.getClass());
+    }
+
+    public void irTrabajadores(ActionEvent event){
+        SceneManager.goToView(event,"/edu/badpals/estudio/trabajadores.fxml",this.getClass());
     }
 
 

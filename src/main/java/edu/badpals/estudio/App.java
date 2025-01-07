@@ -17,18 +17,15 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("productos.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("home.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1400, 700);
         stage.setTitle("Gestor de Tattoo Studio");
         stage.setScene(scene);
         stage.show();
 
-        EntityManagerFactoryProvider.initialize("test");
-
-
-        ProductosController productosController = fxmlLoader.getController();
-        productosController.loadTabla();
-
+        stage.setOnCloseRequest(event -> {
+            EntityManagerFactoryProvider.close();
+        });
 
     }
 }

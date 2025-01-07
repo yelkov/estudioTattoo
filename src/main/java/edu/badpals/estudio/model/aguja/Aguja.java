@@ -16,12 +16,6 @@ public class Aguja {
     @Column(name = "CANTIDAD", columnDefinition = "int UNSIGNED not null")
     private Long cantidad;
 
-    public Aguja(Integer id, String tipo, Long cantidad) {
-        this.id = id;
-        this.tipo = tipo;
-        this.cantidad = cantidad;
-    }
-
     public Aguja(String tipo, Long cantidad) {
         this.tipo = tipo;
         this.cantidad = cantidad;

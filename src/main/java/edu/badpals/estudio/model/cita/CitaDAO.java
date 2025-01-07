@@ -18,25 +18,8 @@ public class CitaDAO {
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
 
-        Cabina cabinaMerged = em.merge(cita.getCabina());
-        cita.setCabina(cabinaMerged);
-        if(cita.getTatuador() != null){
-            Tatuador tatuadorMerged = em.merge(cita.getTatuador());
-            cita.setTatuador(tatuadorMerged);
-        }
-        if(cita.getAnillador() != null){
-            Anillador anilladorMerged = em.merge(cita.getAnillador());
-            cita.setAnillador(anilladorMerged);
-        }
-        Set<Hueco> huecosMerged = new HashSet<>();
-        for (Hueco hueco : cita.getHuecos()){
-            Hueco huecoMerged = em.merge(hueco);
-            huecosMerged.add(huecoMerged);
-        }
-        cita.setHuecos(huecosMerged);
-
         Set<Cliente> clientesMerged = new HashSet<>();
-        for (Cliente cliente : cita.getClientes()){
+        for(Cliente cliente : cita.getClientes()){
             Cliente clienteMerged = em.merge(cliente);
             clientesMerged.add(clienteMerged);
         }
@@ -50,10 +33,13 @@ public class CitaDAO {
     public void delete(Cita cita) {
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
+        Cita citaMerged = em.find(Cita.class, cita.getId());
 
-        Cita citaMerged = em.merge(cita);
+        if (citaMerged != null) {
+            citaMerged.getClientes().clear();
+            em.remove(citaMerged);
+        }
 
-        em.remove(citaMerged);
         em.getTransaction().commit();
         em.close();
     }
@@ -74,31 +60,6 @@ public class CitaDAO {
     public void update(Cita cita) {
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
-
-        Cabina cabinaMerged = em.merge(cita.getCabina());
-        cita.setCabina(cabinaMerged);
-        if(cita.getTatuador() != null){
-            Tatuador tatuadorMerged = em.merge(cita.getTatuador());
-            cita.setTatuador(tatuadorMerged);
-        }
-        if(cita.getAnillador() != null){
-            Anillador anilladorMerged = em.merge(cita.getAnillador());
-            cita.setAnillador(anilladorMerged);
-        }
-        Set<Hueco> huecosMerged = new HashSet<>();
-        for (Hueco hueco : cita.getHuecos()){
-            Hueco huecoMerged = em.merge(hueco);
-            huecosMerged.add(huecoMerged);
-        }
-        cita.setHuecos(huecosMerged);
-
-        Set<Cliente> clientesMerged = new HashSet<>();
-        for (Cliente cliente : cita.getClientes()){
-            Cliente clienteMerged = em.merge(cliente);
-            clientesMerged.add(clienteMerged);
-        }
-        cita.setClientes(clientesMerged);
-
         em.merge(cita);
         em.getTransaction().commit();
         em.close();
