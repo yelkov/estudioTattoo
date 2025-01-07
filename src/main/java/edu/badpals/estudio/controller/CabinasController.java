@@ -58,6 +58,8 @@ public class CabinasController {
     public void initialize() {
         EntityManagerFactoryProvider.initialize("test");
 
+        loadTabla();
+
         tblCabinas.setOnMouseClicked(event -> {
 
             Cabina cabinaSeleccionada = tblCabinas.getSelectionModel().getSelectedItem();

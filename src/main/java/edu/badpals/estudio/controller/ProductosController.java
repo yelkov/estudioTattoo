@@ -47,7 +47,10 @@ public class ProductosController {
 
     @FXML
     public void initialize() {
+
         EntityManagerFactoryProvider.initialize("test");
+
+        loadTabla();
 
         tblProductos.setOnMouseClicked(event -> {
 
