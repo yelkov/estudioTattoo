@@ -201,30 +201,26 @@ public class CabinasController {
             }
     }
 
-
-    public void irVista(ActionEvent event, String vistaFxml) {
-        EntityManagerFactoryProvider.close();
-        SceneManager.goToView(event, vistaFxml, this.getClass());
-    }
-
     public void irHome(ActionEvent event){
-        irVista(event,"/edu/badpals/estudio/home.fxml");
+        SceneManager.goToView(event,"/edu/badpals/estudio/home.fxml",this.getClass());
     }
 
     public void irProductos(ActionEvent event){
-        irVista(event,"/edu/badpals/estudio/productos.fxml");
+        SceneManager.goToView(event,"/edu/badpals/estudio/productos.fxml",this.getClass());
     }
 
     public void irCitas(ActionEvent event){
-        irVista(event,"/edu/badpals/estudio/citas.fxml");
+        SceneManager.goToView(event,"/edu/badpals/estudio/citas.fxml",this.getClass());
     }
 
     public void irClientes(ActionEvent event){
-        irVista(event,"/edu/badpals/estudio/clientes.fxml");
+        SceneManager.goToView(event,"/edu/badpals/estudio/productos.fxml",this.getClass());
     }
 
     public void irTrabajadores(ActionEvent event){
-        irVista(event,"/edu/badpals/estudio/trabajadores.fxml");
+        SceneManager.goToView(event,"/edu/badpals/estudio/trabajadores.fxml",this.getClass());
     }
+
+
 
 }
