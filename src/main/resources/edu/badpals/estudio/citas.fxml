@@ -2,33 +2,211 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../css/home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.badpals.estudio.controller.CitasController">
+<BorderPane prefHeight="600.0" prefWidth="1400.0" stylesheets="@../../../css/home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.badpals.estudio.controller.CitasController">
     <left>
         <VBox alignment="CENTER" prefWidth="200.0" spacing="10.0" styleClass="menu-lateral">
-            <Button fx:id="btnHome" prefWidth="160.0" text="Home" onAction="#irHome" />
-            <Button styleClass="escena-actual" fx:id="btnCitas" prefWidth="160.0" text="Citas" />
-            <Button fx:id="btnCabinas" prefWidth="160.0" text="Cabinas" onAction="#irCabinas" />
-            <Button fx:id="btnClientes" prefWidth="160.0" text="Clientes" onAction="#irClientes" />
-            <Button fx:id="btnProductos" prefWidth="160.0" text="Productos" onAction="#irProductos" />
-            <Button fx:id="btnTrabajadores" prefWidth="160.0" text="Trabajadores" onAction="#irTrabajadores"/>
+            <Button fx:id="btnHome" onAction="#irHome" prefWidth="160.0" text="Home" />
+            <Button fx:id="btnCitas" prefWidth="160.0" styleClass="escena-actual" text="Citas" />
+            <Button fx:id="btnCabinas" onAction="#irCabinas" prefWidth="160.0" text="Cabinas" />
+            <Button fx:id="btnClientes" onAction="#irClientes" prefWidth="160.0" text="Clientes" />
+            <Button fx:id="btnProductos" onAction="#irProductos" prefWidth="160.0" text="Productos" />
+            <Button fx:id="btnTrabajadores" onAction="#irTrabajadores" prefWidth="160.0" text="Trabajadores" />
         </VBox>
     </left>
     <center>
         <AnchorPane BorderPane.alignment="CENTER">
             <children>
-                <VBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" spacing="10.0">
+                <VBox alignment="CENTER" prefHeight="600.0" prefWidth="1200.0" spacing="15.0">
                     <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                     </padding>
+               <children>
+                  <Label styleClass="bienvenido" text="CITAS">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" spacing="30.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="ID:" />
+                              <Label fx:id="lblId" text="     " />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Descripcion: " />
+                              <TextField fx:id="txtDescripcion" minWidth="350.0" prefWidth="350.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Señal:" />
+                              <TextField fx:id="txtSenal" minWidth="75.0" prefWidth="75.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Precio:" />
+                              <TextField fx:id="txtPrecio" minWidth="75.0" prefWidth="75.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Estado:" />
+                              <ComboBox fx:id="cmbEstado" minWidth="180.0" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="30.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Cabina: " />
+                              <ComboBox fx:id="cmbCabina" minWidth="180.0" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Tipo:" />
+                              <ComboBox fx:id="cmbTipo" minWidth="180.0" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Anillador:" />
+                              <ComboBox fx:id="cmbAnillador" minWidth="180.0" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Tatuador:" />
+                              <ComboBox fx:id="cmbTatuador" minWidth="180.0" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="30.0">
+                     <children>
+                        <Button fx:id="btnClientes" mnemonicParsing="false" styleClass="btnAsignar" text="Asignar Clientes" />
+                        <Button fx:id="btnHuecos" mnemonicParsing="false" styleClass="btnAsignar" text="Asignar Huecos" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <Button fx:id="btnCrear" mnemonicParsing="false" prefHeight="31.0" prefWidth="103.0" styleClass="btnAccion" text="Crear" />
+                        <Button fx:id="btnActualizar" mnemonicParsing="false" prefWidth="150.0" styleClass="btnAccion" text="Actualizar" />
+                        <Button fx:id="btnEliminar" mnemonicParsing="false" prefWidth="120.0" styleClass="btnAccion" text="Eliminar" />
+                     </children>
+                  </HBox>
+                  <Line endX="674.6666870117188" startX="-400.0" />
+                  <HBox alignment="CENTER_LEFT" spacing="30.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Fecha desde:" />
+                              <TextField fx:id="txtFechaDesde" minWidth="100.0" prefWidth="100.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Fecha hasta:" />
+                              <TextField fx:id="txtFechaDesde1" minWidth="100.0" prefWidth="100.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Hora desde:" />
+                              <TextField fx:id="txtFechaDesde2" minWidth="100.0" prefWidth="100.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Hora hasta:" />
+                              <TextField fx:id="txtFechaDesde3" minWidth="100.0" prefWidth="100.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="30.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Descripcion: " />
+                              <TextField fx:id="txtDescripcion1" minWidth="350.0" prefWidth="350.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Estado:" />
+                              <ComboBox fx:id="cmbEstado1" minWidth="180.0" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Tipo:" />
+                              <ComboBox fx:id="cmbTipo1" minWidth="180.0" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="30.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Cabina: " />
+                              <ComboBox fx:id="cmbCabina1" minWidth="180.0" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Anillador:" />
+                              <ComboBox fx:id="cmbAnillador1" minWidth="180.0" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Tatuador:" />
+                              <ComboBox fx:id="cmbTatuador1" minWidth="180.0" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btnCrear1" mnemonicParsing="false" prefWidth="150.0" styleClass="btnAccion" text="Aplicar Filtros" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tblProxCitas">
+                     <columns>
+                        <TableColumn fx:id="id" text="ID" />
+                        <TableColumn fx:id="tipo" text="Tipo" />
+                        <TableColumn fx:id="descripcion" text="Descripción" />
+                        <TableColumn fx:id="precio" text="Precio" />
+                        <TableColumn fx:id="señal" text="Señal" />
+                        <TableColumn fx:id="estado" text="Estado" />
+                        <TableColumn fx:id="tatuador" text="Tatuador" />
+                        <TableColumn fx:id="anillador" text="Anillador" />
+                        <TableColumn fx:id="cabina" text="Cabina" />
+                        <TableColumn fx:id="cabina1" text="Dia" />
+                        <TableColumn fx:id="cabina11" text="Inicio" />
+                        <TableColumn fx:id="cabina111" text="Duracion" />
+                     </columns>
+                  </TableView>
+               </children>
                 </VBox>
             </children>
         </AnchorPane>

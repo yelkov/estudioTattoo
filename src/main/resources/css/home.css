@@ -27,6 +27,18 @@ Button {
     -fx-cursor: hand;
 }
 
+.btnAccion{
+    -fx-background-color: #1abc9c;
+    -fx-padding: 5 10;
+}
+
+.btnAsignar{
+    -fx-background-color: #6c7a89;
+    -fx-padding: 5 10;
+    -fx-font-size: 14px;
+    -fx-font-weight: none;
+}
+
 Button:hover {
     -fx-background-color: #5c5f76;
     -fx-text-fill: #1abc9c;

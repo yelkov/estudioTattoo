@@ -18,7 +18,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("home.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1200, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 1400, 700);
         stage.setTitle("Gestor de Tattoo Studio");
         stage.setScene(scene);
         stage.show();
