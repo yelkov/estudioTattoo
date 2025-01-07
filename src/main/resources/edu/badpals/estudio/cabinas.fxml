@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<BorderPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../css/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.badpals.estudio.controller.CabinasController">
+    <left>
+        <VBox alignment="CENTER" prefWidth="200.0" spacing="10.0" styleClass="menu-lateral">
+            <Button fx:id="btnHome" prefWidth="160.0" text="Home" onAction="#irHome" />
+            <Button fx:id="btnCitas" prefWidth="160.0" text="Citas" onAction="#irCitas"/>
+            <Button fx:id="btnCabinas" prefWidth="160.0" text="Cabinas" styleClass="escena-actual" />
+            <Button fx:id="btnClientes" prefWidth="160.0" text="Clientes" onAction="#irClientes"/>
+            <Button fx:id="btnProductos" prefWidth="160.0" text="Productos" onAction="#irProductos"/>
+            <Button fx:id="btnTrabajadores" prefWidth="160.0" text="Trabajadores" onAction="#irTrabajadores"/>
+        </VBox>
+    </left>
+    <center>
+        <AnchorPane prefHeight="446.0" prefWidth="495.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="20.0" prefWidth="800.0">
+               <children>
+                  <Label fx:id="lblTrabajadores" contentDisplay="CENTER" />
+               </children>
+            </HBox>
+            <TextField fx:id="txtIdCabina" editable="false" layoutX="236.0" layoutY="71.0" prefHeight="25.0" prefWidth="37.0" />
+            <Label layoutX="210.0" layoutY="75.0" text="ID:" />
+            <TextField fx:id="txtUbicacionCabina" layoutX="236.0" layoutY="132.0" prefHeight="25.0" prefWidth="221.0" />
+            <Label layoutX="164.0" layoutY="136.0" text="Ubicacion:" />
+            <TextField fx:id="txtSuperficieCabina" layoutX="537.0" layoutY="132.0" />
+            <Label layoutX="465.0" layoutY="136.0" text="Superficie:" />
+            <Label layoutX="377.0" layoutY="87.0" text="Habilitada para piercings:" />
+            <Line endX="674.6666870117188" layoutX="115.0" layoutY="264.0" startX="-51.333343505859375" />
+            <Button fx:id="btnCrearCabina" styleClass="btnAccion" layoutX="210.0" layoutY="212.0" mnemonicParsing="false" onAction="#crearCabina" prefHeight="31.0" prefWidth="103.0" text="Crear" />
+            <Button fx:id="btnActualizarCabina" styleClass="btnAccion" layoutX="369.0" layoutY="212.0" mnemonicParsing="false" onAction="#updateCabina" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
+            <Button fx:id="btnEliminarCabina" styleClass="btnAccion" layoutX="523.0" layoutY="212.0" mnemonicParsing="false" onAction="#deleteCabina" prefHeight="31.0" prefWidth="103.0" text="Eliminar" />
+            <TableView fx:id="tblCabinas" layoutX="64.0" layoutY="300.0" prefHeight="249.0" prefWidth="723.0">
+              <columns>
+                <TableColumn fx:id="rowID" prefWidth="75.0" text="C1" />
+                <TableColumn fx:id="rowUbicacion" prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="rowSuperficie" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="rowPiercing" prefWidth="75.0" text="Column X" />
+              </columns>
+            </TableView>
+            <TextField fx:id="txtPiercing" layoutX="537.0" layoutY="83.0" prefHeight="25.0" prefWidth="61.0" />
+         </children></AnchorPane>
+    </center>
+</BorderPane>

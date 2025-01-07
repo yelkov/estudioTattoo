@@ -1,0 +1,125 @@
+/* Estilo general para todo el BorderPane */
+BorderPane {
+    -fx-background-color: #4f5664; /* Fondo oscuro general */
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+}
+
+
+
+/* Estilo para el menú lateral (VBox en <left>) */
+.menu-lateral{
+    -fx-background-color: #3e4551; /* Fondo más oscuro para el menú */
+    -fx-border-color: transparent #6c7a89 transparent transparent ;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-alignment: CENTER;
+}
+
+
+/* Botones del menú lateral */
+Button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #dcdde1;
+    -fx-font-size: 16px;
+    -fx-padding: 12 20;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.btnAccion{
+    -fx-background-color: #1abc9c;
+    -fx-padding: 5 10;
+}
+
+.btnAsignar{
+    -fx-background-color: #6c7a89;
+    -fx-padding: 5 10;
+    -fx-font-size: 14px;
+    -fx-font-weight: none;
+}
+
+Button:hover {
+    -fx-background-color: #5c5f76;
+    -fx-text-fill: #1abc9c;
+}
+
+Button:pressed {
+    -fx-background-color: #1abc9c;
+    -fx-text-fill: white;
+}
+
+.escena-actual{
+    -fx-background-color: #1abc9c;
+    -fx-text-fill: white;
+}
+
+/* Estilo para el contenido principal (VBox dentro del AnchorPane) */
+.main-content VBox{
+    -fx-background-color: #1abc9c;
+}
+
+.main-content Label {
+    -fx-text-fill: #ffffff;
+}
+
+/* Estilo para las cajas de bienvenida (HBox dentro del VBox) */
+.bienvenido {
+    -fx-text-fill: #ffffff; /* Color del texto */
+    -fx-font-weight: bold; /* Texto en negrita */
+    -fx-font-size: 16.5px;
+}
+
+/* Estilo para la tabla (TableView) */
+TableView {
+    -fx-background-color: #3e4551; /* Fondo oscuro */
+    -fx-border-color: #6c7a89;
+    -fx-text-fill: #dcdde1;
+    -fx-font-size: 14px;
+}
+
+TableView .column-header {
+    -fx-background-color: #444b5a;
+    -fx-text-fill: #dcdde1;
+    -fx-font-size: 14px;
+    -fx-text-fill: #dcdde1; /* Color del texto */
+    -fx-font-weight: bold;
+}
+
+TableView .cell {
+    -fx-border-width: 0 0 1px 0; /* Borde solo inferior */
+    -fx-background-color: transparent; /* Fondo transparente */
+    -fx-text-fill: #dcdde1; /* Color del texto */
+}
+
+/* Alternancia de color entre filas */
+TableView .table-row-cell:odd {
+    -fx-background-color: #4d565f; /* Gris oscuro */
+}
+
+TableView .table-row-cell:even {
+    -fx-background-color: #5a636d; /* Gris claro */
+}
+
+/* Estilo para la fila seleccionada */
+TableView .table-row-cell:selected {
+    -fx-background-color: #1abc9c; /* Color de la fila seleccionada */
+    -fx-text-fill: #5c5f76; /* Texto de la fila seleccionada */
+}
+
+/* Elimina el fondo adicional de las celdas seleccionadas */
+TableView .cell:selected {
+    -fx-background-color: #1abc9c;
+    -fx-text-fill: #5c5f76;
+}
+
+/* Estilo para las etiquetas (Labels) */
+Label {
+    -fx-text-fill: #2c2f3e; /* Texto oscuro */
+    -fx-font-size: 14px;
+}
+
+Line {
+    -fx-stroke: #6c7a89;
+    -fx-stroke-width: 1.5;
+}

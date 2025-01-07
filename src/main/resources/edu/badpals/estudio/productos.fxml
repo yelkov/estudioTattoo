@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<BorderPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../css/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.badpals.estudio.controller.ProductosController">
+    <left>
+        <VBox alignment="CENTER" prefWidth="200.0" spacing="10.0" styleClass="menu-lateral">
+            <Button fx:id="btnHome" prefWidth="160.0" text="Home" onAction="#irHome" />
+            <Button fx:id="btnCitas" prefWidth="160.0" text="Citas" onAction="#irCitas"/>
+            <Button fx:id="btnCabinas" prefWidth="160.0" text="Cabinas" onAction="#irCabinas" />
+            <Button fx:id="btnClientes" prefWidth="160.0" text="Clientes" onAction="#irClientes"/>
+            <Button fx:id="btnProductos" prefWidth="160.0" text="Productos" styleClass="escena-actual" />
+            <Button fx:id="btnTrabajadores" prefWidth="160.0" text="Trabajadores" onAction="#irTrabajadores"/>
+        </VBox>
+    </left>
+    <center>
+        <AnchorPane prefHeight="446.0" prefWidth="495.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="20.0" prefWidth="800.0">
+               <children>
+                  <Label fx:id="lblTrabajadores" contentDisplay="CENTER" />
+               </children>
+            </HBox>
+            <TextField fx:id="txtIdProducto" editable="false" layoutX="252.0" layoutY="74.0" prefHeight="25.0" prefWidth="37.0" />
+            <Label layoutX="220.0" layoutY="78.0" text="ID:" />
+            <TextField fx:id="txtNombreProducto" layoutX="252.0" layoutY="124.0" prefHeight="25.0" prefWidth="410.0" />
+            <Label layoutX="180.0" layoutY="128.0" text="Nombre" />
+            <Line endX="674.6666870117188" layoutX="115.0" layoutY="264.0" startX="-51.333343505859375" />
+            <Button fx:id="btnCrearCabina" layoutX="215.0" layoutY="209.0" mnemonicParsing="false" onAction="#crearProducto" prefHeight="31.0" prefWidth="103.0" text="Crear" />
+            <Button fx:id="btnActualizarCabina" layoutX="374.0" layoutY="209.0" mnemonicParsing="false" onAction="#updateProducto" prefHeight="31.0" prefWidth="113.0" text="Actualizar" />
+            <Button fx:id="btnEliminarCabina" layoutX="535.0" layoutY="209.0" mnemonicParsing="false" onAction="#deleteProducto" prefHeight="31.0" prefWidth="103.0" text="Eliminar" />
+            <TableView fx:id="tblProductos" layoutX="64.0" layoutY="300.0" prefHeight="249.0" prefWidth="723.0">
+              <columns>
+                <TableColumn fx:id="rowID" prefWidth="75.0" text="C1" />
+                <TableColumn fx:id="rowNombre" prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </children></AnchorPane>
+    </center>
+</BorderPane>
