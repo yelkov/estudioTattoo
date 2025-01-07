@@ -18,27 +18,6 @@
          <children>
             <VBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Label styleClass="bienvenido" text="Clientes seleccionados" />
-                  <TableView fx:id="tblClientesSeleccionados" prefHeight="120.0">
-                     <columns>
-                        <TableColumn fx:id="idSelec" text="ID" />
-                        <TableColumn fx:id="dniSelec" text="DNI" />
-                        <TableColumn fx:id="nombreSelec" text="Nombre" />
-                        <TableColumn fx:id="telefonoSelec" text="Telefono" />
-                        <TableColumn fx:id="direccionSelec" text="Direccion" />
-                        <TableColumn fx:id="fechaSelec" text="Fecha nac." />
-                        <TableColumn fx:id="instagramSelec" text="Instagram" />
-                        <TableColumn fx:id="emailSelec" text="email" />
-                        <TableColumn fx:id="tutorSelec" text="Tutor" />
-                        <TableColumn fx:id="parentescoSelec" text="Parentesco" />
-                     </columns>
-                  </TableView>
-                  <Button fx:id="btnEliminar" mnemonicParsing="false" styleClass="btnAccion" text="Eliminar " onAction="#eliminarCliente"/>
-               </children>
-            </VBox>
-            <Line endX="100.0" startX="-700.0" />
-            <VBox alignment="CENTER" spacing="10.0">
-               <children>
                   <Label styleClass="bienvenido" text="Lista de clientes" />
                   <HBox spacing="20.0">
                      <children>
@@ -86,9 +65,41 @@
                         <TableColumn fx:id="parentesco" text="Parentesco" />
                      </columns>
                   </TableView>
-                  <Button fx:id="btnAnadir" mnemonicParsing="false" styleClass="btnAccion" text="Añadir" onAction="#anadirCliente" />
+                  <HBox maxWidth="180.0" spacing="20.0">
+                     <children>
+                        <Button fx:id="btnAnadir" mnemonicParsing="false" onAction="#anadirCliente" styleClass="btnAccion" text="Añadir" />
+                        <Button fx:id="btnLimpiarFiltros" mnemonicParsing="false" onAction="#limpiarFiltros" styleClass="btnAccion" text="Limpiar" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
+            <VBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Label styleClass="bienvenido" text="Clientes seleccionados" />
+                  <TableView fx:id="tblClientesSeleccionados" prefHeight="120.0">
+                     <columns>
+                        <TableColumn fx:id="idSelec" text="ID" />
+                        <TableColumn fx:id="dniSelec" text="DNI" />
+                        <TableColumn fx:id="nombreSelec" text="Nombre" />
+                        <TableColumn fx:id="telefonoSelec" text="Telefono" />
+                        <TableColumn fx:id="direccionSelec" text="Direccion" />
+                        <TableColumn fx:id="fechaSelec" text="Fecha nac." />
+                        <TableColumn fx:id="instagramSelec" text="Instagram" />
+                        <TableColumn fx:id="emailSelec" text="email" />
+                        <TableColumn fx:id="tutorSelec" text="Tutor" />
+                        <TableColumn fx:id="parentescoSelec" text="Parentesco" />
+                     </columns>
+                  </TableView>
+                  <HBox alignment="CENTER" maxWidth="190.0" prefHeight="32.0" prefWidth="183.0" spacing="20.0">
+                     <children>
+                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarCliente" styleClass="btnAccion" text="Eliminar " />
+                        <Button fx:id="btnLimpiarSelec" mnemonicParsing="false" onAction="#limpiarSeleccionados" styleClass="btnAccion" text="Limpiar" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmarClientes" styleClass="btnAccion" text="Confirmar seleccionados"/>
+               </children>
+            </VBox>
+            <Line endX="100.0" startX="-700.0" />
          </children>
       </VBox>
    </content>

@@ -8,6 +8,7 @@ import edu.badpals.estudio.model.cita.Cita;
 import edu.badpals.estudio.model.cita.CitaService;
 import edu.badpals.estudio.model.cita.Estado;
 import edu.badpals.estudio.model.cita.Tipo;
+import edu.badpals.estudio.model.cliente.Cliente;
 import edu.badpals.estudio.model.cliente.ClienteService;
 import edu.badpals.estudio.model.trabajador.Anillador;
 import edu.badpals.estudio.model.trabajador.AnilladorService;
@@ -39,6 +40,7 @@ public class CitasController {
     ClienteService clienteService;
 
     Cita citaSeleccionada;
+    List<Cliente> clientesSeleccionadosActual;
 
     @FXML
     private Button btnHome, btnCitas, btnCabinas, btnClientes, btnProductos, btnTrabajadores, btnAsignarClientes;
@@ -253,8 +255,15 @@ public class CitasController {
     public void abrirModalClientes(ActionEvent event){
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        ModalClientesController mClientesController = SceneManager.openModal("/edu/badpals/estudio/modalClientes.fxml",this.getClass(),currentStage, controller ->
-                controller.setClientesSeleccionados(citaSeleccionada == null? new ArrayList<>() : citaSeleccionada.getClientes()));
+        ModalClientesController mClientesController = SceneManager.openModal("/edu/badpals/estudio/modalClientes.fxml",this.getClass(),currentStage, controller ->{
+                    controller.setClientesSeleccionados(clientesSeleccionadosActual == null? new ArrayList<>() : clientesSeleccionadosActual);
+                    controller.enviarClientes(this::seleccionarClientesCita);
+                });
+    }
+
+    public Void seleccionarClientesCita(List<Cliente> clientes){
+        this.clientesSeleccionadosActual = clientes;
+        return null;
     }
 
     public void irCabinas(ActionEvent event){

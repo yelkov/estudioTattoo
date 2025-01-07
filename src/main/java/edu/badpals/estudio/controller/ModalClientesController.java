@@ -11,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.util.List;
 
@@ -30,6 +32,7 @@ public class ModalClientesController {
     private TableColumn<Cliente, Parentesco> parentesco, parentescoSelec;
 
     List<Cliente> clientesSeleccionados;
+    private Callback<List<Cliente>,Void> clientesSeleccionadosCallback;
 
     @FXML
     public void initialize(){
@@ -38,6 +41,12 @@ public class ModalClientesController {
 
         List<Cliente> allClientes = clienteService.getAllClientes();
         setTblClientes(allClientes);
+
+        tblClientes.setOnMouseClicked(mouseEvent -> {
+            if(mouseEvent.getClickCount() == 2){
+                anadirCliente();
+            }
+        });
     }
 
     public void setClientesSeleccionados(List<Cliente> clientes){
@@ -115,4 +124,26 @@ public class ModalClientesController {
         setClientesSeleccionados(clientesSeleccionados);
     }
 
+    public void limpiarSeleccionados(){
+        this.clientesSeleccionados.clear();
+        setTblClientesSeleccionados(clientesSeleccionados);
+    }
+
+    public void limpiarFiltros(){
+        List<Cliente> allClientes = clienteService.getAllClientes();
+        setTblClientes(allClientes);
+    }
+
+    public void enviarClientes(Callback<List<Cliente>,Void> callback){
+        this.clientesSeleccionadosCallback = callback;
+    }
+
+    @FXML
+    public void confirmarClientes(){
+        if(clientesSeleccionadosCallback != null){
+            clientesSeleccionadosCallback.call(clientesSeleccionados);
+        }
+        Stage stage = (Stage) tblClientes.getScene().getWindow();
+        stage.close();
+    }
 }
