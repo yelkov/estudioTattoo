@@ -44,7 +44,7 @@ public class CitaDAO {
         em.close();
     }
 
-    public void reservarHuecos(Cita cita, Set<Hueco> huecos){
+    public void reservarHuecos(Cita cita, List<Hueco> huecos){
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
 

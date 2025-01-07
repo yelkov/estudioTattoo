@@ -32,6 +32,15 @@ Button {
     -fx-padding: 5 10;
 }
 
+.btnAccion:hover{
+    -fx-background-color: #1a9a8a;
+    -fx-text-fill: #fff;
+}
+.btnAccion:pressed{
+    -fx-background-color: #067e63;
+    -fx-text-fill: #bbb;
+}
+
 .btnAsignar{
     -fx-background-color: #6c7a89;
     -fx-padding: 5 10;
@@ -115,10 +124,59 @@ TableView .cell:selected {
 
 /* Estilo para las etiquetas (Labels) */
 Label {
-    -fx-text-fill: #2c2f3e; /* Texto oscuro */
+    -fx-text-fill: #ddd; /* Texto oscuro */
     -fx-font-size: 14px;
 }
 
+TextField {
+    -fx-padding: 2;
+    -fx-background-color: #3e4551; /* Fondo oscuro adaptado */
+    -fx-text-fill: #dcdde1; /* Texto claro */
+    -fx-border-color: #6c7a89; /* Borde en un tono similar al resto */
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Estilo cuando el campo de texto está seleccionado */
+TextField:focused {
+    -fx-background-color: #4d565f; /* Fondo ligeramente más claro al estar enfocado */
+    -fx-border-color: #1abc9c; /* Borde verde al estar enfocado */
+}
+
+/* Estilo para el texto de placeholder */
+TextField .text-field .prompt-text {
+    -fx-text-fill: #888888; /* Texto del placeholder en un tono gris suave */
+}
+
+ComboBox {
+    -fx-padding: -2;
+    -fx-background-color: #3e4551;
+    -fx-text-fill: #dcdde1; /* Texto claro para la legibilidad */
+    -fx-border-color: #6c7a89; /* Color del borde similar al resto del tema */
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+ComboBox .arrow-button {
+    -fx-background-color: #3e4551; /* Fondo igual al del ComboBox */
+    -fx-border-color: transparent; /* Sin borde para el botón de la flecha */
+}
+
+ComboBox .list-cell {
+    -fx-background-color: #4d565f; /* Fondo de las opciones */
+    -fx-text-fill: #dcdde1; /* Texto claro en las opciones */
+}
+
+/* Estilo de la opción seleccionada */
+ComboBox .list-cell:selected {
+    -fx-background-color: #3e4551; /* Color al seleccionar una opción */
+    -fx-text-fill: #dcdde1; /* Texto más oscuro en la opción seleccionada */
+}
+
+ComboBox .list-cell:hover {
+    -fx-background-color: #1abc9c; /* Fondo más claro para el hover */
+    -fx-text-fill: #ffffff; /* Texto blanco para el hover */
+}
 Line {
     -fx-stroke: #6c7a89;
     -fx-stroke-width: 1.5;

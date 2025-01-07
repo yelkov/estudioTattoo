@@ -28,7 +28,7 @@ public class CitaService {
         this.cabinaDAO = new CabinaDAO();
     }
 
-    public void crearCita(Tipo tipo, String descripcion, Float precio, Float señal, Estado estado, Tatuador tatuador, Anillador anillador, Cabina cabina, Set<Hueco> huecos, Set<Cliente> clientes)throws IllegalArgumentException {
+    public void crearCita(Tipo tipo, String descripcion, Float precio, Float señal, Estado estado, Tatuador tatuador, Anillador anillador, Cabina cabina, List<Hueco> huecos, Set<Cliente> clientes)throws IllegalArgumentException {
 
         if(!hasCamposObligatorios(tipo,descripcion,precio,señal,estado,cabina,clientes)){
             throw new IllegalArgumentException("Hay campos obligatorios sin rellenar o no válidos.");
@@ -64,7 +64,7 @@ public class CitaService {
         return true;
     }
 
-    private Boolean hasHuecosLibres(Set<Hueco> huecos){
+    private Boolean hasHuecosLibres(List<Hueco> huecos){
         for (Hueco hueco : huecos) {
             if(hueco == null || hueco.getCita() != null){
                 return false;
@@ -86,7 +86,7 @@ public class CitaService {
         citaDAO.delete(cita);
     }
 
-    public void updateCita(Cita cita, Tipo newTipo, String newDescripcion, Float newPrecio, Float newSeñal, Estado newEstado, Tatuador newTatuador, Anillador newAnillador, Cabina newCabina, Set<Hueco> newHuecos, Set<Cliente> newClientes) {
+    public void updateCita(Cita cita, Tipo newTipo, String newDescripcion, Float newPrecio, Float newSeñal, Estado newEstado, Tatuador newTatuador, Anillador newAnillador, Cabina newCabina, List<Hueco> newHuecos, Set<Cliente> newClientes) {
 
         if(newTipo != null){
             cita.setTipo(newTipo);

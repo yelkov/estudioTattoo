@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<BorderPane prefHeight="600.0" prefWidth="1400.0" stylesheets="@../../../css/home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.badpals.estudio.controller.CitasController">
+<BorderPane prefHeight="700.0" prefWidth="1400.0" stylesheets="@../../../css/home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.badpals.estudio.controller.CitasController">
     <left>
         <VBox alignment="CENTER" prefWidth="200.0" spacing="10.0" styleClass="menu-lateral">
             <Button fx:id="btnHome" onAction="#irHome" prefWidth="160.0" text="Home" />
@@ -27,7 +27,7 @@
     <center>
         <AnchorPane BorderPane.alignment="CENTER">
             <children>
-                <VBox alignment="CENTER" prefHeight="600.0" prefWidth="1200.0" spacing="15.0">
+                <VBox alignment="CENTER" prefHeight="700.0" prefWidth="1200.0" spacing="15.0">
                     <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                     </padding>
@@ -101,8 +101,8 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" spacing="30.0">
                      <children>
-                        <Button fx:id="btnClientes" mnemonicParsing="false" styleClass="btnAsignar" text="Asignar Clientes" />
-                        <Button fx:id="btnHuecos" mnemonicParsing="false" styleClass="btnAsignar" text="Asignar Huecos" />
+                        <Button fx:id="btnAsignarClientes" mnemonicParsing="false" styleClass="btnAsignar" text="Asignar Clientes" />
+                        <Button fx:id="btnAsignarHuecos" mnemonicParsing="false" styleClass="btnAsignar" text="Asignar Huecos" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="20.0">
@@ -113,6 +113,7 @@
                      </children>
                   </HBox>
                   <Line endX="674.6666870117188" startX="-400.0" />
+                  <Label styleClass="bienvenido" text="FILTRAR CITAS" />
                   <HBox alignment="CENTER_LEFT" spacing="30.0">
                      <children>
                         <HBox alignment="CENTER_LEFT" spacing="10.0">
@@ -124,19 +125,19 @@
                         <HBox alignment="CENTER_LEFT" spacing="10.0">
                            <children>
                               <Label text="Fecha hasta:" />
-                              <TextField fx:id="txtFechaDesde1" minWidth="100.0" prefWidth="100.0" />
+                              <TextField fx:id="txtFechaHasta" minWidth="100.0" prefWidth="100.0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" spacing="10.0">
                            <children>
                               <Label text="Hora desde:" />
-                              <TextField fx:id="txtFechaDesde2" minWidth="100.0" prefWidth="100.0" />
+                              <TextField fx:id="txtHoraDesde" minWidth="100.0" prefWidth="100.0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" spacing="10.0">
                            <children>
                               <Label text="Hora hasta:" />
-                              <TextField fx:id="txtFechaDesde3" minWidth="100.0" prefWidth="100.0" />
+                              <TextField fx:id="txtHoraHasta" minWidth="100.0" prefWidth="100.0" />
                            </children>
                         </HBox>
                      </children>
@@ -152,13 +153,13 @@
                         <HBox alignment="CENTER_LEFT" spacing="10.0">
                            <children>
                               <Label text="Estado:" />
-                              <ComboBox fx:id="cmbEstado1" minWidth="180.0" prefWidth="180.0" />
+                              <ComboBox fx:id="cmbEstadoFiltro" minWidth="180.0" prefWidth="180.0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" spacing="10.0">
                            <children>
                               <Label text="Tipo:" />
-                              <ComboBox fx:id="cmbTipo1" minWidth="180.0" prefWidth="180.0" />
+                              <ComboBox fx:id="cmbTipoFiltro" minWidth="180.0" prefWidth="180.0" />
                            </children>
                         </HBox>
                      </children>
@@ -168,19 +169,19 @@
                         <HBox alignment="CENTER_LEFT" spacing="10.0">
                            <children>
                               <Label text="Cabina: " />
-                              <ComboBox fx:id="cmbCabina1" minWidth="180.0" prefWidth="180.0" />
+                              <ComboBox fx:id="cmbCabinaFiltro" minWidth="180.0" prefWidth="180.0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" spacing="10.0">
                            <children>
                               <Label text="Anillador:" />
-                              <ComboBox fx:id="cmbAnillador1" minWidth="180.0" prefWidth="180.0" />
+                              <ComboBox fx:id="cmbAnilladorFiltro" minWidth="180.0" prefWidth="180.0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" spacing="10.0">
                            <children>
                               <Label text="Tatuador:" />
-                              <ComboBox fx:id="cmbTatuador1" minWidth="180.0" prefWidth="180.0" />
+                              <ComboBox fx:id="cmbTatuadorFiltro" minWidth="180.0" prefWidth="180.0" />
                            </children>
                         </HBox>
                      </children>
@@ -190,7 +191,7 @@
                         <Button fx:id="btnCrear1" mnemonicParsing="false" prefWidth="150.0" styleClass="btnAccion" text="Aplicar Filtros" />
                      </children>
                   </HBox>
-                  <TableView fx:id="tblProxCitas">
+                  <TableView fx:id="tblCitas">
                      <columns>
                         <TableColumn fx:id="id" text="ID" />
                         <TableColumn fx:id="tipo" text="Tipo" />
@@ -201,9 +202,9 @@
                         <TableColumn fx:id="tatuador" text="Tatuador" />
                         <TableColumn fx:id="anillador" text="Anillador" />
                         <TableColumn fx:id="cabina" text="Cabina" />
-                        <TableColumn fx:id="cabina1" text="Dia" />
-                        <TableColumn fx:id="cabina11" text="Inicio" />
-                        <TableColumn fx:id="cabina111" text="Duracion" />
+                        <TableColumn fx:id="dia" text="Dia" />
+                        <TableColumn fx:id="inicio" text="Inicio" />
+                        <TableColumn fx:id="duracion" text="Duracion" />
                      </columns>
                   </TableView>
                </children>
