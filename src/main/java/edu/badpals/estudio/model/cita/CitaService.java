@@ -28,7 +28,7 @@ public class CitaService {
         this.cabinaDAO = new CabinaDAO();
     }
 
-    public void crearCita(Tipo tipo, String descripcion, Float precio, Float señal, Estado estado, Tatuador tatuador, Anillador anillador, Cabina cabina, List<Hueco> huecos, Set<Cliente> clientes)throws IllegalArgumentException {
+    public void crearCita(Tipo tipo, String descripcion, Float precio, Float señal, Estado estado, Tatuador tatuador, Anillador anillador, Cabina cabina, List<Hueco> huecos, List<Cliente> clientes)throws IllegalArgumentException {
 
         if(!hasCamposObligatorios(tipo,descripcion,precio,señal,estado,cabina,clientes)){
             throw new IllegalArgumentException("Hay campos obligatorios sin rellenar o no válidos.");
@@ -57,7 +57,7 @@ public class CitaService {
         }
     }
 
-    private Boolean hasCamposObligatorios(Tipo tipo, String descripcion, Float precio, Float señal, Estado estado, Cabina cabina, Set<Cliente> clientes) {
+    private Boolean hasCamposObligatorios(Tipo tipo, String descripcion, Float precio, Float señal, Estado estado, Cabina cabina, List<Cliente> clientes) {
         if(tipo == null || descripcion == null || descripcion.isEmpty() || precio == null || precio < 0.0 || señal == null || señal < 0.0 || estado == null || cabina == null || !cabinaDAO.findById(cabina.getId()).isPresent()){
             return false;
         }
@@ -73,7 +73,7 @@ public class CitaService {
         return true;
     }
 
-    private Boolean hasClientes(Set<Cliente> clientes){
+    private Boolean hasClientes(List<Cliente> clientes){
         for (Cliente cliente : clientes) {
             if (cliente == null){
                 return false;
@@ -86,7 +86,7 @@ public class CitaService {
         citaDAO.delete(cita);
     }
 
-    public void updateCita(Cita cita, Tipo newTipo, String newDescripcion, Float newPrecio, Float newSeñal, Estado newEstado, Tatuador newTatuador, Anillador newAnillador, Cabina newCabina, List<Hueco> newHuecos, Set<Cliente> newClientes) {
+    public void updateCita(Cita cita, Tipo newTipo, String newDescripcion, Float newPrecio, Float newSeñal, Estado newEstado, Tatuador newTatuador, Anillador newAnillador, Cabina newCabina, List<Hueco> newHuecos, List<Cliente> newClientes) {
 
         if(newTipo != null){
             cita.setTipo(newTipo);

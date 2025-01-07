@@ -18,7 +18,7 @@ public class CitaDAO {
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
 
-        Set<Cliente> clientesMerged = new HashSet<>();
+        List<Cliente> clientesMerged = new ArrayList<>();
         for(Cliente cliente : cita.getClientes()){
             Cliente clienteMerged = em.merge(cliente);
             clientesMerged.add(clienteMerged);

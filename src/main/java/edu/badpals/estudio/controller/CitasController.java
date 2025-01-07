@@ -19,11 +19,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CitasController {
@@ -35,8 +38,10 @@ public class CitasController {
     HuecoService huecoService;
     ClienteService clienteService;
 
+    Cita citaSeleccionada;
+
     @FXML
-    private Button btnHome, btnCitas, btnCabinas, btnClientes, btnProductos, btnTrabajadores;
+    private Button btnHome, btnCitas, btnCabinas, btnClientes, btnProductos, btnTrabajadores, btnAsignarClientes;
 
     @FXML
     private TextField txtDescripcion, txtSenal, txtPrecio, txtFechaDesde, txtFechaHasta, txtHoraDesde;
@@ -87,6 +92,12 @@ public class CitasController {
 
         List<Cita> citas = citaService.getAllCitas();
         cargarTablaCitas(citas);
+        tblCitas.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null){
+                citaSeleccionada = newValue;
+            }
+        });
+
     }
 
     public void setCmbEstado(){
@@ -239,7 +250,12 @@ public class CitasController {
 
     }
 
+    public void abrirModalClientes(ActionEvent event){
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        ModalClientesController mClientesController = SceneManager.openModal("/edu/badpals/estudio/modalClientes.fxml",this.getClass(),currentStage, controller ->
+                controller.setClientesSeleccionados(citaSeleccionada == null? new ArrayList<>() : citaSeleccionada.getClientes()));
+    }
 
     public void irCabinas(ActionEvent event){
         SceneManager.goToView(event,"/edu/badpals/estudio/cabinas.fxml",this.getClass());

@@ -58,12 +58,12 @@ public class Cita {
             joinColumns = @JoinColumn(name = "CITA"),
             inverseJoinColumns = @JoinColumn(name = "CLIENTE")
     )
-    private Set<Cliente> clientes;
+    private List<Cliente> clientes;
 
     public Cita() {
     }
 
-    public Cita( Tipo tipo, String descripcion, Float precio, Float señal, Estado estado,Tatuador tatuador, Anillador anillador, Cabina cabina, List<Hueco> huecos, Set<Cliente> clientes) {
+    public Cita( Tipo tipo, String descripcion, Float precio, Float señal, Estado estado,Tatuador tatuador, Anillador anillador, Cabina cabina, List<Hueco> huecos, List<Cliente> clientes) {
         this.estado = estado;
         this.señal = señal;
         this.precio = precio;
@@ -156,11 +156,11 @@ public class Cita {
         this.huecos = huecos;
     }
 
-    public Set<Cliente> getClientes() {
+    public List<Cliente> getClientes() {
         return clientes;
     }
 
-    public void setClientes(Set<Cliente> clientes) {
+    public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
     }
 

@@ -1,0 +1,179 @@
+/* Estilo global para ScrollPane */
+ScrollPane .content {
+    -fx-background-color: #4f5664;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+}
+
+/* Estilo para el VBox dentro del ScrollPane */
+VBox {
+    -fx-background-color: #4f5664;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-spacing: 20px;
+    -fx-padding: 20px;
+}
+
+/* Estilo para los Label de bienvenida */
+.bienvenido {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-font-size: 16.5px;
+}
+
+/* Estilo para las tablas (TableView) */
+TableView {
+    -fx-background-color: #3e4551;
+    -fx-border-color: #6c7a89;
+    -fx-text-fill: #dcdde1;
+    -fx-font-size: 14px;
+}
+
+TableView .column-header {
+    -fx-background-color: #444b5a;
+    -fx-text-fill: #dcdde1;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+TableView .cell {
+    -fx-border-width: 0 0 1px 0;
+    -fx-background-color: transparent;
+    -fx-text-fill: #dcdde1;
+}
+
+/* Alternancia de color entre filas */
+TableView .table-row-cell:odd {
+    -fx-background-color: #4d565f;
+}
+
+TableView .table-row-cell:even {
+    -fx-background-color: #5a636d;
+}
+
+/* Estilo para la fila seleccionada */
+TableView .table-row-cell:selected {
+    -fx-background-color: #1abc9c;
+    -fx-text-fill: #5c5f76;
+}
+
+/* Elimina el fondo adicional de las celdas seleccionadas */
+TableView .cell:selected {
+    -fx-background-color: #1abc9c;
+    -fx-text-fill: #5c5f76;
+}
+
+/* Estilo para las etiquetas (Labels) */
+Label {
+    -fx-text-fill: #ddd;
+    -fx-font-size: 14px;
+}
+
+/* Estilo para el TextField */
+TextField {
+    -fx-padding: 2;
+    -fx-background-color: #3e4551;
+    -fx-text-fill: #dcdde1;
+    -fx-border-color: #6c7a89;
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+TextField:focused {
+    -fx-background-color: #4d565f;
+    -fx-border-color: #1abc9c;
+}
+
+TextField .text-field .prompt-text {
+    -fx-text-fill: #888888;
+}
+
+/* Estilo para el botón */
+Button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #dcdde1;
+    -fx-font-size: 16px;
+    -fx-padding: 12 20;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+/* Botones con clase btnAccion */
+.btnAccion {
+    -fx-background-color: #1abc9c;
+    -fx-padding: 5 10;
+}
+
+.btnAccion:hover {
+    -fx-background-color: #1a9a8a;
+    -fx-text-fill: #fff;
+}
+
+.btnAccion:pressed {
+    -fx-background-color: #067e63;
+    -fx-text-fill: #bbb;
+}
+
+/* Estilo para las líneas */
+Line {
+    -fx-stroke: #6c7a89;
+    -fx-stroke-width: 1.5;
+}
+
+TableView {
+    -fx-background-color: #3e4551; /* Fondo oscuro */
+    -fx-border-color: #6c7a89;
+    -fx-text-fill: #dcdde1;
+    -fx-font-size: 14px;
+}
+
+TableView .column-header {
+    -fx-background-color: #444b5a;
+    -fx-text-fill: #dcdde1;
+    -fx-font-size: 14px;
+    -fx-text-fill: #dcdde1; /* Color del texto */
+    -fx-font-weight: bold;
+}
+
+TableView .cell {
+    -fx-border-width: 0 0 1px 0; /* Borde solo inferior */
+    -fx-background-color: transparent; /* Fondo transparente */
+    -fx-text-fill: #dcdde1; /* Color del texto */
+}
+
+/* Alternancia de color entre filas */
+TableView .table-row-cell:odd {
+    -fx-background-color: #4d565f; /* Gris oscuro */
+}
+
+TableView .table-row-cell:even {
+    -fx-background-color: #5a636d; /* Gris claro */
+}
+
+/* Estilo para la fila seleccionada */
+TableView .table-row-cell:selected {
+    -fx-background-color: #1abc9c; /* Color de la fila seleccionada */
+    -fx-text-fill: #5c5f76; /* Texto de la fila seleccionada */
+}
+
+/* Elimina el fondo adicional de las celdas seleccionadas */
+TableView .cell:selected {
+    -fx-background-color: #1abc9c;
+    -fx-text-fill: #5c5f76;
+}
+
+/* Estilo para los botones "Añadir" y "Eliminar" */
+Button#btnAnadir, Button#btnEliminar {
+    -fx-background-color: #1abc9c;
+    -fx-text-fill: #ffffff;
+}
+
+Button#btnAnadir:hover, Button#btnEliminar:hover {
+    -fx-background-color: #1a9a8a;
+}
+
+/* Estilo para las filas de HBox */
+HBox {
+    -fx-spacing: 10px;
+    -fx-alignment: CENTER_LEFT;
+}
