@@ -1,9 +1,11 @@
 package edu.badpals.estudio.controller;
 import edu.badpals.estudio.model.cabina.Cabina;
 import edu.badpals.estudio.model.cabina.CabinaService;
+import edu.badpals.estudio.model.utils.EntityManagerFactoryProvider;
 import edu.badpals.estudio.view.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.List;
@@ -11,16 +13,7 @@ import java.util.List;
 public class CabinasController {
 
     @FXML
-    private Button btnActualizarCabina;
-
-    @FXML
-    private Button btnCrearCabina;
-
-    @FXML
-    private Button btnEliminarCabina;
-
-    @FXML
-    private Button btnTrabajadores;
+    private Button btnActualizarCabina, btnCrearCabina, btnEliminarCabina,btnHome, btnCitas, btnCabinas, btnClientes, btnProductos, btnTrabajadores;
 
     @FXML
     private Label lblTrabajadores;
@@ -63,7 +56,7 @@ public class CabinasController {
 
     @FXML
     public void initialize() {
-
+        EntityManagerFactoryProvider.initialize("test");
 
         tblCabinas.setOnMouseClicked(event -> {
 
@@ -209,5 +202,29 @@ public class CabinasController {
     }
 
 
+    public void irVista(ActionEvent event, String vistaFxml) {
+        EntityManagerFactoryProvider.close();
+        SceneManager.goToView(event, vistaFxml, this.getClass());
+    }
+
+    public void irHome(ActionEvent event){
+        irVista(event,"/edu/badpals/estudio/home.fxml");
+    }
+
+    public void irProductos(ActionEvent event){
+        irVista(event,"/edu/badpals/estudio/productos.fxml");
+    }
+
+    public void irCitas(ActionEvent event){
+        irVista(event,"/edu/badpals/estudio/citas.fxml");
+    }
+
+    public void irClientes(ActionEvent event){
+        irVista(event,"/edu/badpals/estudio/clientes.fxml");
+    }
+
+    public void irTrabajadores(ActionEvent event){
+        irVista(event,"/edu/badpals/estudio/trabajadores.fxml");
+    }
 
 }

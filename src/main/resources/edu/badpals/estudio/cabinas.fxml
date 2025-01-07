@@ -11,14 +11,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.badpals.estudio.controller.CabinasController">
+<BorderPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../css/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.badpals.estudio.controller.CabinasController">
     <left>
-        <VBox alignment="CENTER" prefWidth="200.0" spacing="10.0">
-            <Button onAction="#colocarTexto" prefWidth="160.0" text="Trabajadores" />
-            <Button prefWidth="160.0" text="Clientes" />
-            <Button prefWidth="160.0" text="Citas" />
-            <Button prefWidth="160.0" text="Cabinas" />
-            <Button prefWidth="160.0" text="Productos" />
+        <VBox alignment="CENTER" prefWidth="200.0" spacing="10.0" styleClass="menu-lateral">
+            <Button fx:id="btnHome" prefWidth="160.0" text="Home" onAction="#irHome" />
+            <Button fx:id="btnCitas" prefWidth="160.0" text="Citas" onAction="#irCitas"/>
+            <Button fx:id="btnCabinas" prefWidth="160.0" text="Cabinas" styleClass="escena-actual" />
+            <Button fx:id="btnClientes" prefWidth="160.0" text="Clientes" onAction="#irClientes"/>
+            <Button fx:id="btnProductos" prefWidth="160.0" text="Productos" onAction="#irProductos"/>
+            <Button fx:id="btnTrabajadores" prefWidth="160.0" text="Trabajadores" onAction="#irTrabajadores"/>
         </VBox>
     </left>
     <center>

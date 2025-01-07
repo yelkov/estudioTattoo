@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../css/home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.badpals.estudio.controller.HomeController">
+    <left>
+        <VBox alignment="CENTER" prefWidth="200.0" spacing="10.0" styleClass="menu-lateral">
+            <Button fx:id="btnHome" prefWidth="160.0" text="Home" styleClass="escena-actual" />
+            <Button fx:id="btnCitas" prefWidth="160.0" text="Citas" onAction="#irCitas"/>
+            <Button fx:id="btnCabinas" prefWidth="160.0" text="Cabinas" onAction="#irCabinas" />
+            <Button fx:id="btnClientes" prefWidth="160.0" text="Clientes" onAction="#irClientes"/>
+            <Button fx:id="btnProductos" prefWidth="160.0" text="Productos" onAction="#irProductos" />
+            <Button fx:id="btnTrabajadores" prefWidth="160.0" text="Trabajadores" onAction="#irTrabajadores"/>
+        </VBox>
+    </left>
+    <center>
+        <AnchorPane BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" spacing="10.0">
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                    <children>
+                        <Label styleClass="bienvenido" text="¡Bienvenido!" textAlignment="CENTER"/>
+                        <VBox alignment="CENTER" spacing="15.0" styleClass="main-content">
+                            <children>
+                        <Label fx:id="lblCitas" text="¡Hola, Usuario! Hoy hay x citas reservadas. ">
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font>
+                        </Label>
+                                  <Label fx:id="lblClientes" text="Existen x clientes registrados en el estudio.">
+                                      <font>
+                                          <Font name="SansSerif Regular" size="13.0" />
+                                      </font>
+                                  </Label>
+                                  <Label fx:id="lblHuecos" text="Hay x huecos libres en el estudio hoy.">
+                                      <font>
+                                          <Font name="SansSerif Regular" size="13.0" />
+                                      </font>
+                                  </Label>
+                            </children>
+                        </VBox>
+                        <Line endX="533.9393310546875" endY="-0.9319803714752197" startX="-350.0">
+                            <VBox.margin>
+                                <Insets bottom="30.0" top="30.0" />
+                            </VBox.margin>
+                        </Line>
+                        <Label styleClass="bienvenido" text="PROXIMAS CITAS" />
+                        <TableView fx:id="tblProxCitas">
+                            <columns>
+                                    <TableColumn fx:id="id" text="ID" />
+                                    <TableColumn fx:id="tipo" text="Tipo" />
+                                    <TableColumn fx:id="descripcion" text="Descripción" />
+                                    <TableColumn fx:id="precio" text="Precio" />
+                                    <TableColumn fx:id="señal" text="Señal" />
+                                    <TableColumn fx:id="estado" text="Estado" />
+                                    <TableColumn fx:id="tatuador" text="Tatuador" />
+                                    <TableColumn fx:id="anillador" text="Anillador" />
+                                    <TableColumn fx:id="cabina" text="Cabina" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
