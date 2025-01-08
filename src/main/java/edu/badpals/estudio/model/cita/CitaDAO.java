@@ -18,7 +18,7 @@ public class CitaDAO {
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
 
-        Set<Cliente> clientesMerged = new HashSet<>();
+        List<Cliente> clientesMerged = new ArrayList<>();
         for(Cliente cliente : cita.getClientes()){
             Cliente clienteMerged = em.merge(cliente);
             clientesMerged.add(clienteMerged);
@@ -44,7 +44,7 @@ public class CitaDAO {
         em.close();
     }
 
-    public void reservarHuecos(Cita cita, Set<Hueco> huecos){
+    public void reservarHuecos(Cita cita, List<Hueco> huecos){
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
 

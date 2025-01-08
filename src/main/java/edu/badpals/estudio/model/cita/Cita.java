@@ -8,9 +8,7 @@ import edu.badpals.estudio.model.trabajador.Tatuador;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "CITAS")
@@ -52,7 +50,7 @@ public class Cita {
     private Cabina cabina;
 
     @OneToMany(mappedBy = "cita",fetch = FetchType.EAGER, orphanRemoval = true)
-    private Set<Hueco> huecos = new HashSet<>();
+    private List<Hueco> huecos = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE,CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinTable(
@@ -60,12 +58,12 @@ public class Cita {
             joinColumns = @JoinColumn(name = "CITA"),
             inverseJoinColumns = @JoinColumn(name = "CLIENTE")
     )
-    private Set<Cliente> clientes;
+    private List<Cliente> clientes;
 
     public Cita() {
     }
 
-    public Cita( Tipo tipo, String descripcion, Float precio, Float señal, Estado estado,Tatuador tatuador, Anillador anillador, Cabina cabina, Set<Hueco> huecos, Set<Cliente> clientes) {
+    public Cita( Tipo tipo, String descripcion, Float precio, Float señal, Estado estado,Tatuador tatuador, Anillador anillador, Cabina cabina, List<Hueco> huecos, List<Cliente> clientes) {
         this.estado = estado;
         this.señal = señal;
         this.precio = precio;
@@ -150,19 +148,19 @@ public class Cita {
         this.señal = señal;
     }
 
-    public Set<Hueco> getHuecos() {
+    public List<Hueco> getHuecos() {
         return huecos;
     }
 
-    public void setHuecos(Set<Hueco> huecos) {
+    public void setHuecos(List<Hueco> huecos) {
         this.huecos = huecos;
     }
 
-    public Set<Cliente> getClientes() {
+    public List<Cliente> getClientes() {
         return clientes;
     }
 
-    public void setClientes(Set<Cliente> clientes) {
+    public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
     }
 

@@ -155,7 +155,7 @@ class CitaServiceTest {
         Tatuador tatuador1 = tatuadorService.getTatuador(1);
         Cabina cabina1 = cabinaService.getCabina(1);
         Cliente cliente1 = clienteService.getCliente(1);
-        citaService.crearCita(Tipo.TATUAJE,"Nueva cita de testing",250.0f,20.0f,Estado.RESERVADA,tatuador1,null,cabina1, Set.of(hueco1),Set.of(cliente1));
+        citaService.crearCita(Tipo.TATUAJE,"Nueva cita de testing",250.0f,20.0f,Estado.RESERVADA,tatuador1,null,cabina1, List.of(hueco1),List.of(cliente1));
 
         Cita citaRecuperada = citaService.getCitaByDescripcionCabina("Nueva cita de testing",1);
         assertEquals(Estado.RESERVADA,citaRecuperada.getEstado());

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" stylesheets="@../../../css/modelClientes.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.badpals.estudio.controller.ModalClientesController">
+   <content>
+      <VBox alignment="TOP_CENTER" spacing="20.0">
+         <children>
+            <VBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Label styleClass="bienvenido" text="Lista de clientes" />
+                  <HBox spacing="20.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Id:" />
+                              <TextField fx:id="txtId" maxWidth="40.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Dni:" />
+                              <TextField fx:id="txtDni" maxWidth="100.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Tlf.:" />
+                              <TextField fx:id="txtTelefono" maxWidth="100.0" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="btnBuscar" mnemonicParsing="false" styleClass="btnAccion" text="Buscar" />
+                        <Region prefWidth="30.0" />
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Nombre:" />
+                              <TextField fx:id="txtNombre" maxWidth="200.0" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="btnFiltrar" mnemonicParsing="false" styleClass="btnAccion" text="Filtrar" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" spacing="0.0" style="-fx-hgap: 0" />
+                  <TableView fx:id="tblClientes" prefHeight="200.0">
+                     <columns>
+                        <TableColumn fx:id="id" text="ID" />
+                        <TableColumn fx:id="dni" text="DNI" />
+                        <TableColumn fx:id="nombre" text="Nombre" />
+                        <TableColumn fx:id="telefono" text="Telefono" />
+                        <TableColumn fx:id="direccion" text="Direccion" />
+                        <TableColumn fx:id="fecha" text="Fecha nac." />
+                        <TableColumn fx:id="instagram" text="Instagram" />
+                        <TableColumn fx:id="email" text="email" />
+                        <TableColumn fx:id="tutor" text="Tutor" />
+                        <TableColumn fx:id="parentesco" text="Parentesco" />
+                     </columns>
+                  </TableView>
+                  <HBox maxWidth="180.0" spacing="20.0">
+                     <children>
+                        <Button fx:id="btnAnadir" mnemonicParsing="false" onAction="#anadirCliente" styleClass="btnAccion" text="Añadir" />
+                        <Button fx:id="btnLimpiarFiltros" mnemonicParsing="false" onAction="#limpiarFiltros" styleClass="btnAccion" text="Limpiar" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Label styleClass="bienvenido" text="Clientes seleccionados" />
+                  <TableView fx:id="tblClientesSeleccionados" prefHeight="120.0">
+                     <columns>
+                        <TableColumn fx:id="idSelec" text="ID" />
+                        <TableColumn fx:id="dniSelec" text="DNI" />
+                        <TableColumn fx:id="nombreSelec" text="Nombre" />
+                        <TableColumn fx:id="telefonoSelec" text="Telefono" />
+                        <TableColumn fx:id="direccionSelec" text="Direccion" />
+                        <TableColumn fx:id="fechaSelec" text="Fecha nac." />
+                        <TableColumn fx:id="instagramSelec" text="Instagram" />
+                        <TableColumn fx:id="emailSelec" text="email" />
+                        <TableColumn fx:id="tutorSelec" text="Tutor" />
+                        <TableColumn fx:id="parentescoSelec" text="Parentesco" />
+                     </columns>
+                  </TableView>
+                  <HBox alignment="CENTER" maxWidth="190.0" prefHeight="32.0" prefWidth="183.0" spacing="20.0">
+                     <children>
+                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarCliente" styleClass="btnAccion" text="Eliminar " />
+                        <Button fx:id="btnLimpiarSelec" mnemonicParsing="false" onAction="#limpiarSeleccionados" styleClass="btnAccion" text="Limpiar" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmarClientes" styleClass="btnAccion" text="Confirmar seleccionados"/>
+               </children>
+            </VBox>
+            <Line endX="100.0" startX="-700.0" />
+         </children>
+      </VBox>
+   </content>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</ScrollPane>
