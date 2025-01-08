@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -9,28 +8,55 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../css/home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.badpals.estudio.controller.TrabajadoresController">
+<?import javafx.scene.control.TextField?>
+<BorderPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../css/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.badpals.estudio.controller.TrabajadoresController">
     <left>
         <VBox alignment="CENTER" prefWidth="200.0" spacing="10.0" styleClass="menu-lateral">
-            <Button fx:id="btnHome" prefWidth="160.0" text="Home" onAction="#irHome" />
-            <Button fx:id="btnCitas" prefWidth="160.0" text="Citas" onAction="#irCitas" />
-            <Button fx:id="btnCabinas" prefWidth="160.0" text="Cabinas" onAction="#irCabinas" />
-            <Button fx:id="btnClientes" prefWidth="160.0" text="Clientes" onAction="#irClientes" />
-            <Button fx:id="btnProductos" prefWidth="160.0" text="Productos" onAction="#irProductos" />
-            <Button fx:id="btnTrabajadores" prefWidth="160.0" text="Trabajadores" styleClass="escena-actual" />
+            <Button fx:id="btnHome" onAction="#irHome" prefWidth="160.0" text="Home" />
+            <Button fx:id="btnCitas" onAction="#irCitas" prefWidth="160.0" text="Citas" />
+            <Button fx:id="btnCabinas" onAction="#irCabinas" prefWidth="160.0" text="Cabinas" />
+            <Button fx:id="btnClientes" onAction="#irClientes" prefWidth="160.0" text="Clientes" />
+            <Button fx:id="btnProductos" onAction="#irProductos" prefWidth="160.0" text="Productos" />
+            <Button fx:id="btnTrabajadores" prefWidth="160.0" styleClass="escena-actual" text="Trabajadores" />
         </VBox>
     </left>
     <center>
         <AnchorPane BorderPane.alignment="CENTER">
-            <children>
-                <VBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" spacing="10.0">
-                    <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                    </padding>
-                </VBox>
-            </children>
+         <children>
+            <TableView fx:id="tblTrabajador" layoutX="22.0" layoutY="333.0" prefHeight="200.0" prefWidth="755.0">
+              <columns>
+                <TableColumn fx:id="rowID" prefWidth="75.0" text="C1" />
+                <TableColumn fx:id="rowNIF" prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="rowNombre" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="rowNSS" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="rowFechaNacimiento" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="rowFechaAlta" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="rowSalario" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="rowEmail" prefWidth="75.0" text="Column X" />
+              </columns>
+            </TableView>
+            <Label layoutX="95.0" layoutY="33.0" text="ID:" />
+            <Label layoutX="81.0" layoutY="93.0" text="NIF:" />
+            <Label layoutX="66.0" layoutY="217.0" text="Salario" />
+            <Label layoutX="334.0" layoutY="93.0" text="Nombre:" />
+            <Label layoutX="605.0" layoutY="91.0" text="NSS:" />
+            <Label layoutX="60.0" layoutY="152.0" text="Fecha Nacimiento:" />
+            <Label layoutX="344.0" layoutY="217.0" text="E-mail" />
+            <TextField fx:id="txtIDTrabajador" layoutX="117.0" layoutY="28.0" prefHeight="27.0" prefWidth="101.0" />
+            <TextField fx:id="txtNIFTrabajador" layoutX="117.0" layoutY="88.0" prefHeight="27.0" prefWidth="203.0" />
+            <TextField fx:id="txtNombreTrabajador" layoutX="400.0" layoutY="86.0" prefHeight="27.0" prefWidth="189.0" />
+            <TextField fx:id="txtNSSTrabajador" layoutX="642.0" layoutY="83.0" prefHeight="37.0" prefWidth="110.0" />
+            <TextField fx:id="txtSalarioTrabajador" layoutX="117.0" layoutY="212.0" prefHeight="27.0" prefWidth="203.0" />
+            <TextField fx:id="txtFechaNacimientoTrabajador" layoutX="177.0" layoutY="151.0" prefHeight="37.0" prefWidth="145.0" />
+            <TextField fx:id="txtEmailTrabajador" layoutX="393.0" layoutY="207.0" prefHeight="37.0" prefWidth="198.0" />
+            <TextField fx:id="txtFechaAltaTrabajador" layoutX="423.0" layoutY="151.0" prefHeight="37.0" prefWidth="165.0" />
+            <Button fx:id="btnAñadirTrabajador" layoutX="134.0" layoutY="256.0" mnemonicParsing="false" text="Añadir" />
+            <Button fx:id="btnActualizarTrabajador" layoutX="342.0" layoutY="256.0" mnemonicParsing="false" text="Actualizar" />
+            <Button fx:id="btnEliminarTrabajador" layoutX="571.0" layoutY="256.0" mnemonicParsing="false" text="Eliminar" />
+            <Line endX="652.0000610351562" layoutX="124.0" layoutY="311.0" startX="-100.0" />
+            <Label layoutX="349.0" layoutY="152.0" text="Fecha Alta:" />
+         </children>
         </AnchorPane>
     </center>
 </BorderPane>
