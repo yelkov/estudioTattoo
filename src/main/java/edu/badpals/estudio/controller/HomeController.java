@@ -109,7 +109,7 @@ public class HomeController {
     }
 
     public void irClientes(ActionEvent event){
-        SceneManager.goToView(event,"/edu/badpals/estudio/productos.fxml",this.getClass());
+        SceneManager.goToView(event,"/edu/badpals/estudio/clientes.fxml",this.getClass());
     }
 
     public void irTrabajadores(ActionEvent event){
